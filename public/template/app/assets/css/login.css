@@ -1,0 +1,29 @@
+.container {
+    max-width: 90%;
+}
+.content-form {
+    width: 516px;
+    margin: auto;
+}
+img.img-login.absolute.top-0.left-0.right-0.-mt-6 {
+    width: 100%;
+    height: 310px;
+    opacity: 0.8;
+}
+
+.bg-p3 {
+    --tw-bg-opacity: 1;
+    background-color: rgba(94, 186, 103, 1);
+    background-color: rgb(4 69 110);
+}
+
+@media(max-width:767px){
+    .content-form {
+        width: 516px;
+        margin: auto;
+        max-width: 100%;
+    }
+    .container {
+        max-width: 100%;
+    }
+}

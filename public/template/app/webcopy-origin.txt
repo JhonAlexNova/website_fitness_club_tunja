@@ -1,0 +1,700 @@
+Uri: https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\css2
+Content Type: text/css
+
+Uri: https://fonts.gstatic.com/s/poppins/v21/pxiAyp8kv8JHgFVrJJLmE3tF.ttf
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\s\poppins\v21\pxiAyp8kv8JHgFVrJJLmE3tF.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/poppins/v21/pxiByp8kv8JHgFVrLBT5V1s.ttf
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\s\poppins\v21\pxiByp8kv8JHgFVrLBT5V1s.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/poppins/v21/pxiByp8kv8JHgFVrLCz7V1s.ttf
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\s\poppins\v21\pxiByp8kv8JHgFVrLCz7V1s.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/poppins/v21/pxiByp8kv8JHgFVrLDD4V1s.ttf
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\s\poppins\v21\pxiByp8kv8JHgFVrLDD4V1s.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/poppins/v21/pxiByp8kv8JHgFVrLDz8V1s.ttf
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\s\poppins\v21\pxiByp8kv8JHgFVrLDz8V1s.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/poppins/v21/pxiByp8kv8JHgFVrLEj6V1s.ttf
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\s\poppins\v21\pxiByp8kv8JHgFVrLEj6V1s.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/poppins/v21/pxiByp8kv8JHgFVrLFj_V1s.ttf
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\s\poppins\v21\pxiByp8kv8JHgFVrLFj_V1s.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/poppins/v21/pxiByp8kv8JHgFVrLGT9V1s.ttf
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\s\poppins\v21\pxiByp8kv8JHgFVrLGT9V1s.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/poppins/v21/pxiDyp8kv8JHgFVrJJLm111lEA.ttf
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\s\poppins\v21\pxiDyp8kv8JHgFVrJJLm111lEA.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/poppins/v21/pxiDyp8kv8JHgFVrJJLm21llEA.ttf
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\s\poppins\v21\pxiDyp8kv8JHgFVrJJLm21llEA.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/poppins/v21/pxiDyp8kv8JHgFVrJJLm81xlEA.ttf
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\s\poppins\v21\pxiDyp8kv8JHgFVrJJLm81xlEA.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/poppins/v21/pxiDyp8kv8JHgFVrJJLmg1hlEA.ttf
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\s\poppins\v21\pxiDyp8kv8JHgFVrJJLmg1hlEA.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/poppins/v21/pxiDyp8kv8JHgFVrJJLmr19lEA.ttf
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\s\poppins\v21\pxiDyp8kv8JHgFVrJJLmr19lEA.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/poppins/v21/pxiDyp8kv8JHgFVrJJLmv1plEA.ttf
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\s\poppins\v21\pxiDyp8kv8JHgFVrJJLmv1plEA.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/poppins/v21/pxiDyp8kv8JHgFVrJJLmy15lEA.ttf
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\s\poppins\v21\pxiDyp8kv8JHgFVrJJLmy15lEA.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/poppins/v21/pxiEyp8kv8JHgFVrFJA.ttf
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\s\poppins\v21\pxiEyp8kv8JHgFVrFJA.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/poppins/v21/pxiGyp8kv8JHgFVrJJLedw.ttf
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\s\poppins\v21\pxiGyp8kv8JHgFVrJJLedw.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/poppins/v21/pxiGyp8kv8JHgFVrLPTedw.ttf
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\s\poppins\v21\pxiGyp8kv8JHgFVrLPTedw.ttf
+Content Type: font/ttf
+
+Uri: https://quizio-pwa-html-app.vercel.app/about-quizio.html
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\about-quizio.html
+Content Type: text/html
+
+Uri: https://quizio-pwa-html-app.vercel.app/add-cover-image.html
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\add-cover-image.html
+Content Type: text/html
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/css/swiper.min.css
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\css\swiper.min.css
+Content Type: text/css
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/AppleLogo.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\AppleLogo.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/badge.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\badge.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/badge1.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\badge1.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/bar-code.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\bar-code.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/bg-image.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\bg-image.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/bg-vector.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\bg-vector.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/congrats.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\congrats.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/Flags1.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\Flags1.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/Flags2.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\Flags2.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/gallery-img-1.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\gallery-img-1.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/gallery-img-10.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\gallery-img-10.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/gallery-img-2.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\gallery-img-2.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/gallery-img-3.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\gallery-img-3.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/gallery-img-4.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\gallery-img-4.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/gallery-img-5.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\gallery-img-5.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/gallery-img-6.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\gallery-img-6.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/gallery-img-7.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\gallery-img-7.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/gallery-img-8.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\gallery-img-8.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/gallery-img-9.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\gallery-img-9.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/GB.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\GB.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/google.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\google.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/header-bg-1.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\header-bg-1.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/header-bg-2.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\header-bg-2.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/icon-1.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\icon-1.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/icon-2.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\icon-2.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/icon-3.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\icon-3.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/icon1.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\icon1.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/icon2.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\icon2.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/icon3.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\icon3.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/icon4.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\icon4.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/invite_illus.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\invite_illus.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/leader-bg.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\leader-bg.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/leader-crown.svg
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\leader-crown.svg
+Content Type: image/svg+xml
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/leader-illus.svg
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\leader-illus.svg
+Content Type: image/svg+xml
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/leader-img-bg.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\leader-img-bg.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/library-favourite-img1.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\library-favourite-img1.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/library-favourite-img2.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\library-favourite-img2.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/library-favourite-img3.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\library-favourite-img3.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/library-favourite-img4.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\library-favourite-img4.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/library-favourite-img5.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\library-favourite-img5.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/logo.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\logo.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/master-card.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\master-card.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/medal1.svg
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\medal1.svg
+Content Type: image/svg+xml
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/medal2.svg
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\medal2.svg
+Content Type: image/svg+xml
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/medal3.svg
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\medal3.svg
+Content Type: image/svg+xml
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/medal4.svg
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\medal4.svg
+Content Type: image/svg+xml
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/medal5.svg
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\medal5.svg
+Content Type: image/svg+xml
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/messanger.svg
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\messanger.svg
+Content Type: image/svg+xml
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/modal-bg-black.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\modal-bg-black.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/modal-bg-white.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\modal-bg-white.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/onboarding-img.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\onboarding-img.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/paypal.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\paypal.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/premium-badge.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\premium-badge.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/premium-features-1.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\premium-features-1.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/premium-features-2.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\premium-features-2.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/premium-features-3.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\premium-features-3.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/premium-features-4.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\premium-features-4.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/premium-features-5.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\premium-features-5.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/premium-features-6.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\premium-features-6.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/quiz-3-img.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\quiz-3-img.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/quiz-4-img.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\quiz-4-img.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/quiz-5-img.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\quiz-5-img.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/quiz-6-img.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\quiz-6-img.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/quiz-8-img.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\quiz-8-img.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/quiz-9-img.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\quiz-9-img.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/quizio-logo.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\quizio-logo.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/result-cup.svg
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\result-cup.svg
+Content Type: image/svg+xml
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/selfie.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\selfie.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/upgrade-premium.svg
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\upgrade-premium.svg
+Content Type: image/svg+xml
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/user-img-1.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\user-img-1.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/user-img-2.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\user-img-2.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/user-img-3.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\user-img-3.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/user-img-4.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\user-img-4.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/user-img-5.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\user-img-5.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/user-img-6.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\user-img-6.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/user-img-7.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\user-img-7.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/user-img-8.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\user-img-8.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/user-img-9.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\user-img-9.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/user-img.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\user-img.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/user-progress.svg
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\user-progress.svg
+Content Type: image/svg+xml
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/user_sidebar.png
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\user_sidebar.png
+Content Type: image/png
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/images/whatsapp.svg
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\images\whatsapp.svg
+Content Type: image/svg+xml
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/js/main.js
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\js\main.js
+Content Type: application/javascript
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/js/plugins/apex-custom.js
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\js\plugins\apex-custom.js
+Content Type: application/javascript
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/js/plugins/apexcharts.min.js
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\js\plugins\apexcharts.min.js
+Content Type: application/javascript
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/js/plugins/circle-slider.js
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\js\plugins\circle-slider.js
+Content Type: application/javascript
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/js/plugins/opt-form.js
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\js\plugins\opt-form.js
+Content Type: application/javascript
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/js/plugins/plugin-custom.js
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\js\plugins\plugin-custom.js
+Content Type: application/javascript
+
+Uri: https://quizio-pwa-html-app.vercel.app/assets/js/plugins/plugins.js
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\assets\js\plugins\plugins.js
+Content Type: application/javascript
+
+Uri: https://quizio-pwa-html-app.vercel.app/attach-your-passport.html
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\attach-your-passport.html
+Content Type: text/html
+
+Uri: https://quizio-pwa-html-app.vercel.app/chat-box.html
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\chat-box.html
+Content Type: text/html
+
+Uri: https://quizio-pwa-html-app.vercel.app/chat.html
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\chat.html
+Content Type: text/html
+
+Uri: https://quizio-pwa-html-app.vercel.app/choose-category.html
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\choose-category.html
+Content Type: text/html
+
+Uri: https://quizio-pwa-html-app.vercel.app/choose-plan.html
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\choose-plan.html
+Content Type: text/html
+
+Uri: https://quizio-pwa-html-app.vercel.app/congrats.html
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\congrats.html
+Content Type: text/html
+
+Uri: https://quizio-pwa-html-app.vercel.app/contact.html
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\contact.html
+Content Type: text/html
+
+Uri: https://quizio-pwa-html-app.vercel.app/contest-search-result.html
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\contest-search-result.html
+Content Type: text/html
+
+Uri: https://quizio-pwa-html-app.vercel.app/contest-search.html
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\contest-search.html
+Content Type: text/html
+
+Uri: https://quizio-pwa-html-app.vercel.app/create-password.html
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\create-password.html
+Content Type: text/html
+
+Uri: https://quizio-pwa-html-app.vercel.app/create-quiz-item.html
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\create-quiz-item.html
+Content Type: text/html
+
+Uri: https://quizio-pwa-html-app.vercel.app/create-quiz.html
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\create-quiz.html
+Content Type: text/html
+
+Uri: https://quizio-pwa-html-app.vercel.app/earn-rewards.html
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\earn-rewards.html
+Content Type: text/html
+
+Uri: https://quizio-pwa-html-app.vercel.app/forgot-password.html
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\forgot-password.html
+Content Type: text/html
+
+Uri: https://quizio-pwa-html-app.vercel.app/generate-qr-code.html
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\generate-qr-code.html
+Content Type: text/html
+
+Uri: https://quizio-pwa-html-app.vercel.app/help-center.html
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\help-center.html
+Content Type: text/html
+
+Uri: https://quizio-pwa-html-app.vercel.app/home.html
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\home.html
+Content Type: text/html
+
+Uri: https://quizio-pwa-html-app.vercel.app/index.html
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\index.html
+Content Type: text/html
+
+Uri: https://quizio-pwa-html-app.vercel.app/index.js
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\index.js
+Content Type: application/javascript
+
+Uri: https://quizio-pwa-html-app.vercel.app/input-email-address.html
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\input-email-address.html
+Content Type: text/html
+
+Uri: https://quizio-pwa-html-app.vercel.app/invite-friends.html
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\invite-friends.html
+Content Type: text/html
+
+Uri: https://quizio-pwa-html-app.vercel.app/leader-board.html
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\leader-board.html
+Content Type: text/html
+
+Uri: https://quizio-pwa-html-app.vercel.app/library.html
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\library.html
+Content Type: text/html
+
+Uri: https://quizio-pwa-html-app.vercel.app/manifest.json
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\manifest.json
+Content Type: application/json
+
+Uri: https://quizio-pwa-html-app.vercel.app/master-medal.html
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\master-medal.html
+Content Type: text/html
+
+Uri: https://quizio-pwa-html-app.vercel.app/math-quiz.html
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\math-quiz.html
+Content Type: text/html
+
+Uri: https://quizio-pwa-html-app.vercel.app/medal-details.html
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\medal-details.html
+Content Type: text/html
+
+Uri: https://quizio-pwa-html-app.vercel.app/music-setting.html
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\music-setting.html
+Content Type: text/html
+
+Uri: https://quizio-pwa-html-app.vercel.app/my-profile.html
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\my-profile.html
+Content Type: text/html
+
+Uri: https://quizio-pwa-html-app.vercel.app/my-wallet.html
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\my-wallet.html
+Content Type: text/html
+
+Uri: https://quizio-pwa-html-app.vercel.app/notification-setting.html
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\notification-setting.html
+Content Type: text/html
+
+Uri: https://quizio-pwa-html-app.vercel.app/otp-verification.html
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\otp-verification.html
+Content Type: text/html
+
+Uri: https://quizio-pwa-html-app.vercel.app/passport-verification.html
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\passport-verification.html
+Content Type: text/html
+
+Uri: https://quizio-pwa-html-app.vercel.app/password-reset-successfully.html
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\password-reset-successfully.html
+Content Type: text/html
+
+Uri: https://quizio-pwa-html-app.vercel.app/payment-methods.html
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\payment-methods.html
+Content Type: text/html
+
+Uri: https://quizio-pwa-html-app.vercel.app/players.html
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\players.html
+Content Type: text/html
+
+Uri: https://quizio-pwa-html-app.vercel.app/premium-benefits.html
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\premium-benefits.html
+Content Type: text/html
+
+Uri: https://quizio-pwa-html-app.vercel.app/quiz-1.html
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\quiz-1.html
+Content Type: text/html
+
+Uri: https://quizio-pwa-html-app.vercel.app/quiz-10.html
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\quiz-10.html
+Content Type: text/html
+
+Uri: https://quizio-pwa-html-app.vercel.app/quiz-2.html
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\quiz-2.html
+Content Type: text/html
+
+Uri: https://quizio-pwa-html-app.vercel.app/quiz-3.html
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\quiz-3.html
+Content Type: text/html
+
+Uri: https://quizio-pwa-html-app.vercel.app/quiz-4.html
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\quiz-4.html
+Content Type: text/html
+
+Uri: https://quizio-pwa-html-app.vercel.app/quiz-5.html
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\quiz-5.html
+Content Type: text/html
+
+Uri: https://quizio-pwa-html-app.vercel.app/quiz-6.html
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\quiz-6.html
+Content Type: text/html
+
+Uri: https://quizio-pwa-html-app.vercel.app/quiz-7.html
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\quiz-7.html
+Content Type: text/html
+
+Uri: https://quizio-pwa-html-app.vercel.app/quiz-8.html
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\quiz-8.html
+Content Type: text/html
+
+Uri: https://quizio-pwa-html-app.vercel.app/quiz-9.html
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\quiz-9.html
+Content Type: text/html
+
+Uri: https://quizio-pwa-html-app.vercel.app/quiz-details.html
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\quiz-details.html
+Content Type: text/html
+
+Uri: https://quizio-pwa-html-app.vercel.app/request-withdrew.html
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\request-withdrew.html
+Content Type: text/html
+
+Uri: https://quizio-pwa-html-app.vercel.app/result-summary.html
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\result-summary.html
+Content Type: text/html
+
+Uri: https://quizio-pwa-html-app.vercel.app/settings.html
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\settings.html
+Content Type: text/html
+
+Uri: https://quizio-pwa-html-app.vercel.app/sign-in.html
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\sign-in.html
+Content Type: text/html
+
+Uri: https://quizio-pwa-html-app.vercel.app/sign-up.html
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\sign-up.html
+Content Type: text/html
+
+Uri: https://quizio-pwa-html-app.vercel.app/signup-successfully.html
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\signup-successfully.html
+Content Type: text/html
+
+Uri: https://quizio-pwa-html-app.vercel.app/style.css
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\style.css
+Content Type: text/css
+
+Uri: https://quizio-pwa-html-app.vercel.app/take-selfie.html
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\take-selfie.html
+Content Type: text/html
+
+Uri: https://quizio-pwa-html-app.vercel.app/top-member.html
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\top-member.html
+Content Type: text/html
+
+Uri: https://quizio-pwa-html-app.vercel.app/upcoming-contest.html
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\upcoming-contest.html
+Content Type: text/html
+
+Uri: https://quizio-pwa-html-app.vercel.app/upgrade-premium.html
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\upgrade-premium.html
+Content Type: text/html
+
+Uri: https://quizio-pwa-html-app.vercel.app/uploaded-successfully.html
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\uploaded-successfully.html
+Content Type: text/html
+
+Uri: https://quizio-pwa-html-app.vercel.app/user-profile.html
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\user-profile.html
+Content Type: text/html
+
+Uri: https://quizio-pwa-html-app.vercel.app/verify-details.html
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\verify-details.html
+Content Type: text/html
+
+Uri: https://quizio-pwa-html-app.vercel.app/withdraw-successful.html
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\withdraw-successful.html
+Content Type: text/html
+
+Uri: https://unpkg.com/@phosphor-icons/web@2.1.1/src/index.js
+File Name: C:\Downloaded Web Sites\quizio-pwa-html-app.vercel.app\@phosphor-icons\web@2.1.1\src\index.js
+Content Type: application/javascript
+

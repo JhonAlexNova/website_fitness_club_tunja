@@ -1,0 +1,88 @@
+Uri: https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800&display=swap
+File Name: C:\Downloaded Web Sites\githubpresente.github.io\css2
+Content Type: text/css
+
+Uri: https://fonts.gstatic.com/s/nunitosans/v15/pe1mMImSLYBIv1o4X1M8ce2xCx3yop4tQpF_MeTm0lfGWVpNn64CL7U8upHZIbMV51Q42ptCp5F5bxqqtQ1yiU4G1ilntA.ttf
+File Name: C:\Downloaded Web Sites\githubpresente.github.io\s\nunitosans\v15\pe1mMImSLYBIv1o4X1M8ce2xCx3yop4tQpF_MeTm0lfGWVpNn64CL7U8upHZIbMV51Q42ptCp5F5bxqqtQ1yiU4G1ilntA.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/nunitosans/v15/pe1mMImSLYBIv1o4X1M8ce2xCx3yop4tQpF_MeTm0lfGWVpNn64CL7U8upHZIbMV51Q42ptCp5F5bxqqtQ1yiU4GCC5ntA.ttf
+File Name: C:\Downloaded Web Sites\githubpresente.github.io\s\nunitosans\v15\pe1mMImSLYBIv1o4X1M8ce2xCx3yop4tQpF_MeTm0lfGWVpNn64CL7U8upHZIbMV51Q42ptCp5F5bxqqtQ1yiU4GCC5ntA.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/nunitosans/v15/pe1mMImSLYBIv1o4X1M8ce2xCx3yop4tQpF_MeTm0lfGWVpNn64CL7U8upHZIbMV51Q42ptCp5F5bxqqtQ1yiU4GMS5ntA.ttf
+File Name: C:\Downloaded Web Sites\githubpresente.github.io\s\nunitosans\v15\pe1mMImSLYBIv1o4X1M8ce2xCx3yop4tQpF_MeTm0lfGWVpNn64CL7U8upHZIbMV51Q42ptCp5F5bxqqtQ1yiU4GMS5ntA.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/nunitosans/v15/pe1mMImSLYBIv1o4X1M8ce2xCx3yop4tQpF_MeTm0lfGWVpNn64CL7U8upHZIbMV51Q42ptCp5F5bxqqtQ1yiU4GVi5ntA.ttf
+File Name: C:\Downloaded Web Sites\githubpresente.github.io\s\nunitosans\v15\pe1mMImSLYBIv1o4X1M8ce2xCx3yop4tQpF_MeTm0lfGWVpNn64CL7U8upHZIbMV51Q42ptCp5F5bxqqtQ1yiU4GVi5ntA.ttf
+Content Type: font/ttf
+
+Uri: https://githubpresente.github.io/selector-rifa/
+File Name: C:\Downloaded Web Sites\githubpresente.github.io\selector-rifa\index.htm
+Content Type: text/html
+
+Uri: https://githubpresente.github.io/selector-rifa/assets/css/app.847b2de0.css
+File Name: C:\Downloaded Web Sites\githubpresente.github.io\selector-rifa\assets\css\app.847b2de0.css
+Content Type: text/css
+
+Uri: https://githubpresente.github.io/selector-rifa/assets/images/favicon.ico
+File Name: C:\Downloaded Web Sites\githubpresente.github.io\selector-rifa\assets\images\favicon.ico
+Content Type: image/vnd.microsoft.icon
+
+Uri: https://githubpresente.github.io/selector-rifa/assets/images/svg/github-mark.04be58c.svg
+File Name: C:\Downloaded Web Sites\githubpresente.github.io\selector-rifa\assets\images\svg\github-mark.04be58c.svg
+Content Type: image/svg+xml
+
+Uri: https://githubpresente.github.io/selector-rifa/assets/images/svg/light-blubs.0d2ddfd.svg
+File Name: C:\Downloaded Web Sites\githubpresente.github.io\selector-rifa\assets\images\svg\light-blubs.0d2ddfd.svg
+Content Type: image/svg+xml
+
+Uri: https://githubpresente.github.io/selector-rifa/assets/images/svg/sunburst.0838324.svg
+File Name: C:\Downloaded Web Sites\githubpresente.github.io\selector-rifa\assets\images\svg\sunburst.0838324.svg
+Content Type: image/svg+xml
+
+Uri: https://githubpresente.github.io/selector-rifa/assets/images/touch-icons/apple-touch-icon-114x114.png
+File Name: C:\Downloaded Web Sites\githubpresente.github.io\selector-rifa\assets\images\touch-icons\apple-touch-icon-114x114.png
+Content Type: image/png
+
+Uri: https://githubpresente.github.io/selector-rifa/assets/images/touch-icons/apple-touch-icon-120x120.png
+File Name: C:\Downloaded Web Sites\githubpresente.github.io\selector-rifa\assets\images\touch-icons\apple-touch-icon-120x120.png
+Content Type: image/png
+
+Uri: https://githubpresente.github.io/selector-rifa/assets/images/touch-icons/apple-touch-icon-144x144.png
+File Name: C:\Downloaded Web Sites\githubpresente.github.io\selector-rifa\assets\images\touch-icons\apple-touch-icon-144x144.png
+Content Type: image/png
+
+Uri: https://githubpresente.github.io/selector-rifa/assets/images/touch-icons/apple-touch-icon-152x152.png
+File Name: C:\Downloaded Web Sites\githubpresente.github.io\selector-rifa\assets\images\touch-icons\apple-touch-icon-152x152.png
+Content Type: image/png
+
+Uri: https://githubpresente.github.io/selector-rifa/assets/images/touch-icons/apple-touch-icon-180x180.png
+File Name: C:\Downloaded Web Sites\githubpresente.github.io\selector-rifa\assets\images\touch-icons\apple-touch-icon-180x180.png
+Content Type: image/png
+
+Uri: https://githubpresente.github.io/selector-rifa/assets/images/touch-icons/apple-touch-icon-57x57.png
+File Name: C:\Downloaded Web Sites\githubpresente.github.io\selector-rifa\assets\images\touch-icons\apple-touch-icon-57x57.png
+Content Type: image/png
+
+Uri: https://githubpresente.github.io/selector-rifa/assets/images/touch-icons/apple-touch-icon-72x72.png
+File Name: C:\Downloaded Web Sites\githubpresente.github.io\selector-rifa\assets\images\touch-icons\apple-touch-icon-72x72.png
+Content Type: image/png
+
+Uri: https://githubpresente.github.io/selector-rifa/assets/images/touch-icons/apple-touch-icon-76x76.png
+File Name: C:\Downloaded Web Sites\githubpresente.github.io\selector-rifa\assets\images\touch-icons\apple-touch-icon-76x76.png
+Content Type: image/png
+
+Uri: https://githubpresente.github.io/selector-rifa/assets/js/app.847b2de0.js
+File Name: C:\Downloaded Web Sites\githubpresente.github.io\selector-rifa\assets\js\app.847b2de0.js
+Content Type: application/javascript
+
+Uri: https://githubpresente.github.io/selector-rifa/assets/js/vendor.e66a8337.js
+File Name: C:\Downloaded Web Sites\githubpresente.github.io\selector-rifa\assets\js\vendor.e66a8337.js
+Content Type: application/javascript
+
+Uri: https://githubpresente.github.io/selector-rifa/manifest.json
+File Name: C:\Downloaded Web Sites\githubpresente.github.io\selector-rifa\manifest.json
+Content Type: application/json
+

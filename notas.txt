@@ -1,0 +1,2 @@
+mkdir -p storage/framework/views
+mkdir -p storage/framework/sessions

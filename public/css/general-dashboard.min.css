@@ -1,0 +1,77 @@
+span.brand-text.font-weight-light {
+    font-size: 16px;
+}
+
+.persona {
+    background: #f3f3f3;
+    border: 1px #093b5b dashed;
+}
+
+
+.persona .foto img {
+    max-width: 100%;
+}
+
+.selector{
+    display: block;
+    width: 100%;
+}
+
+.selector {
+    display: flex;
+    width: 100%;
+    margin: auto;
+    justify-content: center;
+}
+
+.persona{
+    text-align: center;
+}
+
+span.select2-selection.select2-selection--single {
+    padding: 10px;
+    height: 38px;
+}
+
+.bg-success {
+    background-color: #20612f!important;
+}
+.bg-warning {
+    background-color: #e8a23e!important;
+}
+
+.bg-danger {
+    background-color: #8f1a25!important;
+}
+
+i.fa.fa-trash {
+    background: #fff;
+    border: 1px #891a1a solid;
+    color: red;
+    border-radius: 4px;
+    padding: 2px;
+}
+
+i.fa.fa-trash:hover {
+    color: #fff;
+    background-color:#891a1a;
+    cursor: pointer;
+}
+.layout-fixed .main-sidebar {
+    bottom: 0;
+    float: none;
+    left: 0;
+    position: fixed;
+    top: 0;
+    overflow: hidden;
+}
+
+.buttonAcercaDe{
+    position: fixed;
+    bottom: 0;
+}
+
+
+.disabled{
+    pointer-events: none;
+}

@@ -1,0 +1,59 @@
+.input-file-logo {
+    display: block;
+    width: 100%;
+    border: 1px #c3c3c3 dashed;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    background: #f3f3f3;
+    margin: 5px 0;
+    cursor: pointer;
+}
+
+.input-file-logo .imagen img {
+    max-width: 100px;
+}
+.hide{
+    display: none;
+}
+.nota-input{
+    font-size: 10px;
+    color: #b70a0a;
+}
+.error {
+    color: #ab4747;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.avatar-profile-table{
+    max-width: 40px;
+    border-radius: 50px;
+}
+
+button.dt-button.buttons-excel.buttons-html5 {
+    background: green;
+    color: #fff;
+    padding: 4px 10px 4px 28px;
+}
+button.dt-button.buttons-excel.buttons-html5:hover {
+    background: green !important;
+    color: #fff;
+    padding: 4px 10px 4px 28px;
+}
+.dt-button.buttons-excel.buttons-html5::before {
+    content: "\f1c3"; /* Código del icono (puedes usar el código de Font Awesome u otro conjunto de iconos) */
+    font-family: 'Font Awesome'; /* Asegúrate de tener la fuente de iconos cargada */
+    font-size: 14px; /* Tamaño del icono */
+    margin-right: 5px; /* Espacio entre el icono y el texto */
+    position: absolute;
+    left: 10px; /* Ajusta la posición del icono según sea necesario */
+    top: 50%;
+    transform: translateY(-50%);
+    font: normal normal normal 14px/1 FontAwesome;
+  }
+
+.nav-sidebar>.nav-item>.nav-link.active {
+    background-color: #F5A648 !important;
+    color: #343a40 !important;
+}

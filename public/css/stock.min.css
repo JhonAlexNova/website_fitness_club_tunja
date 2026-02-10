@@ -1,0 +1,15 @@
+.img-producto{
+    max-width: 100px;
+}
+
+.img-producto {
+    max-width: 100px;
+    margin: auto;
+    display: block;
+}
+
+form .foto {
+    background-color: #8787872e;
+    padding: 10px 0;
+    border: 1px #777 dashed;
+}

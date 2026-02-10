@@ -1,0 +1,27 @@
+a.btnComprarProducto {
+    background: #fc328a;
+    color: #fff;
+    padding: 10px;
+    width: fit-content;
+    margin: auto;
+}
+
+.product-area .product-box .cart-dtl {
+    padding: 10px 0;
+    justify-content: center;
+    text-align: center;
+}
+.precio {
+    color: #000;
+    font-weight: bold;
+    margin: 10px;
+}
+
+.product-area .product-box {
+    position: relative;
+    display: block;
+    background: #f8f8f8;
+    /* padding: 10px; */
+    box-shadow: 1px 1px 7px 2px #e3e3e3;
+    padding: 0 0 15px 0;
+}

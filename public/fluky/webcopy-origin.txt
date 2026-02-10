@@ -1,0 +1,72 @@
+Uri: https://fluky.io/
+File Name: C:\Downloaded Web Sites\fluky.io\index.htm
+Content Type: text/html
+
+Uri: https://fluky.io/favicon.png
+File Name: C:\Downloaded Web Sites\fluky.io\favicon.png
+Content Type: image/png
+
+Uri: https://fluky.io/img/awwwards_honorable_white.png
+File Name: C:\Downloaded Web Sites\fluky.io\img\awwwards_honorable_white.png
+Content Type: image/png
+
+Uri: https://fluky.io/img/awwwards_honorable_white@2x.png
+File Name: C:\Downloaded Web Sites\fluky.io\img\awwwards_honorable_white@2x.png
+Content Type: image/png
+
+Uri: https://fluky.io/img/general/apple-touch/apple-touch-icon-ipad-76x76.png
+File Name: C:\Downloaded Web Sites\fluky.io\img\general\apple-touch\apple-touch-icon-ipad-76x76.png
+Content Type: image/png
+
+Uri: https://fluky.io/img/general/apple-touch/apple-touch-icon-ipad-retina-152x152.png
+File Name: C:\Downloaded Web Sites\fluky.io\img\general\apple-touch\apple-touch-icon-ipad-retina-152x152.png
+Content Type: image/png
+
+Uri: https://fluky.io/img/general/apple-touch/apple-touch-icon-iphone-60x60.png
+File Name: C:\Downloaded Web Sites\fluky.io\img\general\apple-touch\apple-touch-icon-iphone-60x60.png
+Content Type: image/png
+
+Uri: https://fluky.io/img/general/apple-touch/apple-touch-icon-iphone-retina-120x120.png
+File Name: C:\Downloaded Web Sites\fluky.io\img\general\apple-touch\apple-touch-icon-iphone-retina-120x120.png
+Content Type: image/png
+
+Uri: https://fluky.io/img/info.svg
+File Name: C:\Downloaded Web Sites\fluky.io\img\info.svg
+Content Type: image/svg+xml
+
+Uri: https://fluky.io/img/sound.svg
+File Name: C:\Downloaded Web Sites\fluky.io\img\sound.svg
+Content Type: image/svg+xml
+
+Uri: https://fluky.io/img/soundoff.svg
+File Name: C:\Downloaded Web Sites\fluky.io\img\soundoff.svg
+Content Type: image/svg+xml
+
+Uri: https://fluky.io/js/app.js
+File Name: C:\Downloaded Web Sites\fluky.io\js\app.js
+Content Type: application/javascript
+
+Uri: https://fluky.io/js/modernizr.js
+File Name: C:\Downloaded Web Sites\fluky.io\js\modernizr.js
+Content Type: application/javascript
+
+Uri: https://fluky.io/js/vendor.js
+File Name: C:\Downloaded Web Sites\fluky.io\js\vendor.js
+Content Type: application/javascript
+
+Uri: https://fluky.io/sounds/cheer.mp3
+File Name: C:\Downloaded Web Sites\fluky.io\sounds\cheer.mp3
+Content Type: audio/mpeg
+
+Uri: https://fluky.io/sounds/cheer.ogg
+File Name: C:\Downloaded Web Sites\fluky.io\sounds\cheer.ogg
+Content Type: audio/ogg
+
+Uri: https://fluky.io/sounds/fluky-soundtrack.mp3
+File Name: C:\Downloaded Web Sites\fluky.io\sounds\fluky-soundtrack.mp3
+Content Type: audio/mpeg
+
+Uri: https://fluky.io/sounds/fluky-soundtrack.ogg
+File Name: C:\Downloaded Web Sites\fluky.io\sounds\fluky-soundtrack.ogg
+Content Type: audio/ogg
+
