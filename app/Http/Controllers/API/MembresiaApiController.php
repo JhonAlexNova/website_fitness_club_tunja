@@ -88,7 +88,7 @@ class MembresiaApiController extends AppBaseController
 
         Flash::success('Membresía guardada exitosamente.');
 
-        return redirect(route('membresias.index'));
+        return redirect(route('api.membresias.index'));
     }
 
     /**
@@ -105,7 +105,7 @@ class MembresiaApiController extends AppBaseController
         if (empty($membresia)) {
             Flash::error('Membresia not found');
 
-            return redirect(route('membresias.index'));
+            return redirect(route('api.membresias.index'));
         }
 
         return view('membresias.show')->with('membresia', $membresia);
@@ -152,7 +152,7 @@ class MembresiaApiController extends AppBaseController
 
         Flash::success('Membresía actualizada correctamente.');
 
-        return redirect(route('membresias.index'));
+        return redirect(route('api.membresias.index'));
     }
 
     /**
@@ -171,13 +171,13 @@ class MembresiaApiController extends AppBaseController
         if (empty($membresia)) {
             Flash::error('Membresia not found');
 
-            return redirect(route('membresias.index'));
+            return redirect(route('api.membresias.index'));
         }
 
         $this->membresiaRepository->delete($id);
 
         Flash::success('Membresia deleted successfully.');
 
-        return redirect(route('membresias.index'));
+        return redirect(route('api.membresias.index'));
     }
 }
