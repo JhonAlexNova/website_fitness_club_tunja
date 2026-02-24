@@ -122,16 +122,6 @@
                 </li>
                 @endif
 
-                <!-- GASTOS -->
-                @if($elemento['modulo']['nombre'] === 'GASTOS')
-                <li class="nav-item">
-                    <a href="{{ route('gastos.index') }}" class="nav-link {{ Request::is('gastos*') ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-receipt"></i>
-                        <p>Gastos</p>
-                    </a>
-                </li>
-                @endif
-
                 <!-- CHICOS -->
                 @if($elemento['modulo']['nombre'] === 'CHICOS')
                 <li class="nav-item">

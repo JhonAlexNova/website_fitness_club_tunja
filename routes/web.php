@@ -87,8 +87,6 @@ Route::group(["middleware"=>["auth","config"],"prefix"=>"admon"],function(){
                 Route::get('inventario', [App\Http\Controllers\ReporteController::class,'inventario']);
             });
     
-            Route::resource('gastos', App\Http\Controllers\GastoController::class);
-
             Route::resource('permisos', App\Http\Controllers\PermisoController::class);
 
             Route::group(["prefix"=>"cambios-x-producto"],function(){
