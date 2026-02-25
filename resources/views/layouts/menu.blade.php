@@ -411,6 +411,12 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="{{ route('musculos.index') }}" class="nav-link {{ Request::is('ejercicios*') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Musculos</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="{{ route('admon.rutinas.index') }}" class="nav-link {{ Request::is('rutinas*') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Rutinas</p>

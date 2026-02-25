@@ -32,4 +32,5 @@
     {!! Form::select('user_id', $clientes->pluck('full_name',"id"), null, ['class' => 'form-control', 'placeholder' => 'Seleccione un usuario']) !!}
 </div>
 
+<select name="" id=""></select>
 

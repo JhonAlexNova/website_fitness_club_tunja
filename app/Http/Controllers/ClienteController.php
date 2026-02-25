@@ -58,12 +58,15 @@ class ClienteController extends AppBaseController
         $input = $request->all();
         $input["tipo"] = "Cliente";
 
-        if($request->file("file_foto_perfil")){
-            $input["foto_perfil"] = Storage::disk("public")->putFile("avatar/instructor",$request->file_foto_perfil);
+        // Guardar objetivos (checkbox múltiples)
+        if ($request->has('objetivos')) {
+            $input['objetivos'] = json_encode($request->objetivos);
         }
 
-       
-
+        if($request->file("file_foto_perfil")){
+            $input["foto_perfil"] = Storage::disk("public")
+                ->putFile("avatar/instructor", $request->file_foto_perfil);
+        }
 
         $cliente = $this->clienteRepository->create($input);
 
@@ -71,6 +74,7 @@ class ClienteController extends AppBaseController
 
         return redirect(route('clientes.index'));
     }
+
 
     /**
      * Display the specified Cliente.
@@ -127,32 +131,34 @@ class ClienteController extends AppBaseController
     {
         $cliente = $this->clienteRepository->find($id);
 
-
-
-       
-
         if (empty($cliente)) {
             Flash::error('Cliente not found');
-
             return redirect(route('clientes.index'));
         }
 
-        if($request->file("file_foto_perfil")){
-            $request["foto_perfil"] = Storage::disk("public")->putFile("avatar/instructor",$request->file_foto_perfil);
+        $input = $request->all();
+
+        // Guardar objetivos (checkbox múltiples)
+        if ($request->has('objetivos')) {
+            $input['objetivos'] = json_encode($request->objetivos);
         }
 
-        if($request["new-password"]){
-            $request["password"] = Hash::make($request["new-password"]);
+        if ($request->file("file_foto_perfil")) {
+            $input["foto_perfil"] = Storage::disk("public")
+                ->putFile("avatar/instructor", $request->file_foto_perfil);
         }
 
-        $cliente = $this->clienteRepository->update($request->all(), $id);
+        if ($request["new-password"]) {
+            $input["password"] = Hash::make($request["new-password"]);
+        }
 
-       // dd($request->all(),$cliente);
+        $cliente = $this->clienteRepository->update($input, $id);
 
         Flash::success('Cliente updated successfully.');
 
         return redirect(route('clientes.index'));
     }
+
 
     /**
      * Remove the specified Cliente from storage.

@@ -71,7 +71,7 @@ Route::group(["middleware"=>["auth","config"],"prefix"=>"admon"],function(){
             Route::get('fechas_cierre', [App\Http\Controllers\CierreController::class,'fechas_cierre']);
 
 
-            //
+            // 
             Route::post('cerrar-caja', [App\Http\Controllers\CierreController::class,'cerrar_caja']);
     
             Route::resource('devolucions', App\Http\Controllers\DevolucionController::class);
@@ -170,6 +170,7 @@ Route::group(["middleware"=>["auth","config"],"prefix"=>"admon"],function(){
             
               /* Servicios */
             Route::resource('servicios', App\Http\Controllers\ServicioController::class);
+            Route::resource('musculos', App\Http\Controllers\MusculoController::class);
 
             /* SISTEMA DE PUNTOS */
             Route::resource('puntos', App\Http\Controllers\PuntoController::class);
@@ -210,6 +211,8 @@ Route::group(["prefix"=>"app","middleware"=>"protectionAppRoute"],function(){
     
 
 });
+
+
 
 /* pagos wompi */
 Route::post('confirmacion-wompi', [App\Http\Controllers\WompiController::class,"confirmacion_wompi"]);

@@ -129,12 +129,10 @@ class ClaseApiController extends Controller
                         } else {
                             $status = 'Cerrada'; // La clase ya terminó
                         }
-
-
-    
                         // Determinar si la clase está abierta o cerrada
                        // $status = $fecha_actual->greaterThanOrEqualTo($hora_inicio) ? 'Cerrada' : 'Abierta';
     
+                       
                         $reservasContadas = Reserva::where('horario_clase_id', $recurrente->id)
                             ->where('tipo_clase', 'recurrente')
                             ->where('estado', 'Reservada')

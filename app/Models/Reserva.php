@@ -6,7 +6,7 @@ use Eloquent as Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
- * Class Clase
+ * Class Reserva
  * @package App\Models
  * @version October 26, 2024, 10:06 am -05
  *
