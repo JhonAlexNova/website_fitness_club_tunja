@@ -24,7 +24,7 @@ Route::group(["middleware"=>["config"]],function(){
 
 
 /* RUTAS WEB SITE */
-Route::resource('/', App\Http\Controllers\WebSite\HomeController::class);
+Route::resource('/', App\Http\Controllers\WebSite\HomeController::class)->names('website.home');
 Route::resource('tienda', App\Http\Controllers\WebSite\TiendaController::class);
 
 Route::group(["as" => "website."], function () {
@@ -87,12 +87,10 @@ Route::group(["middleware"=>["auth","config"],"prefix"=>"admon"],function(){
                 Route::get('inventario', [App\Http\Controllers\ReporteController::class,'inventario']);
             });
     
-            Route::resource('gastos', App\Http\Controllers\GastoController::class);
-
             Route::resource('permisos', App\Http\Controllers\PermisoController::class);
 
             Route::group(["prefix"=>"cambios-x-producto"],function(){
-                Route::resource('/', App\Http\Controllers\CambiosXProductoController::class);
+                Route::resource('/', App\Http\Controllers\CambiosXProductoController::class)->names('admon.cambios_x_producto');
             });
 
 
@@ -188,7 +186,7 @@ Route::group(["middleware"=>["auth","config"],"prefix"=>"admon"],function(){
 
 
 Route::group(["prefix"=>"app","middleware"=>"protectionAppRoute"],function(){
-    Route::resource("/",App\Http\Controllers\App\HomeController::class);
+    Route::resource("/",App\Http\Controllers\App\HomeController::class)->names("app.home");
     Route::resource("perfil",App\Http\Controllers\App\PerfilController::class)->names("app.perfil");
     Route::get("editar-perfil",[App\Http\Controllers\App\PerfilController::class,"editar_perfil"]);
     Route::get("editar-contrasena",[App\Http\Controllers\App\PerfilController::class,"editar_contrasena"])->name("changePassword");
@@ -198,7 +196,7 @@ Route::group(["prefix"=>"app","middleware"=>"protectionAppRoute"],function(){
     Route::resource("clases",App\Http\Controllers\App\ClaseController::class);
     Route::get('/clase/detalle/{id}/{tipo}/{fecha}', [App\Http\Controllers\App\ClaseController::class, 'detalle'])->name('clase.detalle');
     //RESERVAS
-    Route::post('/reservas', [App\Http\Controllers\App\ReservaController::class, 'store'])->name('reservas.store');
+    Route::post('/reservas', [App\Http\Controllers\App\ReservaController::class, 'store'])->name('app.reservas.store');
 
     /* rutinas configuracion */
     Route::resource("rutinas",App\Http\Controllers\App\RutinaController::class);

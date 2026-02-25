@@ -13,6 +13,7 @@ use App\Http\Controllers\API\FacturaApiController;
 use App\Http\Controllers\API\ProductoApiController;
 use App\Http\Controllers\API\MembresiaApiController;
 use App\Http\Controllers\API\RutinaApiController;
+use App\Http\Controllers\API\ClienteApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +34,7 @@ Route::middleware('auth:sanctum')->post('/auth/logout', [AuthApiController::clas
 
 // RUTAS PROTEGIDAS
 Route::middleware('auth:sanctum')->group(function () {
-
+    Route::post('/clientes', [ClienteApiController::class, 'store']);
     // PERFIL
     Route::get('/perfil', [PerfilApiController::class, 'show']);
     Route::post('/perfil', [PerfilApiController::class, 'update']);
@@ -62,7 +63,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // MEMBRESÍAS
     Route::get('membresias/usuario', [MembresiaApiController::class, 'membresia_usuario']);
-    Route::resource("membresias", MembresiaApiController::class);
+    Route::resource("membresias", MembresiaApiController::class)->names("api.membresias");
 
     // RUTINAS
     Route::get('/rutinas-generales', [RutinaApiController::class, 'rutinasGenerales']);

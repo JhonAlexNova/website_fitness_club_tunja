@@ -61,7 +61,7 @@
               <div class="relative bg-p2 dark:bg-p1 dark:bg-opacity-10 bg-opacity-10 h-1 w-full rounded-full after:absolute after:h-1 after:w-[40%] after:bg-p2 after:dark:bg-p1 after:rounded-full"></div>
               <p> {{ $clase["cupo_maximo"] }} </p>
             </div>
-            <form action="{{ route('reservas.store') }}" method="post" class="formInscripcionClase">
+            <form action="{{ route('app.reservas.store') }}" method="post" class="formInscripcionClase">
                 @csrf
                 <input type="hidden" value="{{$clase->fecha}}" name="fecha_reserva">
                 <input type="hidden" value="{{$tipo}}" name="tipo">
@@ -81,7 +81,7 @@
                 @endif
             </form>
 
-            <form action="{{ route('reservas.store') }}" method="post" class="formCancelarReserva">
+            <form action="{{ route('app.reservas.store') }}" method="post" class="formCancelarReserva">
               @csrf
               <input type="hidden" name="cancelar_reserva" value="1">
               <input type="hidden" name="horario_clase_id" value="{{$clase->id}}">
