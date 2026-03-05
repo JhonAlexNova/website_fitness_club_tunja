@@ -42,3 +42,31 @@
 @endif
 
  --}}
+
+ {{-- ================= MÚSCULOS ================= --}}
+
+<div class="form-group col-sm-6">
+    {!! Form::label('musculo_principal', 'Músculo Principal:') !!}
+    <select name="musculo_principal" class="form-control" required>
+        <option value="">Seleccione...</option>
+        @foreach($musculos as $musculo)
+            <option value="{{ $musculo->id }}">
+                {{ $musculo->nombre }}
+            </option>
+        @endforeach
+    </select>
+</div>
+
+<div class="form-group col-sm-6">
+    {!! Form::label('musculos_secundarios', 'Músculos Secundarios:') !!}
+    <select name="musculos_secundarios[]" class="form-control" multiple>
+        @foreach($musculos as $musculo)
+            <option value="{{ $musculo->id }}">
+                {{ $musculo->nombre }}
+            </option>
+        @endforeach
+    </select>
+    <small class="form-text text-muted">
+        Mantén presionada la tecla Ctrl para seleccionar varios.
+    </small>
+</div>

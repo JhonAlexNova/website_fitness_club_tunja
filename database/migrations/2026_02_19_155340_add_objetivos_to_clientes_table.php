@@ -14,7 +14,7 @@ class AddObjetivosToClientesTable extends Migration
         public function up()
     {
         Schema::table('clientes', function (Blueprint $table) {
-            $table->json('objetivos')->nullable()->after('estado');
+            $table->json('objetivos')->nullable();
         });
     }
 

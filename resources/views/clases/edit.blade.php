@@ -17,7 +17,7 @@
 
         <div class="card">
 
-            {!! Form::model($clase, ['route' => ['admon.clases.update', $clase->id], 'method' => 'patch']) !!}
+            {!! Form::model($clase, ['route' => ['admon.clases.update', $clase->id], 'method' => 'patch', 'files' => true]) !!}
 
             <div class="card-body">
                 <div class="row">

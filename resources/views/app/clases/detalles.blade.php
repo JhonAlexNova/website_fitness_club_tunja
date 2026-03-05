@@ -66,10 +66,14 @@
                 <input type="hidden" value="{{$clase->fecha}}" name="fecha_reserva">
                 <input type="hidden" value="{{$tipo}}" name="tipo">
                 <input type="hidden" value="{{$clase->id}}" name="horario_clase_id">
-                @if(is_null($reserva))
-                  <button type="button" class="py-3 text-center bg-p2 rounded-full text-sm font-semibold text-white block btnInscripcionClase w-full">
-                      Inscribirme
-                  </button>
+                @if($clase->cupos_disponibles <= 0)
+                    <div class="py-3 text-center bg-gray-400 rounded-full text-sm font-semibold text-white block w-full">
+                        Clase llena
+                    </div>
+                @elseif(is_null($reserva))
+                    <button type="button" class="py-3 text-center bg-p2 rounded-full text-sm font-semibold text-white block btnInscripcionClase w-full">
+                        Inscribirme
+                    </button>
                 @elseif($reserva->estado=="Cancelada")
                   <button  type="button" class="py-3 text-center bg-p2 rounded-full text-sm font-semibold text-white block btnInscripcionClase w-full">
                       Volver a Inscribirme

@@ -14,6 +14,8 @@ use App\Http\Controllers\API\ProductoApiController;
 use App\Http\Controllers\API\MembresiaApiController;
 use App\Http\Controllers\API\RutinaApiController;
 use App\Http\Controllers\API\ClienteApiController;
+use App\Http\Controllers\CoffeeProductController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -60,6 +62,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // PRODUCTOS
     Route::post('/productos/categorias', [ProductoApiController::class, 'get_productos_by_categorias']);
+
+    Route::get('/coffee-products', [CoffeeProductController::class, 'apiIndex']);
 
     // MEMBRESÍAS
     Route::get('membresias/usuario', [MembresiaApiController::class, 'membresia_usuario']);

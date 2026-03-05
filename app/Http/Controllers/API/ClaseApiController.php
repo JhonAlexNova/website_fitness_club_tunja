@@ -45,6 +45,9 @@ class ClaseApiController extends Controller
                     'room' => $horario->clase->sala ?? 'Sala no asignada',
                     'level' => $horario->clase->nivel ?? 'Desconocido',
                     'description' => $horario->clase->descripcion ?? 'Sin descripción disponible.',
+                    'imagen' => $horario->clase->imagen 
+                    ? url('storage/'.$horario->clase->imagen) 
+                    : null,
                 ];
             });
     
@@ -80,6 +83,9 @@ class ClaseApiController extends Controller
                             'room' => optional($recurrente->clase)->sala ?? 'Sala no asignada',
                             'level' => optional($recurrente->clase)->nivel ?? 'Desconocido',
                             'description' => optional($recurrente->clase)->descripcion ?? 'Sin descripción disponible.',
+                            'imagen' => optional($recurrente->clase)->imagen
+                            ? url('storage/'.optional($recurrente->clase)->imagen)
+                            : null,
                         ];
                     }
                 }
@@ -152,6 +158,9 @@ class ClaseApiController extends Controller
                             'level' => optional($recurrente->clase)->nivel ?? 'Desconocido',
                             'description' => optional($recurrente->clase)->descripcion ?? 'Sin descripción disponible.',
                             'status' => $status, // Agregar el estado de la clase
+                            'imagen' => optional($recurrente->clase)->imagen
+                            ? url('storage/'.optional($recurrente->clase)->imagen)
+                            : null,
                         ];
                     }
                 }

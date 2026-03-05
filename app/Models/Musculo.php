@@ -11,7 +11,7 @@ class Musculo extends Model
 
     protected $table = 'musculos';
 
-    protected $fillable = ['nombre'];
+    protected $fillable = ['nombre', 'imagen'];
 
     public static $rules = [
         'nombre' => 'required|string|max:100|unique:musculos,nombre'
@@ -19,8 +19,10 @@ class Musculo extends Model
 
     public function ejercicios()
     {
-        return $this->belongsToMany(Ejercicio::class, 'ejercicio_musculo')
-                    ->withPivot('es_principal')
-                    ->withTimestamps();
+        return $this->belongsToMany(
+            Ejercicio::class,
+            'ejercicio_musculo'
+        )->withPivot('es_principal')
+        ->withTimestamps();
     }
 }

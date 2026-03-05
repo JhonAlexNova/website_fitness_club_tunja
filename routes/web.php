@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CoffeeShopController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,6 +47,8 @@ Route::group(["middleware"=>["auth","config"],"prefix"=>"admon"],function(){
 
             
             Route::resource('categorias', App\Http\Controllers\CategoriaController::class);
+
+            Route::resource('coffee-products', App\Http\Controllers\CoffeeProductController::class);
     
     
             Route::resource('productos', App\Http\Controllers\ProductoController::class);
@@ -202,6 +205,8 @@ Route::group(["prefix"=>"app","middleware"=>"protectionAppRoute"],function(){
     Route::resource("rutinas",App\Http\Controllers\App\RutinaController::class);
     Route::resource("plan-entrenamiento",App\Http\Controllers\App\PlanEntrenamientoController::class);
     Route::resource("ejercicio",App\Http\Controllers\App\EjercicioController::class);
+
+    Route::resource("coffee-shop", App\Http\Controllers\App\CoffeeShopController::class);
 
 
   

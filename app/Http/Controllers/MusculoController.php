@@ -26,6 +26,11 @@ class MusculoController extends Controller
 
         return redirect()->route('musculos.index')
             ->with('success', 'Músculo creado correctamente');
+        
+        if ($request->hasFile('imagen')) {
+            $path = $request->file('imagen')->store('musculos', 'public');
+            $input['imagen'] = $path;
+        }
     }
 
     public function show(Musculo $musculo)
@@ -48,6 +53,11 @@ class MusculoController extends Controller
 
         return redirect()->route('musculos.index')
             ->with('success', 'Músculo actualizado correctamente');
+
+        if ($request->hasFile('imagen')) {
+            $path = $request->file('imagen')->store('musculos', 'public');
+            $input['imagen'] = $path;
+        }
     }
 
     public function destroy(Musculo $musculo)

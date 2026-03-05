@@ -9,6 +9,9 @@ use App\Models\Reserva;
 use App\Models\ClaseRecurrente;
 use App\Models\HorarioClaseUnica;
 
+use Carbon\Carbon;
+use Flash;
+
 class ReservaController extends Controller
 {
     /**
@@ -87,9 +90,54 @@ class ReservaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+   public function store(Request $request)
     {
-        //
+        if ($request->tipo == "unica") {
+
+            $clase = HorarioClaseUnica::findOrFail($request->horario_clase_id);
+
+            $reservas = Reserva::where("horario_clase_id", $clase->id)
+                ->where("tipo_clase", "unica")
+                ->where("estado", "Reservada")
+                ->count();
+
+            if ($reservas >= $clase->cupo_maximo) {
+                Flash::error("Esta clase ya está llena.");
+                return redirect()->back();
+            }
+
+        } else {
+
+            $clase = ClaseRecurrente::findOrFail($request->horario_clase_id);
+
+            $reservas = Reserva::where("horario_clase_id", $clase->id)
+                ->where("tipo_clase", "recurrente")
+                ->where("estado", "Reservada")
+                ->whereDate(
+                    "fecha_reserva",
+                    Carbon::parse($request->fecha_reserva)->format("Y-m-d")
+                )
+                ->count();
+
+            if ($reservas >= $clase->cupo_maximo) {
+                Flash::error("Esta clase ya está llena.");
+                return redirect()->back();
+            }
+
+        }
+
+        // 👇 Si pasa la validación, aquí guardas la reserva
+
+        Reserva::create([
+            "cliente_id" => auth()->id(),
+            "horario_clase_id" => $request->horario_clase_id,
+            "tipo_clase" => $request->tipo,
+            "fecha_reserva" => $request->fecha_reserva ?? null,
+            "estado" => "Reservada"
+        ]);
+
+        Flash::success("Reserva realizada correctamente");
+        return redirect()->back();
     }
 
     /**

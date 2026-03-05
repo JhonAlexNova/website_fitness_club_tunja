@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateEjercicioRequest;
 use App\Repositories\EjercicioRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
+use App\Models\Musculo;
 use Flash;
 use Response;
 use Storage;
@@ -30,10 +31,9 @@ class EjercicioController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $ejercicios = $this->ejercicioRepository->all();
+        $ejercicios = \App\Models\Ejercicio::with('musculos')->get();
 
-        return view('ejercicios.index')
-            ->with('ejercicios', $ejercicios);
+        return view('ejercicios.index', compact('ejercicios'));
     }
 
     /**
@@ -43,7 +43,9 @@ class EjercicioController extends AppBaseController
      */
     public function create()
     {
-        return view('ejercicios.create');
+        $musculos = Musculo::all();
+
+        return view('ejercicios.create', compact('musculos'));
     }
 
     /**
@@ -55,20 +57,44 @@ class EjercicioController extends AppBaseController
      */
     public function store(CreateEjercicioRequest $request)
     {
-
         $input = $request->all();
-        //dd($request->all());
-        if($request->file('file_video')){
-            $input["video_url"] = Storage::disk('public')->putFile('multimedia',$request->file('file_video'));
+
+        if ($request->file('file_video')) {
+            $input["video_url"] = Storage::disk('public')
+                ->putFile('multimedia', $request->file('file_video'));
         }
 
+        // Crear ejercicio
         $ejercicio = $this->ejercicioRepository->create($input);
+
+        // Músculo principal
+        if ($request->filled('musculo_principal')) {
+            $ejercicio->musculos()->attach(
+                $request->musculo_principal,
+                ['es_principal' => true]
+            );
+        }
+
+        // Músculos secundarios
+        if ($request->has('musculos_secundarios')) {
+
+            foreach ($request->musculos_secundarios as $musculoId) {
+
+                // Evitar duplicar el principal
+                if ($musculoId != $request->musculo_principal) {
+
+                    $ejercicio->musculos()->attach(
+                        $musculoId,
+                        ['es_principal' => false]
+                    );
+                }
+            }
+        }
 
         Flash::success('Ejercicio saved successfully.');
 
         return redirect(route('ejercicios.index'));
     }
-
     /**
      * Display the specified Ejercicio.
      *
@@ -99,14 +125,14 @@ class EjercicioController extends AppBaseController
     public function edit($id)
     {
         $ejercicio = $this->ejercicioRepository->find($id);
+        $musculos = Musculo::all();
 
         if (empty($ejercicio)) {
             Flash::error('Ejercicio not found');
-
             return redirect(route('ejercicios.index'));
         }
 
-        return view('ejercicios.edit')->with('ejercicio', $ejercicio);
+        return view('ejercicios.edit', compact('ejercicio', 'musculos'));
     }
 
     /**
@@ -148,6 +174,33 @@ class EjercicioController extends AppBaseController
 
         // Actualizar el ejercicio
         $ejercicio = $this->ejercicioRepository->update($input, $id);
+
+        // 🔥 Actualizar músculos
+
+        $ejercicio->musculos()->detach();
+
+        // Músculo principal
+        if ($request->filled('musculo_principal')) {
+            $ejercicio->musculos()->attach(
+                $request->musculo_principal,
+                ['es_principal' => true]
+            );
+        }
+
+        // Músculos secundarios
+        if ($request->has('musculos_secundarios')) {
+
+            foreach ($request->musculos_secundarios as $musculoId) {
+
+                if ($musculoId != $request->musculo_principal) {
+
+                    $ejercicio->musculos()->attach(
+                        $musculoId,
+                        ['es_principal' => false]
+                    );
+                }
+            }
+        }
 
         Flash::success('Ejercicio actualizado correctamente.');
         return redirect(route('ejercicios.index'));
