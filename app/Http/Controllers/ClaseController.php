@@ -42,9 +42,14 @@ class ClaseController extends Controller
     {
         $input = $request->all();
 
+        if ($request->hasFile('imagen')) {
+            $path = $request->file('imagen')->store('clases', 'public');
+            $input['imagen'] = $path;
+        }
+
         $clase = $this->claseRepository->create($input);
 
-        Flash::success('Clase saved successfully.');
+        Flash::success('Clase creada correctamente.');
 
         return redirect(route('admon.clases.index'));
     }
@@ -72,7 +77,14 @@ class ClaseController extends Controller
             return redirect(route('admon.clases.index'));
         }
 
-        $clase = $this->claseRepository->update($request->all(), $id);
+        $input = $request->all();
+
+        if ($request->hasFile('imagen')) {
+            $path = $request->file('imagen')->store('clases', 'public');
+            $input['imagen'] = $path;
+        }
+
+        $clase = $this->claseRepository->update($input, $id);
 
         Flash::success('Clase updated successfully.');
 
@@ -106,6 +118,9 @@ class ClaseController extends Controller
                 return [
                     'id' => $horario->id,
                     'title' => $horario->clase->nombre,
+                    'imagen' => $horario->clase->imagen
+                        ? asset('storage/' . $horario->clase->imagen)
+                        : null,
                     'start' => $horario->fecha_hora,
                     'end' => Carbon::parse($horario->fecha_hora)->addMinutes($horario->clase->duracion),
                     'instructor' => $horario->instructor->nombre,
@@ -126,6 +141,9 @@ class ClaseController extends Controller
                     $eventos[] = [
                         'id' => $recurrente->id,
                         'title' => $recurrente->clase->nombre,
+                        'imagen' => $recurrente->clase->imagen
+                            ? asset('storage/' . $recurrente->clase->imagen)
+                            : null,
                         'start' => $fecha->format('Y-m-d') . ' ' . $recurrente->hora,
                         'end' => $fecha->addMinutes($recurrente->duracion),
                         'instructor' => $recurrente->instructor->nombre,

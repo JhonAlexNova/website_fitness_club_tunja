@@ -3,7 +3,8 @@
         <thead>
             <tr>
                 <th>Nombre Ejercicio</th>
-                <th>Musculo Objetivo</th>
+                <th>Músculo Principal</th>
+                <th>Músculos Secundarios</th>
                 <th>Equipo</th>
                 <th>Nivel Dificultad</th>
                 <th>Video</th>
@@ -14,7 +15,23 @@
             @foreach($ejercicios as $ejercicio)
             <tr>
                 <td>{{ $ejercicio->nombre_ejercicio }}</td>
-                <td>{{ $ejercicio->musculo_objetivo }}</td>
+                <td>
+                    @foreach($ejercicio->musculos as $musculo)
+                        @if($musculo->pivot->es_principal)
+                            <strong>{{ $musculo->nombre }}</strong>
+                        @endif
+                    @endforeach
+                </td>
+
+                <td>
+                    @foreach($ejercicio->musculos as $musculo)
+                        @if(!$musculo->pivot->es_principal)
+                            <span class="badge badge-secondary">
+                                {{ $musculo->nombre }}
+                            </span>
+                        @endif
+                    @endforeach
+                </td>
                 <td>{{ $ejercicio->equipo }}</td>
                 <td>{{ $ejercicio->nivel_dificultad }}</td>
                 <td>

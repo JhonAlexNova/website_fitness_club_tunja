@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CoffeeShopController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,6 +47,8 @@ Route::group(["middleware"=>["auth","config"],"prefix"=>"admon"],function(){
 
             
             Route::resource('categorias', App\Http\Controllers\CategoriaController::class);
+
+            Route::resource('coffee-products', App\Http\Controllers\CoffeeProductController::class);
     
     
             Route::resource('productos', App\Http\Controllers\ProductoController::class);
@@ -71,7 +74,7 @@ Route::group(["middleware"=>["auth","config"],"prefix"=>"admon"],function(){
             Route::get('fechas_cierre', [App\Http\Controllers\CierreController::class,'fechas_cierre']);
 
 
-            //
+            // 
             Route::post('cerrar-caja', [App\Http\Controllers\CierreController::class,'cerrar_caja']);
     
             Route::resource('devolucions', App\Http\Controllers\DevolucionController::class);
@@ -168,6 +171,7 @@ Route::group(["middleware"=>["auth","config"],"prefix"=>"admon"],function(){
             
               /* Servicios */
             Route::resource('servicios', App\Http\Controllers\ServicioController::class);
+            Route::resource('musculos', App\Http\Controllers\MusculoController::class);
 
             /* SISTEMA DE PUNTOS */
             Route::resource('puntos', App\Http\Controllers\PuntoController::class);
@@ -202,12 +206,16 @@ Route::group(["prefix"=>"app","middleware"=>"protectionAppRoute"],function(){
     Route::resource("plan-entrenamiento",App\Http\Controllers\App\PlanEntrenamientoController::class);
     Route::resource("ejercicio",App\Http\Controllers\App\EjercicioController::class);
 
+    Route::resource("coffee-shop", App\Http\Controllers\App\CoffeeShopController::class);
 
+    Route::get('cancelar-reserva/{id}', [App\Http\Controllers\App\ReservaController::class, 'cancelar'])->name('app.reserva.cancelar');
   
     /*  */
     
 
 });
+
+
 
 /* pagos wompi */
 Route::post('confirmacion-wompi', [App\Http\Controllers\WompiController::class,"confirmacion_wompi"]);

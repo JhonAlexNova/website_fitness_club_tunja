@@ -1,7 +1,7 @@
 <!-- Nombre Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('nombre', 'Nombre:') !!}
-    {!! Form::text('nombre', null, ['class' => 'form-control','maxlength' => 50,'maxlength' => 50]) !!}
+    {!! Form::text('nombre', null, ['class' => 'form-control','maxlength' => 50]) !!}
 </div>
 
 <!-- Descripcion Field -->
@@ -10,16 +10,31 @@
     {!! Form::textarea('descripcion', null, ['class' => 'form-control','rows'=>3]) !!}
 </div>
 
+<!-- Imagen -->
+<div class="form-group col-sm-6">
+    {!! Form::label('imagen', 'Imagen:') !!}
+    {!! Form::file('imagen', ['class' => 'form-control']) !!}
+</div>
+
 <!-- Costo Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('costo', 'Costo:') !!}
-    {!! Form::number('costo', null, ['class' => 'form-control']) !!}
+    {!! Form::number('costo', null, ['class' => 'form-control','min' => 0]) !!}
 </div>
 
-<!-- Duracion Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('duracion', 'Duracion:') !!}
-    {!! Form::number('duracion', null, ['class' => 'form-control']) !!}
+<!-- Duracion -->
+<div class="form-group col-sm-3">
+    {!! Form::label('duracion', 'Duración:') !!}
+    {!! Form::number('duracion', null, ['class' => 'form-control', 'min' => 1, 'required']) !!}
+</div>
+
+<!-- Tipo de duración -->
+<div class="form-group col-sm-3">
+    {!! Form::label('tipo_duracion', 'Tipo:') !!}
+    {!! Form::select('tipo_duracion', [
+        'dias' => 'Días',
+        'meses' => 'Meses'
+    ], null, ['class' => 'form-control', 'required']) !!}
 </div>
 
 <!-- Servicios seleccionables -->
@@ -47,7 +62,6 @@
                     </label>
                 </div>
             @endforeach
-
         @endif
     </div>
 </div>

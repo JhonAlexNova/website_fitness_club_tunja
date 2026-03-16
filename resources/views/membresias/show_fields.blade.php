@@ -6,7 +6,7 @@
 
 <!-- Descripcion Field -->
 <div class="col-sm-12">
-    {!! Form::label('descripcion', 'Descripcion:') !!}
+    {!! Form::label('descripcion', 'Descripción:') !!}
     <p>{{ $membresia->descripcion }}</p>
 </div>
 
@@ -18,7 +18,6 @@
 
 <!-- Duracion Field -->
 <div class="col-sm-12">
-    {!! Form::label('duracion', 'Duracion:') !!}
-    <p>{{ $membresia->duracion }}</p>
+    {!! Form::label('duracion', 'Duración:') !!}
+    <p>{{ $membresia->duracion }} {{ $membresia->tipo_duracion }}</p>
 </div>
-

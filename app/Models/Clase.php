@@ -32,6 +32,7 @@ class Clase extends Model
 
     public $fillable = [
         'nombre',
+        'imagen',
         'descripcion',
         'clase_id',
         'instructor_id',

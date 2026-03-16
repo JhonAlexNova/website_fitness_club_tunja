@@ -14,73 +14,80 @@ use App\Http\Controllers\API\ProductoApiController;
 use App\Http\Controllers\API\MembresiaApiController;
 use App\Http\Controllers\API\RutinaApiController;
 use App\Http\Controllers\API\ClienteApiController;
+use App\Http\Controllers\API\MusculoApiController;
+use App\Http\Controllers\API\EjercicioApiController;
+use App\Http\Controllers\CoffeeProductController;
 
 /*
 |--------------------------------------------------------------------------
 | API Routes
 |--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
 */
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/auth/login', [AuthApiController::class, 'login']);
-Route::middleware('auth:sanctum')->post('/logout', [AuthApiController::class, 'logout']);
-Route::post('/clientes', [ClienteApiController::class, 'store']);
+// AUTH PÚBLICO
+Route::post('/auth/login',    [AuthApiController::class, 'login']);
+Route::post('/auth/register', [AuthApiController::class, 'register']);
 
-// Rutas protegidas para el perfil
+// LOGOUT PROTEGIDO
+Route::middleware('auth:sanctum')->post('/auth/logout', [AuthApiController::class, 'logout']);
+
+// RUTAS PROTEGIDAS
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/perfil', [PerfilApiController::class, 'show']); // Ver perfil
-    Route::post('/perfil', [PerfilApiController::class, 'update']); // Actualizar perfil
-    
-    //reserva
+
+    // CLIENTES
+    Route::post('/clientes', [ClienteApiController::class, 'store']);
+
+    // PERFIL
+    Route::get('/perfil',  [PerfilApiController::class, 'show']);
+    Route::post('/perfil', [PerfilApiController::class, 'update']);
+
+    // RESERVAS
     Route::post('/reserva-clase-usuario', [ReservaApiController::class, 'reserva_clase_usuario']);
-    Route::post('/cancelar-reserva', [ReservaApiController::class, 'cancelarReserva']);
-    Route::post('/reserva', [ReservaApiController::class, 'store']);
+    Route::post('/cancelar-reserva',      [ReservaApiController::class, 'cancelarReserva']);
+    Route::post('/reserva',               [ReservaApiController::class, 'store']);
+    Route::post('/aplazar-reserva',       [ReservaApiController::class, 'aplazarReserva']);
+    Route::get('/mis-reservas',           [ReservaApiController::class, 'misReservas']);
 
-    // Rutas para calificaciones
-    Route::prefix('classes/')->group(function () {
-        Route::post('rating', [RatingApiController::class, 'rateClass']);
+    // CALIFICACIONES
+    Route::prefix('classes')->group(function () {
         Route::get('calificacion/{class_id}', [RatingApiController::class, 'getUserRating']);
-
-        
-        Route::get('/', [RatingController::class, 'getClassRatings']);
-        Route::get('/user', [RatingController::class, 'getUserRating']);
-        Route::delete('/', [RatingController::class, 'deleteRating']);
+        Route::get('/',                        [RatingApiController::class, 'getClassRatings']);
+        Route::delete('/',                     [RatingApiController::class, 'deleteRating']);
     });
 
-
-    //MEDICIONES
-    Route::get('/mediciones', [MedicionApiController::class, 'index']);
+    // MEDICIONES
+    Route::get('/mediciones',  [MedicionApiController::class, 'index']);
     Route::post('/mediciones', [MedicionApiController::class, 'store']);
 
-    //FACTURA
+    // FACTURA
     Route::post('/factura', [FacturaApiController::class, 'store']);
 
-    /* productos */
+    // PRODUCTOS
     Route::post('/productos/categorias', [ProductoApiController::class, 'get_productos_by_categorias']);
+    Route::get('/coffee-products',       [CoffeeProductController::class, 'apiIndex']);
 
-    /* membresias */
+    // MEMBRESÍAS
     Route::get('membresias/usuario', [MembresiaApiController::class, 'membresia_usuario']);
-    Route::resource("membresias", MembresiaApiController::class)->names("api.membresias");
+    Route::resource('membresias', MembresiaApiController::class)->names('api.membresias');
 
-    /* rutinas */
-    Route::get('/rutinas-generales', [RutinaApiController::class, 'rutinasGenerales']);
-    Route::get('/rutinas-usuario', [RutinaApiController::class, 'rutinasUsuario']);
-    /* ejericicios rutina */
-    Route::get('/ejercicios-rutinas/{id}', [RutinaApiController::class, 'ejericiosRutina']);
+    // RUTINAS
+    Route::get('/rutinas-generales',          [RutinaApiController::class, 'rutinasGenerales']);
+    Route::get('/rutinas-usuario',            [RutinaApiController::class, 'rutinasUsuario']);
+    Route::get('/ejercicios-rutinas/{id}',    [RutinaApiController::class, 'ejericiosRutina']);
+    Route::post('/rutinas-usuario',           [RutinaApiController::class, 'storeRutinaUsuario']);
 
+    // MÚSCULOS
+    Route::get('/musculos', [MusculoApiController::class, 'index']);
+
+    // EJERCICIOS
+    Route::get('/ejercicios', [EjercicioApiController::class, 'index']);
+    Route::get('/ejercicios/{id}', [EjercicioApiController::class, 'show']);
 });
 
-//clases
-Route::get('/clases', [ClaseApiController::class, 'index']); // Ver perfil
-Route::get('/clases/{id}/{fecha}', [ClaseApiController::class, 'show']); // Ver perfil
-
-
-
+// CLASES PÚBLICAS
+Route::get('/clases',              [ClaseApiController::class, 'index']);
+Route::get('/clases/{id}/{fecha}', [ClaseApiController::class, 'show']);

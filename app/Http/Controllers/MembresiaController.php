@@ -6,6 +6,7 @@ use App\Http\Requests\CreateMembresiaRequest;
 use App\Http\Requests\UpdateMembresiaRequest;
 use App\Repositories\MembresiaRepository;
 use App\Repositories\ServicioRepository;
+use Illuminate\Support\Str;
 
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
@@ -64,16 +65,22 @@ class MembresiaController extends AppBaseController
      *
      * @return Response
      */
-    public function store(CreateMembresiaRequest $request)
+   public function store(CreateMembresiaRequest $request)
     {
-
-       // dd($request->all());
         $input = $request->all();
+
+        // Subir imagen si viene
+        if ($request->hasFile('imagen')) {
+            $file = $request->file('imagen');
+            $filename = time() . '_' . Str::random(10) . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('images/membresias'), $filename);
+            $input['imagen'] = $filename;
+        }
 
         // Crear la membresía
         $membresia = $this->membresiaRepository->create($input);
 
-        // Asociar servicios si fueron enviados
+        // Asociar servicios
         if ($request->has('servicios')) {
             $membresia->servicios()->attach($request->input('servicios'));
         }
@@ -134,12 +141,28 @@ class MembresiaController extends AppBaseController
      *
      * @return Response
      */
-    public function update($id, UpdateMembresiaRequest $request)
+   public function update($id, UpdateMembresiaRequest $request)
     {
         $membresia = Membresia::findOrFail($id);
-        $membresia->update($request->all());
+        $input = $request->all();
 
-        // Actualizar servicios asociados
+        // Subir nueva imagen si viene
+        if ($request->hasFile('imagen')) {
+
+            // Borrar imagen anterior si existe
+            if ($membresia->imagen && file_exists(public_path('images/membresias/'.$membresia->imagen))) {
+                unlink(public_path('images/membresias/'.$membresia->imagen));
+            }
+
+            $file = $request->file('imagen');
+            $filename = time() . '_' . Str::random(10) . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('images/membresias'), $filename);
+            $input['imagen'] = $filename;
+        }
+
+        $membresia->update($input);
+
+        // Actualizar servicios
         $membresia->servicios()->sync($request->input('servicios', []));
 
         Flash::success('Membresía actualizada correctamente.');

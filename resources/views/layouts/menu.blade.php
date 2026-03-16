@@ -174,6 +174,13 @@
                                 <p>Inventario</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('coffee-products.index') }}" 
+                            class="nav-link {{ Request::is('admon/coffee-products*') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Coffee Shop</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 @endif
@@ -398,6 +405,12 @@
                             <a href="{{ route('ejercicios.index') }}" class="nav-link {{ Request::is('ejercicios*') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Ejercicios</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('musculos.index') }}" class="nav-link {{ Request::is('ejercicios*') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Musculos</p>
                             </a>
                         </li>
                         <li class="nav-item">

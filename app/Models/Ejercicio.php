@@ -77,6 +77,13 @@ class Ejercicio extends Model
         return $this->hasMany(RutinaEjercicio::class, 'id_ejercicio');
     }
     
-
+    public function musculos()
+    {
+        return $this->belongsToMany(
+            Musculo::class,
+            'ejercicio_musculo'
+        )->withPivot('es_principal')
+        ->withTimestamps();
+    }
     
 }

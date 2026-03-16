@@ -6,7 +6,7 @@ use Eloquent as Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
- * Class Clase
+ * Class Reserva
  * @package App\Models
  * @version October 26, 2024, 10:06 am -05
  *
@@ -16,10 +16,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Reserva extends Model
 {
     protected $fillable = [
-        'usuario_id',
+        'cliente_id',
         'horario_clase_id',
-        'tipo_clase', // 'unica' o 'recurrente'
-        "estado"
+        'tipo_clase',
+        'fecha_reserva',
+        'estado'
     ];
 
     public function horarioClaseUnica()
@@ -34,6 +35,6 @@ class Reserva extends Model
 
     public function cliente()
     {
-        return $this->belongsTo(User::class); // Suponiendo que tienes un modelo Usuario
+        return $this->belongsTo(User::class, 'cliente_id');
     }
 }

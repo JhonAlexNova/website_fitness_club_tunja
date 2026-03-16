@@ -17,7 +17,7 @@
 
         <div class="card">
 
-            {!! Form::open(['route' => 'admon.clases.store']) !!}
+            {!! Form::open(['route' => 'admon.clases.store', 'files' => true]) !!}
 
             <div class="card-body">
 
