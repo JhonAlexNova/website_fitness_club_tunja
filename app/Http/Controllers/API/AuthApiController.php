@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\API;
 
 use App\Models\User;
-use App\Models\Perfil;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use App\Http\Controllers\Controller;
 
@@ -40,38 +40,52 @@ class AuthApiController extends Controller
     public function register(Request $request)
     {
         $data = $request->validate([
-            'primer_nombre' => 'required|string',
-            'segundo_nombre' => 'required|string',
-            'primer_apellido' => 'required|string',
-            'segundo_apellido' => 'required|string',
-            'celular' => 'required|string',
+            'username' => 'nullable|string|max:255',
+            'primer_nombre' => 'required|string|max:255',
+            'segundo_nombre' => 'nullable|string|max:255',
+            'primer_apellido' => 'required|string|max:255',
+            'segundo_apellido' => 'nullable|string|max:255',
+            'celular' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
-            'documento' => 'required|string',
-            'password' => 'required|min:6',
-            'avatar' => 'required',
-            'objetivos' => 'required|array',
+            'documento' => 'required|string|max:255',
+            'password' => 'required|string|min:6|confirmed',
+            'avatar' => 'nullable|string|max:255',
+            'fecha_inscripcion' => 'nullable|date',
+            'talla' => 'nullable|numeric',
+            'peso' => 'nullable|numeric',
+            'perimetro_abdominal' => 'nullable|numeric',
+            'porcentaje_grasa' => 'nullable|numeric',
+            'porcentaje_musculo' => 'nullable|numeric',
+            'tipo' => 'nullable|in:Instructor,Cliente,Administrador,SuperAdmin',
+            'estado' => 'nullable|in:activo,inactivo',
+            'objetivos' => 'nullable|array',
             'ppm_max' => 'nullable|numeric',
             'ppm_min' => 'nullable|numeric'
         ]);
 
-        $user = User::create([
-            'name' => $data['primer_nombre'].' '.$data['primer_apellido'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-            'avatar' => $data['avatar'],
-            'celular' => $data['celular'],
-            'documento' => $data['documento']
-        ]);
+        $observaciones = $this->buildObservaciones($data);
+        $username = $this->resolveUsername($data);
 
-        Perfil::create([
-            'user_id' => $user->id,
+        $user = User::create([
+            'username' => $username,
             'primer_nombre' => $data['primer_nombre'],
-            'segundo_nombre' => $data['segundo_nombre'],
+            'segundo_nombre' => $data['segundo_nombre'] ?? null,
             'primer_apellido' => $data['primer_apellido'],
-            'segundo_apellido' => $data['segundo_apellido'],
-            'ppm_max' => $data['ppm_max'],
-            'ppm_min' => $data['ppm_min'],
-            'objetivos' => json_encode($data['objetivos'])
+            'segundo_apellido' => $data['segundo_apellido'] ?? null,
+            'celular' => $data['celular'],
+            'email' => $data['email'],
+            'documento' => $data['documento'],
+            'password' => Hash::make($data['password']),
+            'foto_perfil' => $data['avatar'] ?? null,
+            'fecha_inscripcion' => $data['fecha_inscripcion'] ?? null,
+            'talla' => $data['talla'] ?? null,
+            'peso' => isset($data['peso']) ? (string) $data['peso'] : null,
+            'perimetro_abdominal' => $data['perimetro_abdominal'] ?? null,
+            'porcentaje_grasa' => $data['porcentaje_grasa'] ?? null,
+            'porcentaje_musculo' => $data['porcentaje_musculo'] ?? null,
+            'estado' => $data['estado'] ?? 'activo',
+            'tipo' => $data['tipo'] ?? 'Cliente',
+            'observaciones' => $observaciones
         ]);
 
         $token = $user->createToken('auth_token')->plainTextToken;
@@ -81,5 +95,55 @@ class AuthApiController extends Controller
             'token' => $token,
             'user' => $user
         ]);
+    }
+
+    private function resolveUsername(array $data): string
+    {
+        $desired = $data['username'] ?? null;
+
+        if (empty($desired)) {
+            $parts = array_filter([
+                $data['primer_nombre'] ?? null,
+                $data['primer_apellido'] ?? null,
+            ]);
+
+            $desired = Str::slug(implode(' ', $parts), '');
+        }
+
+        $desired = $desired ?: 'cliente';
+        $candidate = $desired;
+        $suffix = 1;
+
+        while (User::where('username', $candidate)->exists()) {
+            $candidate = $desired . $suffix++;
+        }
+
+        return $candidate;
+    }
+
+    private function buildObservaciones(array $data): ?string
+    {
+        $payload = [];
+
+        if (!empty($data['objetivos'])) {
+            $payload['objetivos'] = $data['objetivos'];
+        }
+
+        if (isset($data['ppm_min']) || isset($data['ppm_max'])) {
+            $ppm = array_filter([
+                'min' => $data['ppm_min'] ?? null,
+                'max' => $data['ppm_max'] ?? null,
+            ], fn ($value) => $value !== null && $value !== '');
+
+            if (!empty($ppm)) {
+                $payload['ppm'] = $ppm;
+            }
+        }
+
+        if (empty($payload)) {
+            return null;
+        }
+
+        return json_encode($payload, JSON_UNESCAPED_UNICODE);
     }
 }
