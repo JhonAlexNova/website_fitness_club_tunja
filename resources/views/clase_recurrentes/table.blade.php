@@ -18,7 +18,7 @@
         <tbody>
             @foreach($claseRecurrentes as $claseRecurrente)
                 <tr>
-                    <td>{{ $claseRecurrente->clase->nombre }}</td>
+                    <td>{{ optional($claseRecurrente->clase)->nombre ?? 'Clase no disponible' }}</td>
                     <td>{{ $dias[$claseRecurrente->dia_semana] ?? 'Día inválido' }}</td>
                     <td>{{ $claseRecurrente->hora }}</td>
                     {{-- 

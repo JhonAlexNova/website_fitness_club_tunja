@@ -17,8 +17,16 @@ class User extends Authenticatable
 
     protected $fillable = [
         'name',
+        'username',
+        'primer_nombre',
+        'segundo_nombre',
+        'primer_apellido',
+        'segundo_apellido',
+        'celular',
+        'documento',
         'email',
         'password',
+<<<<<<< HEAD
         'tipo',
         'avatar',
         'celular',
@@ -28,6 +36,18 @@ class User extends Authenticatable
         'primer_apellido',
         'segundo_apellido',
         'foto_perfil',
+=======
+        'foto_perfil',
+        'tipo',
+        'estado',
+        'fecha_inscripcion',
+        'talla',
+        'peso',
+        'perimetro_abdominal',
+        'porcentaje_grasa',
+        'porcentaje_musculo',
+        'observaciones',
+>>>>>>> 23a1a03bb79d875c57a4f26e65043cf409a50f3e
     ];
 
     protected $hidden = [
