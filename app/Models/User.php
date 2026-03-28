@@ -85,4 +85,11 @@ class User extends Authenticatable
     {
         return $this->hasMany(Puntos::class, 'user_id');
     }
+
+    public function membresiaActiva()
+    {
+        return $this->hasOne(\App\Models\UserMembresia::class, 'user_id')
+            ->where('estado', 'activa')
+            ->latest();
+    }
 }

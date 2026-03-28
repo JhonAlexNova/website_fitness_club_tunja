@@ -206,7 +206,7 @@ Route::group(["prefix"=>"app","middleware"=>"protectionAppRoute"],function(){
     Route::resource("plan-entrenamiento",App\Http\Controllers\App\PlanEntrenamientoController::class);
     Route::resource("ejercicio",App\Http\Controllers\App\EjercicioController::class);
 
-    Route::resource("coffee-shop", App\Http\Controllers\App\CoffeeShopController::class);
+    Route::resource("coffee-shop", App\Http\Controllers\CoffeeShopController::class);
 
     Route::get('cancelar-reserva/{id}', [App\Http\Controllers\App\ReservaController::class, 'cancelar'])->name('app.reserva.cancelar');
   

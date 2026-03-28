@@ -59,7 +59,7 @@
                                 @foreach($rutina->ejercicios_rutina as $ejercicioRutina)
                                   <tr>
                                     <td width="200px">
-                                       @if($ejercicioRutina->ejercicio->video_url)
+                                       @if($ejercicioRutina->ejercicio && $ejercicioRutina->ejercicio->video_url)
                                           <button class="btn btn-sm btn-info btn-view-video" 
                                                   data-video-url="{{url('storage', $ejercicioRutina->ejercicio->video_url)}}">
                                               <i class="fas fa-play"></i> Ver Video
@@ -68,7 +68,7 @@
                                           <span class="text-muted">Sin video</span>
                                        @endif
                                     </td>
-                                    <td>{{ $ejercicioRutina->ejercicio->nombre_ejercicio }}</td>
+                                    <td>{{ $ejercicioRutina->ejercicio->nombre_ejercicio ?? '(ejercicio eliminado)' }}</td>
                                     <td>{{ $ejercicioRutina->volumen }}</td>
                                     <td>{{ $ejercicioRutina->intensidad }}</td>
                                     <td>{{ $ejercicioRutina->frecuencia }}</td>
