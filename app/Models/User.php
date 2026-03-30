@@ -26,19 +26,9 @@ class User extends Authenticatable
         'documento',
         'email',
         'password',
-<<<<<<< HEAD
+        'foto_perfil',
         'tipo',
         'avatar',
-        'celular',
-        'documento',
-        'primer_nombre',
-        'segundo_nombre',
-        'primer_apellido',
-        'segundo_apellido',
-        'foto_perfil',
-=======
-        'foto_perfil',
-        'tipo',
         'estado',
         'fecha_inscripcion',
         'talla',
@@ -47,7 +37,6 @@ class User extends Authenticatable
         'porcentaje_grasa',
         'porcentaje_musculo',
         'observaciones',
->>>>>>> 23a1a03bb79d875c57a4f26e65043cf409a50f3e
     ];
 
     protected $hidden = [
