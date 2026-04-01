@@ -17,6 +17,7 @@ use App\Http\Controllers\API\ClienteApiController;
 use App\Http\Controllers\API\MusculoApiController;
 use App\Http\Controllers\API\EjercicioApiController;
 use App\Http\Controllers\CoffeeProductController;
+use App\Http\Controllers\Api\PasswordResetController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // AUTH PÚBLICO
 Route::post('/auth/login',    [AuthApiController::class, 'login']);
 Route::post('/auth/register', [AuthApiController::class, 'register']);
+
+// RECUPERACIÓN DE CONTRASEÑA (público)
+Route::post('/forgot-password/send-code',   [PasswordResetController::class, 'sendCode']);
+Route::post('/forgot-password/verify-code', [PasswordResetController::class, 'verifyCode']);
+Route::post('/forgot-password/reset',       [PasswordResetController::class, 'resetPassword']);
 
 // LOGOUT PROTEGIDO
 Route::middleware('auth:sanctum')->post('/auth/logout', [AuthApiController::class, 'logout']);

@@ -14,7 +14,7 @@ class AuthApiController extends Controller
     public function login(Request $request)
     {
         $request->validate([
-            'email' => 'required|email',
+            'email'    => 'required|email',
             'password' => 'required',
         ]);
 
@@ -26,9 +26,12 @@ class AuthApiController extends Controller
             ]);
         }
 
+        $membresiaActiva = $user->membresiaActiva()->with('membresia')->first();
+
         return response()->json([
-            'token' => $user->createToken('auth_token')->plainTextToken,
-            'user' => $user
+            'token'     => $user->createToken('auth_token')->plainTextToken,
+            'user'      => $user,
+            'membresia' => $membresiaActiva ? $membresiaActiva->membresia->nombre : null
         ]);
     }
 

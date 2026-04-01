@@ -14,7 +14,7 @@
     <div class="content px-3">
 
         @include('adminlte-templates::common.errors')
-         @include('flash::message')
+        @include('flash::message')
 
         <div class="card">
 
@@ -38,6 +38,7 @@
         </div>
     </div>
 @endsection
+
 @push('page_scripts')
 <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -52,11 +53,23 @@
             }
         }
 
-        // Inicial
         toggleUserField();
-
-        // Al cambiar el checkbox
         esGeneralCheckbox.addEventListener('change', toggleUserField);
+
+        // Select2 para buscar usuario por nombre
+        $('#user_id').select2({
+            theme: 'bootstrap4',
+            placeholder: 'Buscar usuario por nombre...',
+            allowClear: true,
+            language: {
+                noResults: function () {
+                    return 'No se encontraron usuarios';
+                },
+                searching: function () {
+                    return 'Buscando...';
+                }
+            }
+        });
     });
 </script>
 @endpush

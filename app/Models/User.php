@@ -11,18 +11,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Auth;
 use DB;
 
-
-
-
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
     protected $fillable = [
         'name',
         'username',
@@ -36,6 +28,7 @@ class User extends Authenticatable
         'password',
         'foto_perfil',
         'tipo',
+        'avatar',
         'estado',
         'fecha_inscripcion',
         'talla',
@@ -46,65 +39,66 @@ class User extends Authenticatable
         'observaciones',
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
 
-    public static function rol(){
+    public static function rol()
+    {
         $rol = DB::table('tipo_usuario as tu')
-        ->join('users as u','u.id','tu.user_id')
-        ->join('rol as r','r.id','tu.rol_id')
-        ->select('r.tipo')
-        ->where('u.id',Auth::user()->id)->get()->last();
+            ->join('users as u', 'u.id', 'tu.user_id')
+            ->join('rol as r', 'r.id', 'tu.rol_id')
+            ->select('r.tipo')
+            ->where('u.id', Auth::user()->id)
+            ->get()
+            ->last();
 
-       //dd($rol, Auth::user()->id);
+        if (!$rol) {
+            return 'SIN_ROL';
+        }
 
-        if($rol->tipo=='Super Admin'){
+        if ($rol->tipo == 'Super Admin') {
             return 'SUPER_ADMIN';
-        }else if($rol->tipo=='Admin'){
+        } else if ($rol->tipo == 'Admin') {
             return 'ADMIN';
-        }else if($rol->tipo=='Empleado'){
+        } else if ($rol->tipo == 'Empleado') {
             return 'EMPLEADO';
         }
 
-
-       
-
-        //$user = Auth::user();
-
-    
-        
-
-        return $user->tipo;
+        return 'SIN_ROL';
     }
 
-
-    public static function rol_id(){
+    public static function rol_id()
+    {
         $rol = DB::table('tipo_usuario as tu')
-        ->join('users as u','u.id','tu.user_id')
-        ->join('rol as r','r.id','tu.rol_id')
-        ->select('r.id')
-        ->where('u.id',Auth::user()->id)->get()->last();
+            ->join('users as u', 'u.id', 'tu.user_id')
+            ->join('rol as r', 'r.id', 'tu.rol_id')
+            ->select('r.id')
+            ->where('u.id', Auth::user()->id)
+            ->get()
+            ->last();
+
+        if (!$rol) {
+            return null;
+        }
+
         return $rol->id;
     }
 
     public function puntos()
     {
         return $this->hasMany(Puntos::class, 'user_id');
+    }
+
+    public function membresiaActiva()
+    {
+        return $this->hasOne(\App\Models\UserMembresia::class, 'user_id')
+            ->where('estado', 'activa')
+            ->latest();
     }
 }

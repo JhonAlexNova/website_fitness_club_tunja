@@ -58,60 +58,33 @@ class PerfilApiController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request)
-    {        
-        $cliente = $this->clienteRepository->find(request()->user()->id);
+    {
+        $user = $request->user(); // ← directo del modelo, sin repositorio
 
-        
+        $user->primer_nombre    = $request->primer_nombre;
+        $user->segundo_nombre   = $request->segundo_nombre;
+        $user->primer_apellido  = $request->primer_apellido;
+        $user->segundo_apellido = $request->segundo_apellido;
+        $user->celular          = $request->celular;
+        $user->email            = $request->email;
+        $user->documento        = $request->documento;
 
-        $cliente->primer_nombre = $request->primer_nombre;
-        $cliente->segundo_nombre = $request->segundo_nombre;
-        $cliente->primer_apellido = $request->primer_apellido;
-        $cliente->segundo_apellido = $request->segundo_apellido;
-        $cliente->celular = $request->celular;
-        $cliente->email = $request->email;
-        $cliente->documento = $request->documento;
-        $cliente->save();
-
-        return response()->json(["response"=>"Datos actualizados correctamente"]);
-
-
-        if($request->new_password){
-            // Validaciones
-            $request->validate([
-                'current_password' => ['required'],
-                'new_password' => ['required', 'string', 'min:8', 'confirmed'], // Debe coincidir con new_password_confirmation
-            ]);
-
-            $cliente = $this->clienteRepository->find(Auth::user()->id);
-
-            // Verificar que la contraseña actual sea correcta
-            if (!Hash::check($request->current_password, $cliente->password)) {
-                throw ValidationException::withMessages([
-                    'current_password' => 'La contraseña actual no es correcta.',
-                ]);
-            }
-
-            // Actualizar la contraseña
-            $cliente->password = Hash::make($request->new_password);
-            $this->clienteRepository->update(['password' => $cliente->password], $cliente->id);
-
-            Flash::success('Contraseña actualizada correctamente');
-            return redirect()->back();
+        // Avatar de la grilla
+        if ($request->filled('avatar')) {
+            $user->avatar = $request->avatar;
         }
 
-        if($request->file("file_foto_perfil")){
-            $request["foto_perfil"] = Storage::disk("public")->putFile("avatar",$request->file("file_foto_perfil"));
-
-           // dd($request->file_foto_perfil,$request->all());
+        // Foto subida desde el dispositivo
+        if ($request->hasFile('foto')) {
+            $user->avatar = Storage::disk('public')->putFile('avatar', $request->file('foto'));
         }
 
-        //dd($cliente);
+        $user->save();
 
-        
-        $cliente = $this->clienteRepository->update($request->all(), request()->user()->id);
-        return $request->all();
-
-        
+        return response()->json([
+            'response' => 'Datos actualizados correctamente',
+            'avatar'   => $user->avatar,
+        ]);
     }
 
     /**
