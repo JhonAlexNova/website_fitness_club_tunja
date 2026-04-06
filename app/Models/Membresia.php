@@ -6,15 +6,6 @@ use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-/**
- * Class Membresia
- * 
- * @property string  $nombre
- * @property string  $descripcion
- * @property integer $costo
- * @property integer $duracion
- * @property string  $tipo_duracion   // dias | meses
- */
 class Membresia extends Model
 {
     use SoftDeletes, HasFactory;
@@ -26,9 +17,6 @@ class Membresia extends Model
 
     protected $dates = ['deleted_at'];
 
-    /**
-     * Campos que se pueden llenar masivamente
-     */
     protected $fillable = [
         'nombre',
         'descripcion',
@@ -38,9 +26,8 @@ class Membresia extends Model
         'imagen'
     ];
 
-    /**
-     * Casts de los atributos
-     */
+    protected $appends = ['imagen_url'];
+
     protected $casts = [
         'id'             => 'integer',
         'nombre'         => 'string',
@@ -51,9 +38,6 @@ class Membresia extends Model
         'imagen'         => 'string'
     ];
 
-    /**
-     * Reglas de validación
-     */
     public static $rules = [
         'nombre'         => 'required|string|max:50',
         'descripcion'    => 'nullable|string',
@@ -66,17 +50,19 @@ class Membresia extends Model
         'deleted_at'     => 'nullable'
     ];
 
-    /**
-     * Relación con servicios
-     */
+    public function getImagenUrlAttribute()
+    {
+        if ($this->imagen) {
+            return url('images/membresias/' . $this->imagen);
+        }
+        return null;
+    }
+
     public function servicios()
     {
         return $this->belongsToMany(Servicio::class, 'servicios_membresia');
     }
 
-    /**
-     * Accesor: duración completa legible
-     */
     public function getDuracionCompletaAttribute()
     {
         return $this->duracion . ' ' . $this->tipo_duracion;
