@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Models\EmailVerificationCode;
 use App\Models\User;
+use App\Mail\ProfileVerificationCodeMail;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use App\Http\Controllers\Controller;
@@ -91,12 +95,15 @@ class AuthApiController extends Controller
             'observaciones' => $observaciones
         ]);
 
+        $verification = $this->sendVerificationCode($user);
+
         $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()->json([
             'success' => true,
             'token' => $token,
-            'user' => $user
+            'user' => $user,
+            'verification' => $verification
         ]);
     }
 
@@ -148,5 +155,37 @@ class AuthApiController extends Controller
         }
 
         return json_encode($payload, JSON_UNESCAPED_UNICODE);
+    }
+
+    private function sendVerificationCode(User $user): array
+    {
+        $code = (string) random_int(100000, 999999);
+        $expiresAt = Carbon::now()->addMinutes(15);
+
+        EmailVerificationCode::create([
+            'user_id' => $user->id,
+            'email' => $user->email,
+            'code' => $code,
+            'expires_at' => $expiresAt,
+        ]);
+
+        try {
+            Mail::to($user->email)->send(
+                new ProfileVerificationCodeMail($user, $code, $expiresAt->format('Y-m-d H:i'))
+            );
+            $sent = true;
+        } catch (\Throwable $e) {
+            \Log::error('No se pudo enviar el correo de verificación.', [
+                'user_id' => $user->id,
+                'email' => $user->email,
+                'error' => $e->getMessage(),
+            ]);
+            $sent = false;
+        }
+
+        return [
+            'sent' => $sent,
+            'expires_at' => $expiresAt->toDateTimeString(),
+        ];
     }
 }

@@ -10,7 +10,6 @@ use DB;
 use App\Models\Cierre;
 use App\Models\Pago;
 use App\Models\MetodoPago;
-use App\Models\Gasto;
 use Auth;
 use App\Models\IngresoPorteria;
 use App\Models\Producto;
