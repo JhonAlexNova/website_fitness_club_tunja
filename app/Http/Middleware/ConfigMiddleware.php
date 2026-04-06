@@ -6,7 +6,6 @@ use Closure;
 use Illuminate\Http\Request;
 use App\Models\Configuracion;
 use App\Models\Permiso;
-use App\Models\Licencia;
 use App\Models\Cierre;
 
 
@@ -28,20 +27,9 @@ class ConfigMiddleware
        if(!$acceso_habilitado){
          return redirect('login?error=disabled');
        }
-        $this->verificar_licencia();
         $this->datosCompartidos();
         return $next($request);
     }
-
-    public function verificar_licencia(){
-        $fecha_actual = date('Y-m-d');
-
-
-        $licencia = Licencia::whereDate('fecha_fin','>=',$fecha_actual)
-        ->get()->last();
-
-    }
-
 
     public function verificar_auth(){
 
@@ -68,15 +56,12 @@ class ConfigMiddleware
         $permisos = Permiso::with('modulo')->get()->toArray();
         // Ordenar la colección de permisos por una columna de la relación "modulo" (por ejemplo, "nombre")
         $permisos = collect($permisos)->sortBy(function ($permiso) {
-            return $permiso['modulo']['orden']; // Cambia "nombre" por la columna que deseas usar para la ordenación
+            // Si no existe modulo u orden, lo enviamos al final
+            return data_get($permiso, 'modulo.orden', PHP_INT_MAX);
         })->values()->toArray();
 
 //dd($permisos);
 
-        $verificacion_licencia = Licencia::whereDate('fecha_fin','>=',$fecha_actual)
-        ->get()->last();
-
-        $licencia = Licencia::get()->last();
         $cierreGlobal = Cierre::get()->last();
 
 
@@ -89,8 +74,6 @@ class ConfigMiddleware
 
         \View::share("configGlobal",$configGlobal);
         \View::share("permisosModulos",$permisos);
-        \View::share('verificacion_licencia',$verificacion_licencia);
-        \View::share('licencia',$licencia);
         \View::share('cierreGlobal',$cierreGlobal);
         
     }
