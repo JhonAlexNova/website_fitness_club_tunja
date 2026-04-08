@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
 class AuthApiController extends Controller
@@ -104,6 +105,50 @@ class AuthApiController extends Controller
             'token' => $token,
             'user' => $user,
             'verification' => $verification
+        ]);
+    }
+
+    public function verifyEmailCode(Request $request)
+    {
+        $data = $request->validate([
+            'email' => 'required|email',
+            'code' => 'required|digits:6'
+        ]);
+
+        $record = EmailVerificationCode::where('email', $data['email'])
+            ->where('code', $data['code'])
+            ->whereNull('used_at')
+            ->orderByDesc('id')
+            ->first();
+
+        if (!$record) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Código incorrecto o ya utilizado.'
+            ], 422);
+        }
+
+        if ($record->expires_at && $record->expires_at->isPast()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'El código ha expirado.'
+            ], 422);
+        }
+
+        DB::transaction(function () use ($record) {
+            $record->used_at = now();
+            $record->save();
+
+            $user = User::where('email', $record->email)->first();
+            if ($user && !$user->email_verified_at) {
+                $user->email_verified_at = now();
+                $user->save();
+            }
+        });
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Cuenta verificada correctamente.'
         ]);
     }
 

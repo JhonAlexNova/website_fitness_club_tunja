@@ -32,6 +32,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // AUTH PÚBLICO
 Route::post('/auth/login',    [AuthApiController::class, 'login']);
 Route::post('/auth/register', [AuthApiController::class, 'register']);
+Route::post('/auth/verify-email', [AuthApiController::class, 'verifyEmailCode']);
 
 // RECUPERACIÓN DE CONTRASEÑA (público)
 Route::post('/forgot-password/send-code',   [PasswordResetController::class, 'sendCode']);

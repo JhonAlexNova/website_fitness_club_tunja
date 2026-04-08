@@ -25,7 +25,6 @@ class ProfileVerificationCodeMail extends Mailable
     public function build()
     {
         return $this->subject('Código de verificación de perfil')
-            ->theme('ocean')
             ->markdown('emails.verification_code', [
                 'user' => $this->user,
                 'code' => $this->code,
