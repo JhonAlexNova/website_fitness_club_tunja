@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Models\EmailVerificationCode;
 use App\Models\User;
+use App\Mail\ProfileVerificationCodeMail;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
 class AuthApiController extends Controller
@@ -91,12 +96,59 @@ class AuthApiController extends Controller
             'observaciones' => $observaciones
         ]);
 
+        $verification = $this->sendVerificationCode($user);
+
         $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()->json([
             'success' => true,
             'token' => $token,
-            'user' => $user
+            'user' => $user,
+            'verification' => $verification
+        ]);
+    }
+
+    public function verifyEmailCode(Request $request)
+    {
+        $data = $request->validate([
+            'email' => 'required|email',
+            'code' => 'required|digits:6'
+        ]);
+
+        $record = EmailVerificationCode::where('email', $data['email'])
+            ->where('code', $data['code'])
+            ->whereNull('used_at')
+            ->orderByDesc('id')
+            ->first();
+
+        if (!$record) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Código incorrecto o ya utilizado.'
+            ], 422);
+        }
+
+        if ($record->expires_at && $record->expires_at->isPast()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'El código ha expirado.'
+            ], 422);
+        }
+
+        DB::transaction(function () use ($record) {
+            $record->used_at = now();
+            $record->save();
+
+            $user = User::where('email', $record->email)->first();
+            if ($user && !$user->email_verified_at) {
+                $user->email_verified_at = now();
+                $user->save();
+            }
+        });
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Cuenta verificada correctamente.'
         ]);
     }
 
@@ -148,5 +200,37 @@ class AuthApiController extends Controller
         }
 
         return json_encode($payload, JSON_UNESCAPED_UNICODE);
+    }
+
+    private function sendVerificationCode(User $user): array
+    {
+        $code = (string) random_int(100000, 999999);
+        $expiresAt = Carbon::now()->addMinutes(15);
+
+        EmailVerificationCode::create([
+            'user_id' => $user->id,
+            'email' => $user->email,
+            'code' => $code,
+            'expires_at' => $expiresAt,
+        ]);
+
+        try {
+            Mail::to($user->email)->send(
+                new ProfileVerificationCodeMail($user, $code, $expiresAt->format('Y-m-d H:i'))
+            );
+            $sent = true;
+        } catch (\Throwable $e) {
+            \Log::error('No se pudo enviar el correo de verificación.', [
+                'user_id' => $user->id,
+                'email' => $user->email,
+                'error' => $e->getMessage(),
+            ]);
+            $sent = false;
+        }
+
+        return [
+            'sent' => $sent,
+            'expires_at' => $expiresAt->toDateTimeString(),
+        ];
     }
 }

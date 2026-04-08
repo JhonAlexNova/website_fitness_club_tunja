@@ -13,13 +13,28 @@ class CreateEjercicioMusculoTable extends Migration
      */
     public function up()
     {
+        if (!Schema::hasTable('ejercicios')) {
+            Schema::create('ejercicios', function (Blueprint $table) {
+                $table->id();
+                $table->string('nombre', 150);
+                $table->text('descripcion')->nullable();
+                $table->string('imagen')->nullable();
+                $table->timestamps();
+                $table->softDeletes();
+            });
+        }
+
+        if (Schema::hasTable('ejercicio_musculo')) {
+            return;
+        }
+
         Schema::create('ejercicio_musculo', function (Blueprint $table) {
 
             $table->engine = 'InnoDB';
 
-            $table->integer('id', true);
+            $table->id();
 
-            $table->integer('ejercicio_id');
+            $table->unsignedBigInteger('ejercicio_id');
 
             $table->unsignedBigInteger('musculo_id');
 

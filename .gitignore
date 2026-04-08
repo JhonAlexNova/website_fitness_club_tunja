@@ -22,3 +22,7 @@ yarn-error.log
 # Ignorar archivos subidos en storage
 /storage/app/public/*
 !/storage/app/public/.gitkeep
+# archivos grandes / backups locales
+*.zip
+# logs locales
+/storage/logs/*.log
