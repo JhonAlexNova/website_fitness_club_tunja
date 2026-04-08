@@ -16,7 +16,6 @@ class ClaseApiController extends Controller
         $fecha_inicio = $request->query('fecha_inicio', Carbon::now()->startOfWeek()->toDateString());
         $fecha_fin    = $request->query('fecha_fin', Carbon::now()->endOfWeek()->toDateString());
 
-        // Clases únicas en el rango de la semana
         $horariosUnicas = HorarioClaseUnica::with(['clase', 'instructor'])
             ->whereNull('deleted_at')
             ->whereBetween('fecha_hora', [$fecha_inicio . ' 00:00:00', $fecha_fin . ' 23:59:59'])
@@ -24,7 +23,7 @@ class ClaseApiController extends Controller
             ->map(function ($horario) {
                 $reservasContadas = Reserva::where('horario_clase_id', $horario->id)
                     ->where('tipo_clase', 'unica')
-                    ->where('estado', 'Reservada') // ✅ solo activas
+                    ->where('estado', 'Reservada')
                     ->count();
 
                 return [
@@ -42,7 +41,6 @@ class ClaseApiController extends Controller
                 ];
             });
 
-        // Clases recurrentes
         $horariosRecurrentes = ClaseRecurrente::with(['clase', 'instructor'])
             ->whereNull('deleted_at')
             ->get()
@@ -83,7 +81,6 @@ class ClaseApiController extends Controller
 
     public function show($id, $fechaBusqueda)
     {
-        // Intentar primero como recurrente
         $recurrente = ClaseRecurrente::with(['clase', 'instructor'])
             ->whereNull('deleted_at')
             ->find($id);
@@ -95,9 +92,7 @@ class ClaseApiController extends Controller
             $ahora           = Carbon::now();
 
             if ($ahora->lt($fechaHoraInicio)) {
-                // Verificar si quedan más de 5 horas
-                $horasRestantes = $ahora->diffInHours($fechaHoraInicio, false);
-                $status = $horasRestantes >= 5 ? 'Abierta' : 'Proxima';
+                $status = 'Abierta'; // ← LÍNEA 93 (antes era: $horasRestantes >= 5 ? 'Abierta' : 'Proxima')
             } elseif ($ahora->between($fechaHoraInicio, $fechaHoraFin)) {
                 $status = 'En proceso';
             } else {
@@ -126,7 +121,6 @@ class ClaseApiController extends Controller
             ]);
         }
 
-        // Si no es recurrente, buscar como única
         $unica = HorarioClaseUnica::with(['clase', 'instructor'])
             ->whereNull('deleted_at')
             ->find($id);
@@ -137,8 +131,7 @@ class ClaseApiController extends Controller
             $ahora           = Carbon::now();
 
             if ($ahora->lt($fechaHoraInicio)) {
-                $horasRestantes = $ahora->diffInHours($fechaHoraInicio, false);
-                $status = $horasRestantes >= 5 ? 'Abierta' : 'Proxima';
+                $status = 'Abierta'; // ← LÍNEA 132 (antes era: $horasRestantes >= 5 ? 'Abierta' : 'Proxima')
             } elseif ($ahora->between($fechaHoraInicio, $fechaHoraFin)) {
                 $status = 'En proceso';
             } else {
