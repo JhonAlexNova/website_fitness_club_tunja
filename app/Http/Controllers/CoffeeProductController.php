@@ -110,7 +110,10 @@ class CoffeeProductController extends Controller
      */
     public function destroy(CoffeeProduct $coffeeProduct)
     {
-        //
+        $coffeeProduct->delete();
+
+        return redirect()->route('coffee-products.index')
+            ->with('success', 'Producto eliminado correctamente');
     }
 
     public function apiIndex()
