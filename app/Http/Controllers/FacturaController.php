@@ -11,6 +11,10 @@ use App\Repositories\DetalleFacturaRepository;
 use App\Repositories\HistorialProductoRepository;
 use App\Repositories\CierreDiaRepository;
 
+use App\Models\Notificacion;
+use App\Models\User;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\PagoAprobadoMail;
 
 use App\Models\Cierre;
 
@@ -66,16 +70,33 @@ class FacturaController extends AppBaseController
 
     public function cambiarEstado(Request $request)
     {
-        $factura = $this->facturaRepository->all()->where("referencia", $request->referencia)->first();
+        $factura = $this->facturaRepository->all()
+            ->where("referencia", $request->referencia)
+            ->first();
 
         if (empty($factura)) {
             Flash::error('Factura not found');
             return response()->json(['response' => false, 'message' => 'Factura not found']);
         }
 
-        $factura->estado = $request->estado;
+        $estadoAnterior = $factura->estado;
+        $factura->estado    = $request->estado;
         $factura->comentario = $request->comentario;
         $factura->save();
+
+        if ($request->estado === 'APPROVED' && $estadoAnterior !== 'APPROVED') {
+            $usuario = User::find($factura->user_id);
+
+            if ($usuario) {
+                Notificacion::create([
+                    'user_id' => $usuario->id,
+                    'titulo'  => '✅ Pago aprobado',
+                    'mensaje' => "Tu pago con referencia {$factura->referencia} ha sido aprobado. ¡Ya puedes disfrutar tu membresía!",
+                ]);
+
+                Mail::to($usuario->email)->send(new PagoAprobadoMail($usuario, $factura));
+            }
+        }
 
         Flash::success('Estado actualizado correctamente.');
         return response()->json(['response' => true]);

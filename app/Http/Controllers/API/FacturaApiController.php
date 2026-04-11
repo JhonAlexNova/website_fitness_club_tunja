@@ -14,222 +14,138 @@ use Storage;
 
 class FacturaApiController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function getReferencia()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-
-    public function getReferencia(){
-        $cantidad_facturas = Factura::get()->count();
-        $cantidad_facturas = $cantidad_facturas + 1;
-
-        $referencia = date("YmdHis")."{$cantidad_facturas}".rand(1000, 9999);
-
-        
-        return $referencia;
+        $cantidad_facturas = Factura::count() + 1;
+        return date("YmdHis") . "{$cantidad_facturas}" . rand(1000, 9999);
     }
 
     public function store(Request $request)
     {
-        
         $referencia = $this->getReferencia();
 
-        $attributes = [
+        $factura = Factura::create([
             "referencia" => $referencia,
-            "user_id" => request()->user()->id,
-            "tipo" => $request->tipo,
-            "estado" => "PENDING"
-        ];
+            "user_id"    => $request->user()->id,
+            "tipo"       => $request->tipo,
+            "tipo_pago"  => $request->tipo_pago,
+            "estado"     => "PENDING"
+        ]);
 
-        $factura = Factura::create($attributes);
         $total = 0;
 
-        /* servicios */
-        /* membresia */
-
-        if($request->membresia_id){
+        if ($request->membresia_id) {
             $membresia = Membresia::find($request->membresia_id);
-            $attributesDetalle = [
-                "factura_id" => $factura->id,
-                "membresia_id" => $membresia->id,
-                "cantidad" => 1,
-                "total"	=> $membresia->costo
-            ];
-
+            DetalleFactura::create([
+                "factura_id"  => $factura->id,
+                "membresia_id"=> $membresia->id,
+                "cantidad"    => 1,
+                "total"       => $membresia->costo
+            ]);
             $total += $membresia->costo;
-
-            $DetalleFactura = DetalleFactura::create($attributesDetalle);
-        }else{
-
         }
 
-        foreach($request->servicios as $servicio){
+        foreach ($request->servicios ?? [] as $servicio) {
             $servicioModel = Servicio::find($servicio["id"]);
-            $valor =  $servicioModel->valor;
-            $attributesDetalle = [
+            DetalleFactura::create([
                 "factura_id" => $factura->id,
-                "servicio_id" => $servicioModel["id"],
-                "cantidad" => 1,
-                "total"	=> $servicioModel->valor,
-                "clase_id" => $servicio["clase_id"]
-            ];
-            DetalleFactura::create($attributesDetalle);
-            $total+=$valor;
+                "servicio_id"=> $servicioModel->id,
+                "cantidad"   => 1,
+                "total"      => $servicioModel->valor,
+                "clase_id"   => $servicio["clase_id"]
+            ]);
+            $total += $servicioModel->valor;
         }
 
-
-        /* compra de productos */
-        foreach($request->productos as $item){
-            $producto  = $item["product"];
-            $productoModel = Producto::with("historial_precio")->find($producto["id"]);
+        foreach ($request->productos ?? [] as $item) {
+            $productoModel = Producto::with("historial_precio")->find($item["product"]["id"]);
             $totalProducto = $productoModel->historial_precio->valor * $item["quantity"];
-           // $response = [$total, $productoModel->historial_precio->valor, $item["quantity"]];
-
-            $attributesDetalle = [
+            DetalleFactura::create([
                 "factura_id" => $factura->id,
-                "precio_id" => $productoModel->historial_precio->id,
-                "producto_id" => $productoModel->id,
-                "cantidad" => $item["quantity"],
-                "total"	=>  $totalProducto
-            ];
-            DetalleFactura::create($attributesDetalle);
-            $total+=$totalProducto;
+                "precio_id"  => $productoModel->historial_precio->id,
+                "producto_id"=> $productoModel->id,
+                "cantidad"   => $item["quantity"],
+                "total"      => $totalProducto
+            ]);
+            $total += $totalProducto;
         }
 
-        
-
-
-        if($request->comprobante){
+        if ($request->comprobante) {
             $ruta = $this->guardarBase64EnStorage($request->comprobante, 'comprobantes-pagos');
             $factura->comprobante = $ruta;
         }
-        $factura->cantidad_puntos = $request->cantidad_puntos;
-        $factura->valor_puntos = env("VALOR_PUNTOS") * $request->cantidad_puntos;
 
-        if($request->valor_puntos>0){
-            $total = $total - $request->valor_puntos;
+        $factura->cantidad_puntos = $request->cantidad_puntos ?? 0;
+        $factura->valor_puntos    = env("VALOR_PUNTOS", 500) * ($request->cantidad_puntos ?? 0);
+
+        if ($factura->valor_puntos > 0) {
+            $total = $total - $factura->valor_puntos;
         }
 
         $factura->total = $total;
         $factura->save();
 
-        if($request->tipo_pago=='transfer'){
+        if ($request->tipo_pago === 'transfer') {
             return response()->json([
-                'response' =>  "ok",
-                "message" => "EL pago esta en proceso, tan pronto este aprobado se le enviara una notificiación.",
+                'response' => "ok",
+                "message"  => "El pago está en proceso. Tan pronto sea aprobado se le enviará una notificación.",
             ]);
-        }elseif($request->tipo_pago=='wompi'){
-            $prod_integryity = env("PROD_INTEGRITY");
-            $cadena_concatenada = "{$referencia}{$total}00COP{$prod_integryity}";
-            $signature = hash ("sha256", $cadena_concatenada);
-            
-            $backpack = [
-              'response' =>  "ok",
-              "publicKey" => env("PUBLIC_KEY_PROD"), 
-              "currency" => 'COP',
-              "amountInCents" => $total.'00',
-              "reference" => $referencia,
-              'signature' => $signature
-            ];	
-    
-            return response()->json($backpack);
         }
 
+        if ($request->tipo_pago === 'wompi') {
+            // Aplicar 5% de comisión Wompi
+            $total = round($total * 1.05);
+            $factura->total = $total;
+            $factura->save();
 
+            $prod_integrity       = env("PROD_INTEGRITY");
+            $cadena_concatenada   = "{$referencia}{$total}00COP{$prod_integrity}";
+            $signature            = hash("sha256", $cadena_concatenada);
+
+            return response()->json([
+                'response'     => "ok",
+                "publicKey"    => env("PUBLIC_KEY_PROD"),
+                "currency"     => 'COP',
+                "amountInCents"=> $total . '00',
+                "reference"    => $referencia,
+                'signature'    => $signature
+            ]);
+        }
     }
 
+    public function misFacturas(Request $request)
+    {
+        $facturas = Factura::with(['detalles.membresia'])
+            ->where('user_id', $request->user()->id)
+            ->orderBy('created_at', 'desc')
+            ->get()
+            ->map(function ($factura) {
+                return [
+                    'id'         => $factura->id,
+                    'referencia' => $factura->referencia,
+                    'tipo'       => $factura->tipo,
+                    'tipo_pago'  => $factura->tipo_pago,
+                    'total'      => $factura->total,
+                    'estado'     => $factura->estado,
+                    'comentario' => $factura->comentario,
+                    'membresia'  => optional($factura->detalles->first()?->membresia)->nombre ?? '—',
+                    'fecha'      => $factura->created_at->format('d/m/Y'),
+                ];
+            });
 
-    function guardarBase64EnStorage($base64String, $folder = 'archivos', $fileName = null) {
-        // Separar metadata del contenido
+        return response()->json($facturas);
+    }
+
+    function guardarBase64EnStorage($base64String, $folder = 'archivos', $fileName = null)
+    {
         @list($meta, $contenido) = explode(',', $base64String);
-        
-        // Detectar tipo MIME
         preg_match('/data:(.*?);base64/', $meta, $matches);
-        $mime = $matches[1] ?? 'application/octet-stream';
-
-        // Obtener extensión
-        $ext = explode('/', $mime)[1] ?? 'bin';
-
-        // Generar nombre de archivo si no se envía
-        if (!$fileName) {
-            $fileName = uniqid() . '.' . $ext;
-        }
-
-        // Decodificar base64
-        $decoded = base64_decode($contenido);
-
-        // Guardar en storage/app/public/{folder}
-        $path = $folder . '/' . $fileName;
+        $mime     = $matches[1] ?? 'application/octet-stream';
+        $ext      = explode('/', $mime)[1] ?? 'bin';
+        $fileName = $fileName ?? uniqid() . '.' . $ext;
+        $decoded  = base64_decode($contenido);
+        $path     = $folder . '/' . $fileName;
         Storage::disk('public')->put($path, $decoded);
-
         return $path;
-    }
-
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

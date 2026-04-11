@@ -11,7 +11,7 @@ class Membresia extends Model
     use SoftDeletes, HasFactory;
 
     public $table = 'membresias';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -29,42 +29,41 @@ class Membresia extends Model
     protected $appends = ['imagen_url'];
 
     protected $casts = [
-        'id'             => 'integer',
-        'nombre'         => 'string',
-        'descripcion'    => 'string',
-        'costo'          => 'integer',
-        'duracion'       => 'integer',
-        'tipo_duracion'  => 'string',
-        'imagen'         => 'string'
+        'id'            => 'integer',
+        'nombre'        => 'string',
+        'descripcion'   => 'string',
+        'costo'         => 'integer',
+        'duracion'      => 'integer',
+        'tipo_duracion' => 'string',
+        'imagen'        => 'string'
     ];
 
     public static $rules = [
-        'nombre'         => 'required|string|max:50',
-        'descripcion'    => 'nullable|string',
-        'costo'          => 'required|integer|min:0',
-        'duracion'       => 'required|integer|min:1',
-        'tipo_duracion'  => 'required|in:dias,meses',
-        'imagen'         => 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120',
-        'created_at'     => 'nullable',
-        'updated_at'     => 'nullable',
-        'deleted_at'     => 'nullable'
+        'nombre'        => 'required|string|max:50',
+        'descripcion'   => 'nullable|string',
+        'costo'         => 'required|integer|min:0',
+        'duracion'      => 'required|integer|min:1',
+        'tipo_duracion' => 'required|in:dias,meses',
+        'imagen'        => 'nullable|image|mimes:jpg,jpeg,png,webp|max:25000',
+        'created_at'    => 'nullable',
+        'updated_at'    => 'nullable',
+        'deleted_at'    => 'nullable'
     ];
 
-    public function getImagenUrlAttribute()
+    public function getImagenUrlAttribute(): ?string
     {
-        if ($this->imagen) {
-            return url('images/membresias/' . $this->imagen);
-        }
-        return null;
+        return $this->imagen
+            ? url('images/membresias/' . $this->imagen)
+            : null;
+    }
+
+    public function getDuracionCompletaAttribute(): string
+    {
+        return $this->duracion . ' ' . $this->tipo_duracion;
     }
 
     public function servicios()
     {
         return $this->belongsToMany(Servicio::class, 'servicios_membresia');
-    }
-
-    public function getDuracionCompletaAttribute()
-    {
-        return $this->duracion . ' ' . $this->tipo_duracion;
     }
 }

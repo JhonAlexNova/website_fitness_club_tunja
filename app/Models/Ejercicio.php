@@ -35,6 +35,7 @@ class Ejercicio extends Model
 
     public $fillable = [
         'nombre_ejercicio',
+        'descripcion',
         'musculo_objetivo',
         'equipo',
         'nivel_dificultad',

@@ -72,6 +72,9 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // FACTURA
     Route::post('/factura', [FacturaApiController::class, 'store']);
+    Route::get('mis-facturas', [FacturaApiController::class, 'misFacturas']);
+    Route::get('notificaciones', [NotificacionApiController::class, 'index']);
+    Route::post('notificaciones/leer', [NotificacionApiController::class, 'marcarLeidas']);
 
     // PRODUCTOS
     Route::post('/productos/categorias', [ProductoApiController::class, 'get_productos_by_categorias']);

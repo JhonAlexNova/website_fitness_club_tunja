@@ -154,6 +154,7 @@ Route::group(["middleware"=>["auth","config"],"prefix"=>"admon"],function(){
             Route::resource('membresias', App\Http\Controllers\MembresiaController::class);
             Route::resource('userMembresias', App\Http\Controllers\UserMembresiaController::class);
             Route::resource('pagoMembresias', App\Http\Controllers\PagoMembresiaController::class);
+            Route::post('pagoMembresias/{id}/aprobar', [App\Http\Controllers\PagoMembresiaController::class, 'aprobar'])->name('pagoMembresias.aprobar');
 
 
             /* EJERCICIOS */
@@ -181,8 +182,9 @@ Route::group(["middleware"=>["auth","config"],"prefix"=>"admon"],function(){
 
             /* mediciones */
             Route::resource('medicions', App\Http\Controllers\MedicionController::class);
-            /*  */
-           
+            
+            /* Facturas */
+           Route::post('/facturas/cambiar-estado', [FacturaController::class, 'cambiarEstado'])->name('facturas.cambiarEstado');
 
       
 });

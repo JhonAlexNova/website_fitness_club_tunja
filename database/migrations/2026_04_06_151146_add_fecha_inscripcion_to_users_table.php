@@ -11,11 +11,13 @@ class AddFechaInscripcionToUsersTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->date('fecha_inscripcion')->nullable()->after('foto_perfil');
-        });
+        if (!Schema::hasColumn('users', 'fecha_inscripcion')) {
+            Schema::table('users', function (Blueprint $table) {
+                $table->date('fecha_inscripcion')->nullable()->after('foto_perfil');
+            });
+        }
     }
 
     /**
