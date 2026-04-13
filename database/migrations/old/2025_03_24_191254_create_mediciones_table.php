@@ -22,6 +22,8 @@ class CreateMedicionesTable extends Migration
             $table->string('grasa')->nullable();
             $table->string('musculo')->nullable();
             $table->string('perimetro_abdominal')->nullable();
+            $table->decimal('ppm_maximo', 5, 2)->nullable();
+            $table->decimal('ppm_minimo', 5, 2)->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();

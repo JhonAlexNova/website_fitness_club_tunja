@@ -42,7 +42,9 @@ class Medicion extends Model
         'talla',
         'grasa',
         'musculo',
-        'perimetro_abdominal'
+        'perimetro_abdominal',
+        'ppm_maximo',
+        'ppm_minimo'
     ];
 
     /**

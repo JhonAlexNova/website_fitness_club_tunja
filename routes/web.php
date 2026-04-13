@@ -155,6 +155,7 @@ Route::group(["middleware"=>["auth","config"],"prefix"=>"admon"],function(){
             Route::resource('userMembresias', App\Http\Controllers\UserMembresiaController::class);
             Route::resource('pagoMembresias', App\Http\Controllers\PagoMembresiaController::class);
             Route::post('pagoMembresias/{id}/aprobar', [App\Http\Controllers\PagoMembresiaController::class, 'aprobar'])->name('pagoMembresias.aprobar');
+            Route::post('pagoMembresias/{id}/rechazar', [App\Http\Controllers\PagoMembresiaController::class, 'rechazar'])->name('pagoMembresias.rechazar');
 
 
             /* EJERCICIOS */

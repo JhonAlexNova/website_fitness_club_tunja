@@ -156,7 +156,11 @@ class PagoMembresiaController extends AppBaseController
             return redirect(route('pagoMembresias.show', $id));
         }
 
-        // Obtener membresía del primer detalle
+        if ($factura->estado === 'REJECTED') {
+            Flash::warning('Este pago fue rechazado, no se puede aprobar.');
+            return redirect(route('pagoMembresias.show', $id));
+        }
+
         $detalle   = $factura->detalles->first();
         $membresia = optional($detalle)->membresia;
 
@@ -165,14 +169,11 @@ class PagoMembresiaController extends AppBaseController
             return redirect(route('pagoMembresias.show', $id));
         }
 
-        // Calcular fechas
-        $fechaInicio = Carbon::today();
-
+        $fechaInicio      = Carbon::today();
         $fechaVencimiento = $membresia->tipo_duracion === 'meses'
             ? $fechaInicio->copy()->addMonths($membresia->duracion)
             : $fechaInicio->copy()->addDays($membresia->duracion);
 
-        // Crear o actualizar UserMembresia
         UserMembresia::updateOrCreate(
             [
                 'user_id'      => $factura->user_id,
@@ -185,11 +186,47 @@ class PagoMembresiaController extends AppBaseController
             ]
         );
 
-        // Marcar factura como aprobada
         $factura->estado = 'APPROVED';
         $factura->save();
 
         Flash::success('Membresía aprobada correctamente. El usuario ya tiene acceso.');
+        return redirect(route('pagoMembresias.show', $id));
+    }
+
+    public function rechazar(Request $request, $id)
+    {
+        $factura = $this->findFactura($id);
+
+        if (empty($factura)) {
+            Flash::error('Pago Membresia not found');
+            return redirect(route('pagoMembresias.index'));
+        }
+
+        if ($factura->estado === 'APPROVED') {
+            Flash::warning('Este pago ya fue aprobado, no se puede rechazar.');
+            return redirect(route('pagoMembresias.show', $id));
+        }
+
+        if ($factura->estado === 'REJECTED') {
+            Flash::warning('Este pago ya fue rechazado anteriormente.');
+            return redirect(route('pagoMembresias.show', $id));
+        }
+
+        // Si existía una UserMembresia activa asociada, desactivarla
+        $detalle   = $factura->detalles->first();
+        $membresia = optional($detalle)->membresia;
+
+        if ($membresia) {
+            UserMembresia::where('user_id', $factura->user_id)
+                ->where('membresia_id', $membresia->id)
+                ->where('estado', 'activa')
+                ->update(['estado' => 'inactiva']);
+        }
+
+        $factura->estado = 'REJECTED';
+        $factura->save();
+
+        Flash::error('Pago rechazado. La membresía del usuario ha sido desactivada.');
         return redirect(route('pagoMembresias.show', $id));
     }
 }
