@@ -14,11 +14,10 @@
         @foreach($userMembresias as $userMembresia)
             <tr>
             <td>
-                {{ $userMembresia->user->primer_nombre}} {{ $userMembresia->user->segundo_nombre}}
-                {{ $userMembresia->user->primer_apellido}} {{ $userMembresia->user->segundo_apellido}}
-
+                {{ $userMembresia->user->primer_nombre ?? '' }} {{ $userMembresia->user->segundo_nombre ?? '' }}
+                {{ $userMembresia->user->primer_apellido ?? '' }} {{ $userMembresia->user->segundo_apellido ?? '' }}
             </td>
-            <td>{{ $userMembresia->membresia->nombre }}</td>
+            <td>{{ $userMembresia->membresia->nombre ?? 'Sin membresía' }}</td>
             <td>{{ $userMembresia->fecha_inicio }}</td>
             <td>{{ $userMembresia->fecha_vencimiento }}</td>
             <td>{{ $userMembresia->estado }}</td>

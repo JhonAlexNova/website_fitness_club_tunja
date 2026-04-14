@@ -58,22 +58,19 @@ class UserMembresiaController extends AppBaseController
      */
     public function create()
     {
-
         $clientes = User::selectRaw("id, CONCAT(primer_nombre, ' ', segundo_nombre, ' ', primer_apellido, ' ', segundo_apellido) as nombre_completo")
-        ->where("tipo","Cliente")
-    ->get()
-    ->pluck('nombre_completo', 'id');
+            ->where("tipo", "Cliente")
+            ->get()
+            ->pluck('nombre_completo', 'id');
 
-    $membresias = $this->membresiaRepository->withRelations();
-
-
-        //dd($clientes);
+        $membresias = $this->membresiaRepository->withRelations()->pluck('nombre', 'id'); // ✅
 
         $backpack = [
             "clientes" => $clientes,
             "membresias" => $membresias
         ];
-        return view('user_membresias.create',$backpack);
+
+        return view('user_membresias.create', $backpack);
     }
 
     /**
@@ -127,28 +124,23 @@ class UserMembresiaController extends AppBaseController
 
         if (empty($userMembresia)) {
             Flash::error('User Membresia not found');
-
             return redirect(route('userMembresias.index'));
         }
 
         $clientes = User::selectRaw("id, CONCAT(primer_nombre, ' ', segundo_nombre, ' ', primer_apellido, ' ', segundo_apellido) as nombre_completo")
-                ->where("tipo","Cliente")
+            ->where("tipo", "Cliente")
             ->get()
             ->pluck('nombre_completo', 'id');
 
-            $membresias = $this->membresiaRepository->withRelations();
+        $membresias = $this->membresiaRepository->withRelations()->pluck('nombre', 'id'); // ✅
 
+        $backpack = [
+            "clientes" => $clientes,
+            "membresias" => $membresias,
+            "userMembresia" => $userMembresia
+        ];
 
-                //dd($clientes);
-
-            $backpack = [
-                "clientes" => $clientes,
-                "membresias" => $membresias,
-                "userMembresia" => $userMembresia
-            ];
-
-
-        return view('user_membresias.edit',$backpack);
+        return view('user_membresias.edit', $backpack);
     }
 
     /**
