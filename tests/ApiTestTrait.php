@@ -1,7 +1,7 @@
 <?php namespace Tests;
 
 trait ApiTestTrait
-{
+{ 
     private $response;
     public function assertApiResponse(Array $actualData)
     {
