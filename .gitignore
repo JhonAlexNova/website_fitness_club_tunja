@@ -1,5 +1,7 @@
 /node_modules
 /public/hot
+/public/index.php
+/public/.htaccess
 /public/storage
 /storage/app/public
 /storage/storage/framework/views
