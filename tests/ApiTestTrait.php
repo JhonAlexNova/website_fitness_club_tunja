@@ -2,7 +2,7 @@
 
 trait ApiTestTrait
 {
-    private $response; 
+    private $response;
     public function assertApiResponse(Array $actualData)
     {
         $this->assertApiSuccess();
