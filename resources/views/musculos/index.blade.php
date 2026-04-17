@@ -25,7 +25,7 @@
 
                 <td>
                     @if($m->imagen)
-                        <img src="{{ asset('musculos/'.$m->imagen) }}" width="80" class="img-thumbnail">
+                        <img src="{{ asset('storage/'.$m->imagen) }}" width="80" class="img-thumbnail">
                     @else
                         <span class="text-muted">Sin imagen</span>
                     @endif
