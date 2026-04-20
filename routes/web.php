@@ -20,8 +20,8 @@ Route::get('/storage/{archivo}',[App\Http\Controllers\FileController::class,'ver
 Route::group(["middleware"=>["config"]],function(){
     
    //Route::get('/', function () {});
-    Auth::routes();
-});
+   });
+   Auth::routes();
 
 
 /* RUTAS WEB SITE */
