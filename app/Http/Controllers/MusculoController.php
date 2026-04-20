@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Musculo;
 use Illuminate\Http\Request;
+use Storage;
 
 class MusculoController extends Controller
 {
@@ -22,15 +23,20 @@ class MusculoController extends Controller
     {
         $request->validate(Musculo::$rules);
 
-        Musculo::create($request->all());
+      
+
+        
+        
+        if ($request->hasFile('file_imagen')) {
+            $path = $request->file('file_imagen')->store('musculos', 'public');
+            $request['imagen'] = $path;
+        }
+
+
+          Musculo::create($request->all());
 
         return redirect()->route('musculos.index')
             ->with('success', 'Músculo creado correctamente');
-        
-        if ($request->hasFile('imagen')) {
-            $path = $request->file('imagen')->store('musculos', 'public');
-            $input['imagen'] = $path;
-        }
     }
 
     public function show(Musculo $musculo)
@@ -45,19 +51,23 @@ class MusculoController extends Controller
 
     public function update(Request $request, Musculo $musculo)
     {
+        $musculo = Musculo::find($musculo->id);
+        
         $request->validate([
             'nombre' => 'required|string|max:100|unique:musculos,nombre,' . $musculo->id
         ]);
 
-        $musculo->update($request->all());
 
+        if ($request->hasFile('file_imagen')) {
+            $path = Storage::disk('public')->put('musculos', $request->file('file_imagen'));
+            $request['imagen'] = $path;
+        }
+
+         $musculo->update($request->all());
+
+          
         return redirect()->route('musculos.index')
             ->with('success', 'Músculo actualizado correctamente');
-
-        if ($request->hasFile('imagen')) {
-            $path = $request->file('imagen')->store('musculos', 'public');
-            $input['imagen'] = $path;
-        }
     }
 
     public function destroy(Musculo $musculo)

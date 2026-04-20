@@ -5,5 +5,5 @@
 
 <div class="form-group">
     <label>Imagen</label>
-    <input type="file" name="imagen" class="form-control">
+    <input type="file" name="file_imagen" class="form-control">
 </div>

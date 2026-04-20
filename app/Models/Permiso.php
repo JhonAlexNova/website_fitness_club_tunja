@@ -16,7 +16,7 @@ class Permiso extends Model
 
 
     protected $dates = ['deleted_at'];
-
+ 
 
 
     public $fillable = [
