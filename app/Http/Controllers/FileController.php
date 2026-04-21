@@ -28,7 +28,7 @@ class FileController extends Controller
         try {
             $path = ('public/' . $archivo);         
             // Storage::get($path);
-            return response()->file(Storage::path($path));
+            return response()->file(Storage::path(trim($path)));
         } catch (\Throwable $th) {
             dd($th);
             throw new NotFoundHttpException();

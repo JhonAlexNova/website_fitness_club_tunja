@@ -24,6 +24,13 @@
 <div class="form-group col-sm-6">
     {!! Form::label('file_video', 'Video:') !!}
     {!! Form::file('file_video', ['class' => 'form-control']) !!}
+
+    @if(isset($ejercicio) && $ejercicio->video_url)
+        <small class="form-text text-muted">
+            Video actual: <a href="{{ Storage::url($ejercicio->video_url) }}" target="_blank">Ver video</a>
+            <br>Sube uno nuevo solo si quieres reemplazarlo.
+        </small>
+    @endif
 </div>
 
 <!-- Descripción Field -->
