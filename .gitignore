@@ -11,6 +11,7 @@
 /storage/framework/sessions/
 /storage/*.key
 /vendor
+/storage/logs/laravel.log
 .env
 .env.backup
 .phpunit.result.cache
