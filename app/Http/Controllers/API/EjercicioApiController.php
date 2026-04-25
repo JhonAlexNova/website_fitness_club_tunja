@@ -10,7 +10,7 @@ class EjercicioApiController extends Controller
     public function index()
     {
         $ejercicios = Ejercicio::with('musculos')
-            ->get(['id', 'nombre_ejercicio', 'musculo_objetivo', 'equipo', 'nivel_dificultad', 'video_url']);
+            ->get(['id', 'nombre_ejercicio', 'descripcion', 'musculo_objetivo', 'equipo', 'nivel_dificultad', 'video_url']);
 
         return response()->json($ejercicios);
     }
