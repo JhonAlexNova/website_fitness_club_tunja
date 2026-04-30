@@ -11,7 +11,7 @@ class Musculo extends Model
 
     protected $table = 'musculos';
 
-    protected $fillable = ['nombre', 'imagen'];
+    protected $fillable = ['nombre', 'categoria', 'imagen'];
 
     public static $rules = [
         'nombre' => 'required|string|max:100|unique:musculos,nombre'

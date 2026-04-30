@@ -4,6 +4,14 @@
 </div>
 
 <div class="form-group">
+    {!! Form::label('categoria', 'Categoría') !!}
+    {!! Form::select('categoria', [
+        'cuerpo_superior' => 'Cuerpo Superior',
+        'cuerpo_inferior' => 'Cuerpo Inferior',
+    ], null, ['class' => 'form-control', 'required']) !!}
+</div>
+
+<div class="form-group">
     <label>Imagen</label>
     <input type="file" name="file_imagen" class="form-control">
 </div>

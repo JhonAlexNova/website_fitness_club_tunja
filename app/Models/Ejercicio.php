@@ -50,6 +50,7 @@ class Ejercicio extends Model
     protected $casts = [
         'id' => 'integer',
         'nombre_ejercicio' => 'string',
+        'descripcion' => 'string',
         'musculo_objetivo' => 'string',
         'equipo' => 'string',
         'nivel_dificultad' => 'string',

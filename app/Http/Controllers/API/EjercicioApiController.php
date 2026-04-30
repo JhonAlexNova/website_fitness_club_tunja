@@ -12,7 +12,8 @@ class EjercicioApiController extends Controller
         $ejercicios = Ejercicio::with('musculos')
             ->get(['id', 'nombre_ejercicio', 'descripcion', 'musculo_objetivo', 'equipo', 'nivel_dificultad', 'video_url']);
 
-        return response()->json($ejercicios);
+        dd($ejercicios->first()->toArray()); // temporal
+            return response()->json($ejercicios);
     }
 
     public function show($id)

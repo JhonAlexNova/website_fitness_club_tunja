@@ -10,7 +10,7 @@ class MusculoController extends Controller
 {
     public function index()
     {
-        $musculos = Musculo::orderBy('nombre')->paginate(15);
+        $musculos = Musculo::orderBy('nombre')->get();
         return view('musculos.index', compact('musculos'));
     }
 
@@ -21,19 +21,18 @@ class MusculoController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate(Musculo::$rules);
+        $request->validate([
+            'nombre'    => 'required|string|max:100|unique:musculos,nombre',
+            'categoria' => 'required|in:cuerpo_superior,cuerpo_inferior',
+        ]);
 
-      
+        $data = $request->only(['nombre', 'categoria']);
 
-        
-        
         if ($request->hasFile('file_imagen')) {
-            $path = $request->file('file_imagen')->store('musculos', 'public');
-            $request['imagen'] = $path;
+            $data['imagen'] = $request->file('file_imagen')->store('musculos', 'public');
         }
 
-
-          Musculo::create($request->all());
+        Musculo::create($data);
 
         return redirect()->route('musculos.index')
             ->with('success', 'Músculo creado correctamente');
@@ -51,27 +50,32 @@ class MusculoController extends Controller
 
     public function update(Request $request, Musculo $musculo)
     {
-        $musculo = Musculo::find($musculo->id);
-        
         $request->validate([
-            'nombre' => 'required|string|max:100|unique:musculos,nombre,' . $musculo->id
+            'nombre'    => 'required|string|max:100|unique:musculos,nombre,' . $musculo->id,
+            'categoria' => 'required|in:cuerpo_superior,cuerpo_inferior',
         ]);
 
+        $data = $request->only(['nombre', 'categoria']);
 
         if ($request->hasFile('file_imagen')) {
-            $path = Storage::disk('public')->put('musculos', $request->file('file_imagen'));
-            $request['imagen'] = $path;
+            if ($musculo->imagen && Storage::disk('public')->exists($musculo->imagen)) {
+                Storage::disk('public')->delete($musculo->imagen);
+            }
+            $data['imagen'] = Storage::disk('public')->put('musculos', $request->file('file_imagen'));
         }
 
-         $musculo->update($request->all());
+        $musculo->update($data);
 
-          
         return redirect()->route('musculos.index')
             ->with('success', 'Músculo actualizado correctamente');
     }
 
     public function destroy(Musculo $musculo)
     {
+        if ($musculo->imagen && Storage::disk('public')->exists($musculo->imagen)) {
+            Storage::disk('public')->delete($musculo->imagen);
+        }
+
         $musculo->delete();
 
         return redirect()->route('musculos.index')
