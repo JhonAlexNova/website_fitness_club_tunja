@@ -16,7 +16,7 @@
                 <td>{{ $membresia->nombre }}</td>
                <td>
                     @if($membresia->imagen)
-                        <img src="{{url('torage',$membresia->imagen)}}" alt="" style="width: 100px; height: auto;">
+                        <img src="{{url('storage',$membresia->imagen)}}" alt="" style="width: 100px; height: auto;">
                     @else
                         <span class="text-muted">Sin imagen</span>
                     @endif
