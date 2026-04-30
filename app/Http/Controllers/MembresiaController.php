@@ -15,6 +15,7 @@ use Response;
 
 use App\Models\Membresia;
 use App\Models\Servicio;
+use Storage;
 
 class MembresiaController extends AppBaseController
 {
@@ -72,9 +73,10 @@ class MembresiaController extends AppBaseController
         // Subir imagen si viene
         if ($request->hasFile('imagen')) {
             $file = $request->file('imagen');
-            $filename = time() . '_' . Str::random(10) . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path('images/membresias'), $filename);
-            $input['imagen'] = $filename;
+           // $filename = time() . '_' . Str::random(10) . '.' . $file->getClientOriginalExtension();
+            //$file->move(public_path('images/membresias'), $filename);
+            $path = Storage::disk('public')->putFile('membresias', $file);
+            $input['imagen'] = $path;
         }
 
         // Crear la membresía
@@ -150,14 +152,13 @@ class MembresiaController extends AppBaseController
         if ($request->hasFile('imagen')) {
 
             // Borrar imagen anterior si existe
-            if ($membresia->imagen && file_exists(public_path('images/membresias/'.$membresia->imagen))) {
-                unlink(public_path('images/membresias/'.$membresia->imagen));
+            if ($membresia->imagen && Storage::disk('public')->exists($membresia->imagen)) {
+                Storage::disk('public')->delete($membresia->imagen);
             }
 
             $file = $request->file('imagen');
-            $filename = time() . '_' . Str::random(10) . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path('images/membresias'), $filename);
-            $input['imagen'] = $filename;
+            $path = Storage::disk('public')->putFile('membresias', $file);
+            $input['imagen'] = $path;
         }
 
         $membresia->update($input);
