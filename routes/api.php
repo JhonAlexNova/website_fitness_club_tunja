@@ -89,6 +89,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/rutinas-usuario',            [RutinaApiController::class, 'rutinasUsuario']);
     Route::get('/ejercicios-rutinas/{id}',    [RutinaApiController::class, 'ejericiosRutina']);
     Route::post('/rutinas-usuario',           [RutinaApiController::class, 'storeRutinaUsuario']);
+    Route::get('rutinas-diarias-elite', [\App\Http\Controllers\App\RutinaDiariaEliteController::class, 'index'])->middleware('auth:sanctum');
 
     // MÚSCULOS
     Route::get('/musculos', [MusculoApiController::class, 'index']);

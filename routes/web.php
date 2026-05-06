@@ -163,7 +163,7 @@ Route::group(["middleware"=>["auth","config"],"prefix"=>"admon"],function(){
             Route::resource('rutinas', App\Http\Controllers\RutinaController::class)->names("admon.rutinas");
             Route::resource('rutinaEjercicios', App\Http\Controllers\RutinaEjercicioController::class)->names("admon.ejerciciosRutina");
             Route::resource('userRutinas', App\Http\Controllers\UserRutinaController::class);
-
+            Route::resource('rutinas-diarias-elite', \App\Http\Controllers\RutinaDiariaEliteController::class)->names('admon.rutinas-diarias-elite');
             /* mensajes */
             Route::resource('smsTemplates', App\Http\Controllers\SmsTemplateController::class);
             Route::prefix('sms')->group(function () {
@@ -222,5 +222,3 @@ Route::group(["prefix"=>"app","middleware"=>"protectionAppRoute"],function(){
 
 /* pagos wompi */
 Route::post('confirmacion-wompi', [App\Http\Controllers\WompiController::class,"confirmacion_wompi"]);
-
-

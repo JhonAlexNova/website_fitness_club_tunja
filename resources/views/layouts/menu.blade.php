@@ -408,7 +408,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('musculos.index') }}" class="nav-link {{ Request::is('ejercicios*') ? 'active' : '' }}">
+                            <a href="{{ route('musculos.index') }}" class="nav-link {{ Request::is('musculos*') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Musculos</p>
                             </a>
@@ -419,8 +419,14 @@
                                 <p>Rutinas</p>
                             </a>
                         </li>
-                    
-                        
+                        {{-- ✅ NUEVO --}}
+                        <li class="nav-item">
+                            <a href="{{ route('admon.rutinas-diarias-elite.index') }}"
+                            class="nav-link {{ Request::is('admon/rutinas-diarias-elite*') ? 'active' : '' }}">
+                                <i class="fas fa-fire-alt nav-icon text-warning"></i>
+                                <p>Rutinas Diarias Elite</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 @endif
