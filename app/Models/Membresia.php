@@ -53,7 +53,7 @@ class Membresia extends Model
     public function getImagenUrlAttribute(): ?string
     {
         return $this->imagen
-            ? url('images/membresias/' . $this->imagen)
+            ? url('/storage/' . $this->imagen)
             : null;
     }
 
