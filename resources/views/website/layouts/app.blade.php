@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
    <head>
       <meta charset="UTF-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <title>@yield('title',"Fitness Club Tunja")</title>
-      <meta name="author" content="iThemesLab">
-      <meta name="description" content="">
+      <meta name="author" content="Fitness Club Tunja">
+      <meta name="description" content="Fitness Club Tunja - Tu gimnasio en Tunja, Boyacá">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <link rel="shortcut icon" href="{{url('template/website/assets/favicon/favicon.ico')}}">
       <link rel="apple-touch-icon" href="{{url('template/website/assets/favicon/apple-icon-57x57.png')}}">
@@ -27,21 +27,182 @@
 
       <style>
          li.nav-item.btnLogin a {
-    background: #E91E63;
-    /* max-height: 66px; */
-    position: revert-layer;
-    height: fit-content;
-    line-height: 0 !important;
-    padding: 18px 10px 19px 11px !important;
-    margin: 22px 0 0 0;
-    border-radius: 3px;
-}
+            background: #E91E63;
+            position: revert-layer;
+            height: fit-content;
+            line-height: 0 !important;
+            padding: 18px 10px 19px 11px !important;
+            margin: 22px 0 0 0;
+            border-radius: 3px;
+         }
+
+         /* ── FOOTER MEJORADO ── */
+         .footer-area-custom {
+            background: #1a1a1a;
+            color: #ccc;
+            padding: 60px 0 30px;
+         }
+
+         .footer-area-custom .footer-brand img {
+            max-width: 110px;
+            margin-bottom: 15px;
+         }
+
+         .footer-area-custom .footer-desc {
+            font-size: 14px;
+            line-height: 1.8;
+            color: #aaa;
+            margin-bottom: 20px;
+         }
+
+         .footer-area-custom .footer-contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 12px;
+            font-size: 14px;
+            color: #ccc;
+         }
+
+         .footer-area-custom .footer-contact-item i {
+            color: #E91E63;
+            font-size: 16px;
+            margin-top: 2px;
+            min-width: 18px;
+         }
+
+         .footer-area-custom .footer-section-title {
+            color: #fff;
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #E91E63;
+            display: inline-block;
+         }
+
+         .footer-area-custom .footer-links ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+         }
+
+         .footer-area-custom .footer-links ul li {
+            margin-bottom: 10px;
+         }
+
+         .footer-area-custom .footer-links ul li a {
+            color: #aaa;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+         }
+
+         .footer-area-custom .footer-links ul li a:hover {
+            color: #E91E63;
+         }
+
+         .footer-area-custom .footer-links ul li a i {
+            margin-right: 8px;
+            color: #E91E63;
+            font-size: 12px;
+         }
+
+         .footer-area-custom .opening-hours ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+         }
+
+         .footer-area-custom .opening-hours ul li {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            color: #aaa;
+            padding: 6px 0;
+            border-bottom: 1px solid #2e2e2e;
+         }
+
+         .footer-area-custom .opening-hours ul li:last-child {
+            border-bottom: none;
+         }
+
+         .footer-area-custom .opening-hours ul li span {
+            color: #E91E63;
+            font-weight: 600;
+         }
+
+         .footer-area-custom .social-links {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+         }
+
+         .footer-area-custom .social-links a {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #2e2e2e;
+            color: #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            transition: background 0.3s, color 0.3s;
+            text-decoration: none;
+         }
+
+         .footer-area-custom .social-links a:hover {
+            background: #E91E63;
+            color: #fff;
+         }
+
+         .footer-area-custom .footer-divider {
+            border-color: #2e2e2e;
+            margin: 30px 0 20px;
+         }
+
+         .footer-area-custom .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+         }
+
+         .footer-area-custom .footer-bottom p {
+            font-size: 13px;
+            color: #777;
+            margin: 0;
+         }
+
+         .footer-area-custom .footer-bottom a {
+            color: #E91E63;
+            text-decoration: none;
+         }
+
+         .footer-gallery-section {
+            background: #111;
+         }
+
+         @media (max-width: 768px) {
+            .footer-area-custom .col-md-3,
+            .footer-area-custom .col-md-4 {
+               margin-bottom: 35px;
+            }
+            .footer-area-custom .footer-bottom {
+               justify-content: center;
+               text-align: center;
+            }
+         }
       </style>
 
       @stack("page_styles")
       <!--[if lt IE 9]>
-      <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js')}}"></script>
-      <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js')}}"></script>
+      <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
       <![endif]-->
    </head>
    <body>
@@ -49,122 +210,152 @@
          <header class="header fixed-top">
             @include("website.layouts.menu")
          </header>
+
          @yield("content")
+
          <footer>
-            <section class="footer-area bg3 parallax overlay pt90">
+
+            <!-- ══ GALERÍA INSTAGRAM ══ -->
+            <div class="footer-gallery-section">
+               <div class="container-fluid px-0">
+                  <div class="footer-gallery owl-carousel">
+                     <div class="item active">
+                        <a href="{{url('template/website/assets/images/instagram/big1.jpg')}}">
+                           <img src="{{url('assets/images/instagram/1.jpg')}}" alt="Instagram Fitness Club">
+                           <i class="fa fa-search"></i>
+                        </a>
+                     </div>
+                     <div class="item">
+                        <a href="{{url('template/website/assets/images/instagram/big2.jpg')}}">
+                           <img src="{{url('assets/images/instagram/2.jpg')}}" alt="Instagram Fitness Club">
+                           <i class="fa fa-search"></i>
+                        </a>
+                     </div>
+                     <div class="item">
+                        <a href="{{url('template/website/assets/images/instagram/big3.jpg')}}">
+                           <img src="{{url('assets/images/instagram/3.jpg')}}" alt="Instagram Fitness Club">
+                           <i class="fa fa-search"></i>
+                        </a>
+                     </div>
+                     <div class="item">
+                        <a href="{{url('template/website/assets/images/instagram/big4.jpg')}}">
+                           <img src="{{url('assets/images/instagram/4.jpg')}}" alt="Instagram Fitness Club">
+                           <i class="fa fa-search"></i>
+                        </a>
+                     </div>
+                     <div class="item">
+                        <a href="{{url('template/website/assets/images/instagram/big5.jpg')}}">
+                           <img src="{{url('assets/images/instagram/5.jpg')}}" alt="Instagram Fitness Club">
+                           <i class="fa fa-search"></i>
+                        </a>
+                     </div>
+                     <div class="item">
+                        <a href="{{url('template/website/assets/images/instagram/big6.jpg')}}">
+                           <img src="{{url('assets/images/instagram/6.jpg')}}" alt="Instagram Fitness Club">
+                           <i class="fa fa-search"></i>
+                        </a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+            <!-- ══ FOOTER PRINCIPAL ══ -->
+            <div class="footer-area-custom">
                <div class="container">
                   <div class="row">
-                     <div class="col-md-3 col-sm-12 ">
-                        <div class="footer-logo footer-content">
-                           <img src="assets/images/logo/logo2.png" alt="footer logo">
+
+                     <!-- Columna 1: Logo + Descripción + Contacto -->
+                     <div class="col-md-4 col-sm-12 mb-4">
+                        <div class="footer-brand">
+                           <img src="{{url('img/logo10.png')}}" alt="Fitness Club Tunja">
                         </div>
-                        <p>Lorem ipsum dolor sit amet, ei ubique fastidii vim. Elitr feugait complectitur eu pro, sea audire ponderum eleifend cu. Vim at fuisset.</p>
-                        <div class="add-info">
-                           <p><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i></a>23 New Design Street, Melbourne</p>
-                           <p><a href="#"><i class="fa fa-envelope-o" aria-hidden="true"></i></a><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f1939497988596889cb1969c90989ddf929e9c">[email&#160;protected]</a></p>
-                           <p class="mb-0"><a href="#"><i class="fa fa-mobile" aria-hidden="true"></i></a>+880-123-456-7890</p>
+                        <p class="footer-desc">
+                           Tu gimnasio en el corazón de Tunja. Entrenamiento profesional, planes personalizados y el ambiente ideal para alcanzar tus metas.
+                        </p>
+                        <div class="footer-contact-item">
+                           <i class="fa fa-map-marker"></i>
+                           <span>Tunja, Boyacá — Colombia</span>
                         </div>
-                     </div>
-                     <div class="col-md-3 col-sm-12">
-                        <div class="news-info ftr-algn">
-                           <div class="footer-title footer-content">
-                              <h3>news letter</h3>
-                           </div>
-                           <p> sign up for our mailing list to get latest updates and offers</p>
-                           <div class="subscribe">
-                              <form action="#">
-                                 <input class="name" type="text" placeholder="Enter your email">
-                              </form>
-                              <a href="#"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
-                           </div>
-                           <div class="footer-social">
-                              <ul>
-                                 <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                 <li><a href=""><i class="fa fa-twitter"></i></a></li>
-                                 <li><a href=""><i class="fa fa-youtube"></i></a></li>
-                                 <li><a href=""><i class="fa fa-pinterest"></i></a></li>
-                              </ul>
-                           </div>
+                        <div class="footer-contact-item">
+                           <i class="fa fa-phone"></i>
+                           <span>+57 321 497 8403</span>
+                        </div>
+                        <div class="footer-contact-item">
+                           <i class="fa fa-envelope-o"></i>
+                           <span>fitnessclubtunja@gmail.com</span>
+                        </div>
+                        <div class="social-links">
+                           <a href="#" title="Facebook"><i class="fa fa-facebook"></i></a>
+                           <a href="#" title="Instagram"><i class="fa fa-instagram"></i></a>
+                           <a href="#" title="YouTube"><i class="fa fa-youtube"></i></a>
+                           <a href="#" title="WhatsApp"><i class="fa fa-whatsapp"></i></a>
                         </div>
                      </div>
-                     <div class="col-md-3 col-sm-12">
-                        <div class="news-info ftr-algn">
-                           <div class="footer-title footer-content">
-                              <h3>latest post</h3>
-                           </div>
-                           <div class="news-detail nws-bar">
-                              <img src="assets/images/footer/1.jpg" alt="">
-                              <p>Set yourself the challenge of doing the bare minimum.</p>
-                           </div>
-                           <div class="news-detail">
-                              <img src="assets/images/footer/2.jpg" alt="">
-                              <p>Body fat percentage: what does it really mean?</p>
-                           </div>
-                           <div class="news-detail">
-                              <img src="assets/images/footer/3.jpg" alt="">
-                              <p>This treatment sounded just what I was looking for.</p>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="col-md-3 col-sm-12">
-                        <div class="news-info open-hrs ftr-algn">
-                           <div class="footer-title footer-content">
-                              <h3>opening hours</h3>
-                           </div>
+
+                     <!-- Columna 2: Links rápidos -->
+                     <div class="col-md-2 col-sm-6 mb-4">
+                        <h5 class="footer-section-title">Navegación</h5>
+                        <div class="footer-links">
                            <ul>
-                              <li>Monday <span>07:00 - 17:00</span></li>
-                              <li>tuesday <span>07:00 - 17:00</span></li>
-                              <li>wednesday <span>07:00 - 17:00</span></li>
-                              <li>thursday <span>07:00 - 17:00</span></li>
-                              <li>friday <span>07:00 - 17:00</span></li>
-                              <li>saturday <span>07:00 - 17:00</span></li>
+                              <li><a href="{{ url('/') }}"><i class="fa fa-angle-right"></i> Inicio</a></li>
+                              <li><a href="{{ url('tienda') }}"><i class="fa fa-angle-right"></i> Tienda</a></li>
+                              <li><a href="#membresias"><i class="fa fa-angle-right"></i> Membresías</a></li>
+                              <li><a href="#contacto"><i class="fa fa-angle-right"></i> Contacto</a></li>
+                              <li>
+                                 @guest
+                                    <a href="{{ route('login') }}"><i class="fa fa-angle-right"></i> Acceder</a>
+                                 @else
+                                    <a href="{{ url('app') }}"><i class="fa fa-angle-right"></i> Mi Cuenta</a>
+                                 @endguest
+                              </li>
                            </ul>
                         </div>
                      </div>
-                  </div>
-                  <div class="row">
-                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="instra pad60">
-                           <h4><span>instragram</span></h4>
+
+                     <!-- Columna 3: Planes -->
+                     <div class="col-md-2 col-sm-6 mb-4">
+                        <h5 class="footer-section-title">Membresías</h5>
+                        <div class="footer-links">
+                           <ul>
+                              <li><a href="#membresias"><i class="fa fa-angle-right"></i> Trimestral</a></li>
+                              <li><a href="#membresias"><i class="fa fa-angle-right"></i> Semestral</a></li>
+                              <li><a href="#membresias"><i class="fa fa-angle-right"></i> Anual</a></li>
+                           </ul>
                         </div>
                      </div>
+
+                     <!-- Columna 4: Horarios -->
+                     <div class="col-md-4 col-sm-12 mb-4">
+                        <h5 class="footer-section-title">Horarios</h5>
+                        <div class="opening-hours">
+                           <ul>
+                              <li>Lunes <span>06:00 - 21:00</span></li>
+                              <li>Martes <span>06:00 - 21:00</span></li>
+                              <li>Miércoles <span>06:00 - 21:00</span></li>
+                              <li>Jueves <span>06:00 - 21:00</span></li>
+                              <li>Viernes <span>06:00 - 21:00</span></li>
+                              <li>Sábado <span>07:00 - 17:00</span></li>
+                              <li>Domingo <span>Cerrado</span></li>
+                           </ul>
+                        </div>
+                     </div>
+
+                  </div><!-- /.row -->
+
+                  <hr class="footer-divider">
+
+                  <div class="footer-bottom">
+                     <p>© {{ date('Y') }} <strong style="color:#fff">Fitness Club Tunja</strong>. Todos los derechos reservados.</p>
+                     <p>Tunja, Boyacá — Colombia</p>
                   </div>
-               </div>
-            </section>
-            <div class="footer-gallery owl-carousel">
-               <div class="item active"><a href="{{url('template/website/assets/images/instagram/big1.jpg')}}">
-                  <img src="assets/images/instagram/1.jpg" alt="Instragram img"><i class="fa fa-search"></i></a>
-               </div>
-               <div class="item "><a href="{{url('template/website/assets/images/instagram/big2.jpg')}}">
-                  <img src="assets/images/instagram/2.jpg" alt="Instragram img"><i class="fa fa-search"></i></a>
-               </div>
-               <div class="item"> <a href="{{url('template/website/assets/images/instagram/big3.jpg')}}">
-                  <img src="assets/images/instagram/3.jpg" alt="Instragram img"><i class="fa fa-search"></i></a>
-               </div>
-               <div class="item"> <a href="{{url('template/website/assets/images/instagram/big4.jpg')}}">
-                  <img src="assets/images/instagram/4.jpg" alt="Instragram img"><i class="fa fa-search"></i></a>
-               </div>
-               <div class="item"> <a href="{{url('template/website/assets/images/instagram/big5.jpg')}}">
-                  <img src="assets/images/instagram/5.jpg" alt="Instragram img"><i class="fa fa-search"></i></a>
-               </div>
-               <div class="item"> <a href="{{url('template/website/assets/images/instagram/big6.jpg')}}">
-                  <img src="assets/images/instagram/6.jpg" alt="Instragram img"><i class="fa fa-search"></i></a>
-               </div>
-               <div class="item"> <a href="{{url('template/website/assets/images/instagram/big4.jpg')}}">
-                  <img src="assets/images/instagram/4.jpg" alt="Instragram img"><i class="fa fa-search"></i></a>
-               </div>
-               <div class="item"> <a href="{{url('template/website/assets/images/instagram/big5.jpg')}}">
-                  <img src="assets/images/instagram/5.jpg" alt="Instragram img"><i class="fa fa-search"></i></a>
-               </div>
-               <div class="item"> <a href="{{url('template/website/assets/images/instagram/big6.jpg')}}">
-                  <img src="assets/images/instagram/6.jpg" alt="Instragram img"><i class="fa fa-search"></i></a>
-               </div>
-            </div>
-            <div class="copyright pad30">
-               <h4>Copyright © <span>iThemeslab.</span> All Rights Reserved</h4>
-            </div>
+
+               </div><!-- /.container -->
+            </div><!-- /.footer-area-custom -->
+
          </footer>
       </div>
+
+      <!-- Search popup -->
       <div id="search-popup" class="search-popup">
          <div class="close-search theme-btn"><span class="fa fa-close"></span></div>
          <div class="popup-inner">
@@ -172,17 +363,16 @@
                <form method="post" action="index.html">
                   <div class="form-group">
                      <fieldset>
-                        <input type="search" class="form-control" name="search-input" value="" placeholder="Search Here" required="">
-                        <input type="submit" value="Search" class="theme-btn">
+                        <input type="search" class="form-control" name="search-input" value="" placeholder="Buscar..." required="">
+                        <input type="submit" value="Buscar" class="theme-btn">
                      </fieldset>
                   </div>
                </form>
-               <br>
-               <h3>Recent Search Keywords</h3>
             </div>
          </div>
       </div>
-      <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js')}}"></script><script src="{{url('template/website/assets/js/vendor/jquery-3.2.1.min.js')}}"></script>
+
+      <script src="{{url('template/website/assets/js/vendor/jquery-3.2.1.min.js')}}"></script>
       <script src="{{url('template/website/assets/js/vendor/jquery-migrate.js')}}"></script>
       <script src="{{url('template/website/assets/js/vendor/popper-1.12.3.min.js')}}"></script>
       <script src="{{url('template/website/assets/js/vendor/bootstrap.min.js')}}"></script>
@@ -205,33 +395,30 @@
          function setREVStartSize(e) {
              try {
                  var i = jQuery(window).width(),
-                     t = 9999,
-                     r = 0,
-                     n = 0,
-                     l = 0,
-                     f = 0,
-                     s = 0,
-                     h = 0;
+                     t = 9999, r = 0, n = 0, l = 0, f = 0, s = 0, h = 0;
                  if (e.responsiveLevels && (jQuery.each(e.responsiveLevels, function(e, f) {
                          f > i && (t = r = f, l = e), i > f && f > r && (r = f, n = e)
-                     }), t > r && (l = n)), f = e.gridheight[l] || e.gridheight[0] || e.gridheight, s = e.gridwidth[l] || e.gridwidth[0] || e.gridwidth, h = i / s, h = h > 1 ? 1 : h, f = Math.round(h * f), "fullscreen" == e.sliderLayout) {
+                     }), t > r && (l = n)),
+                     f = e.gridheight[l] || e.gridheight[0] || e.gridheight,
+                     s = e.gridwidth[l] || e.gridwidth[0] || e.gridwidth,
+                     h = i / s, h = h > 1 ? 1 : h, f = Math.round(h * f),
+                     "fullscreen" == e.sliderLayout) {
                      var u = (e.c.width(), jQuery(window).height());
                      if (void 0 != e.fullScreenOffsetContainer) {
                          var c = e.fullScreenOffsetContainer.split(",");
                          if (c) jQuery.each(c, function(e, i) {
                              u = jQuery(i).length > 0 ? u - jQuery(i).outerHeight(!0) : u
-                         }), e.fullScreenOffset.split("%").length > 1 && void 0 != e.fullScreenOffset && e.fullScreenOffset.length > 0 ? u -= jQuery(window).height() * parseInt(e.fullScreenOffset, 0) / 100 : void 0 != e.fullScreenOffset && e.fullScreenOffset.length > 0 && (u -= parseInt(e.fullScreenOffset, 0))
+                         }), e.fullScreenOffset.split("%").length > 1 && void 0 != e.fullScreenOffset && e.fullScreenOffset.length > 0
+                             ? u -= jQuery(window).height() * parseInt(e.fullScreenOffset, 0) / 100
+                             : void 0 != e.fullScreenOffset && e.fullScreenOffset.length > 0 && (u -= parseInt(e.fullScreenOffset, 0))
                      }
                      f = u
                  } else void 0 != e.minHeight && f < e.minHeight && (f = e.minHeight);
-                 e.c.closest(".rev_slider_wrapper").css({
-                     height: f
-                 })
+                 e.c.closest(".rev_slider_wrapper").css({ height: f })
              } catch (d) {
                  console.log("Failure at Presize of Slider:" + d)
              }
          };
-         
       </script>
       <script src="{{url('template/website/assets/js/vendor/jquery.magnific-popup.min.js')}}"></script>
       <script src="{{url('template/website/assets/js/vendor/jquery.scrollUp.js')}}"></script>

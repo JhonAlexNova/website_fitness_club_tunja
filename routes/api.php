@@ -18,6 +18,8 @@ use App\Http\Controllers\API\MusculoApiController;
 use App\Http\Controllers\API\EjercicioApiController;
 use App\Http\Controllers\CoffeeProductController;
 use App\Http\Controllers\Api\PasswordResetController;
+use App\Http\Controllers\API\SesionEntrenamientoApiController;
+use App\Http\Controllers\API\CodigoPromocionalApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +35,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/auth/login',    [AuthApiController::class, 'login']);
 Route::post('/auth/register', [AuthApiController::class, 'register']);
 Route::post('/auth/verify-email', [AuthApiController::class, 'verifyEmailCode']);
+Route::get('/codigo-promocional/{codigo}',  [CodigoPromocionalApiController::class, 'validar']);
 
 // RECUPERACIÓN DE CONTRASEÑA (público)
 Route::post('/forgot-password/send-code',   [PasswordResetController::class, 'sendCode']);
@@ -85,6 +88,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('membresias', MembresiaApiController::class)->names('api.membresias');
 
     // RUTINAS
+    Route::delete('rutinas/{id}', [\App\Http\Controllers\App\RutinaController::class, 'destroy'])->middleware('auth:sanctum');
     Route::get('/rutinas-generales',          [RutinaApiController::class, 'rutinasGenerales']);
     Route::get('/rutinas-usuario',            [RutinaApiController::class, 'rutinasUsuario']);
     Route::get('/ejercicios-rutinas/{id}',    [RutinaApiController::class, 'ejericiosRutina']);
@@ -97,7 +101,20 @@ Route::middleware('auth:sanctum')->group(function () {
     // EJERCICIOS
     Route::get('/ejercicios', [EjercicioApiController::class, 'index']);
     Route::get('/ejercicios/{id}', [EjercicioApiController::class, 'show']);
+
+    // SESIONES DE ENTRENAMIENTO
+    Route::post('/rutinas/{rutinaId}/sesion/iniciar',        [SesionEntrenamientoApiController::class, 'iniciar']);
+    Route::post('/sesiones/{sesionId}/finalizar',            [SesionEntrenamientoApiController::class, 'finalizar']);
+    Route::post('/sesiones/{sesionId}/series',               [SesionEntrenamientoApiController::class, 'marcarSerie']);
+    Route::get('/rutinas/{rutinaId}/historial',              [SesionEntrenamientoApiController::class, 'historial']);
+    
+    // GESTIÓN DE EJERCICIOS EN RUTINA (editar, agregar, eliminar)
+    Route::put('/rutinas/{rutinaId}/ejercicios/{reId}',      [SesionEntrenamientoApiController::class, 'actualizarEjercicio']);
+    Route::delete('/rutinas/{rutinaId}/ejercicios/{reId}',   [SesionEntrenamientoApiController::class, 'eliminarEjercicio']);
+    Route::post('/rutinas/{rutinaId}/ejercicios',            [SesionEntrenamientoApiController::class, 'agregarEjercicio']);
+
 });
+
 
 // CLASES PÚBLICAS
 Route::get('/clases',              [ClaseApiController::class, 'index']);

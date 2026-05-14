@@ -13,6 +13,7 @@ use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\CodigoPromocional;
 
 class AuthApiController extends Controller
 {
@@ -48,62 +49,77 @@ class AuthApiController extends Controller
     public function register(Request $request)
     {
         $data = $request->validate([
-            'username' => 'nullable|string|max:255',
-            'primer_nombre' => 'required|string|max:255',
-            'segundo_nombre' => 'nullable|string|max:255',
-            'primer_apellido' => 'required|string|max:255',
-            'segundo_apellido' => 'nullable|string|max:255',
-            'celular' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email',
-            'documento' => 'required|string|max:255',
-            'password' => 'required|string|min:6|confirmed',
-            'avatar' => 'nullable|string|max:255',
-            'fecha_inscripcion' => 'nullable|date',
-            'talla' => 'nullable|numeric',
-            'peso' => 'nullable|numeric',
+            'username'            => 'nullable|string|max:255',
+            'primer_nombre'       => 'required|string|max:255',
+            'segundo_nombre'      => 'nullable|string|max:255',
+            'primer_apellido'     => 'required|string|max:255',
+            'segundo_apellido'    => 'nullable|string|max:255',
+            'celular'             => 'required|string|max:255',
+            'email'               => 'required|email|unique:users,email',
+            'documento'           => 'required|string|max:255',
+            'password'            => 'required|string|min:6|confirmed',
+            'avatar'              => 'nullable|string|max:255',
+            'fecha_inscripcion'   => 'nullable|date',
+            'talla'               => 'nullable|numeric',
+            'peso'                => 'nullable|numeric',
             'perimetro_abdominal' => 'nullable|numeric',
-            'porcentaje_grasa' => 'nullable|numeric',
-            'porcentaje_musculo' => 'nullable|numeric',
-            'tipo' => 'nullable|in:Instructor,Cliente,Administrador,SuperAdmin',
-            'estado' => 'nullable|in:activo,inactivo',
-            'objetivos' => 'nullable|array',
-            'ppm_max' => 'nullable|numeric',
-            'ppm_min' => 'nullable|numeric'
+            'porcentaje_grasa'    => 'nullable|numeric',
+            'porcentaje_musculo'  => 'nullable|numeric',
+            'tipo'                => 'nullable|in:Instructor,Cliente,Administrador,SuperAdmin',
+            'estado'              => 'nullable|in:activo,inactivo',
+            'objetivos'           => 'nullable|array',
+            'ppm_max'             => 'nullable|numeric',
+            'ppm_min'             => 'nullable|numeric',
+            'codigo_invitacion'   => 'nullable|string|max:100',   // ← nuevo
         ]);
 
         $observaciones = $this->buildObservaciones($data);
         $username = $this->resolveUsername($data);
 
         $user = User::create([
-            'username' => $username,
-            'primer_nombre' => $data['primer_nombre'],
-            'segundo_nombre' => $data['segundo_nombre'] ?? null,
-            'primer_apellido' => $data['primer_apellido'],
-            'segundo_apellido' => $data['segundo_apellido'] ?? null,
-            'celular' => $data['celular'],
-            'email' => $data['email'],
-            'documento' => $data['documento'],
-            'password' => Hash::make($data['password']),
-            'foto_perfil' => $data['avatar'] ?? null,
-            'fecha_inscripcion' => $data['fecha_inscripcion'] ?? null,
-            'talla' => $data['talla'] ?? null,
-            'peso' => isset($data['peso']) ? (string) $data['peso'] : null,
+            'username'            => $username,
+            'primer_nombre'       => $data['primer_nombre'],
+            'segundo_nombre'      => $data['segundo_nombre'] ?? null,
+            'primer_apellido'     => $data['primer_apellido'],
+            'segundo_apellido'    => $data['segundo_apellido'] ?? null,
+            'celular'             => $data['celular'],
+            'email'               => $data['email'],
+            'documento'           => $data['documento'],
+            'password'            => Hash::make($data['password']),
+            'foto_perfil'         => $data['avatar'] ?? null,
+            'fecha_inscripcion'   => $data['fecha_inscripcion'] ?? null,
+            'talla'               => $data['talla'] ?? null,
+            'peso'                => isset($data['peso']) ? (string) $data['peso'] : null,
             'perimetro_abdominal' => $data['perimetro_abdominal'] ?? null,
-            'porcentaje_grasa' => $data['porcentaje_grasa'] ?? null,
-            'porcentaje_musculo' => $data['porcentaje_musculo'] ?? null,
-            'estado' => $data['estado'] ?? 'activo',
-            'tipo' => $data['tipo'] ?? 'Cliente',
-            'observaciones' => $observaciones
+            'porcentaje_grasa'    => $data['porcentaje_grasa'] ?? null,
+            'porcentaje_musculo'  => $data['porcentaje_musculo'] ?? null,
+            'estado'              => $data['estado'] ?? 'activo',
+            'tipo'                => $data['tipo'] ?? 'Cliente',
+            'observaciones'       => $observaciones,
+            'codigo_invitacion'   => $data['codigo_invitacion'] ?? null,  // ← nuevo
         ]);
 
         $verification = $this->sendVerificationCode($user);
-
         $token = $user->createToken('auth_token')->plainTextToken;
 
+        if (!empty($data['codigo_invitacion'])) {
+            $codigo = CodigoPromocional::whereRaw('UPPER(codigo) = ?', [strtoupper($data['codigo_invitacion'])])
+                ->first();
+
+            if (!$codigo || !$codigo->esValido()) {
+                // Limpia el código si no es válido (no falla el registro porque es opcional)
+                $user->codigo_invitacion = null;
+                $user->save();
+            } else {
+                // Incrementa el contador de usos
+                $codigo->increment('usos');
+            }
+        }
+
         return response()->json([
-            'success' => true,
-            'token' => $token,
-            'user' => $user,
+            'success'      => true,
+            'token'        => $token,
+            'user'         => $user,
             'verification' => $verification
         ]);
     }
