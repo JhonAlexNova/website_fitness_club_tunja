@@ -107,7 +107,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/sesiones/{sesionId}/finalizar',            [SesionEntrenamientoApiController::class, 'finalizar']);
     Route::post('/sesiones/{sesionId}/series',               [SesionEntrenamientoApiController::class, 'marcarSerie']);
     Route::get('/rutinas/{rutinaId}/historial',              [SesionEntrenamientoApiController::class, 'historial']);
-    
+
     // GESTIÓN DE EJERCICIOS EN RUTINA (editar, agregar, eliminar)
     Route::put('/rutinas/{rutinaId}/ejercicios/{reId}',      [SesionEntrenamientoApiController::class, 'actualizarEjercicio']);
     Route::delete('/rutinas/{rutinaId}/ejercicios/{reId}',   [SesionEntrenamientoApiController::class, 'eliminarEjercicio']);

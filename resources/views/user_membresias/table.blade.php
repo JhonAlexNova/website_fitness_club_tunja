@@ -7,20 +7,33 @@
             <th>Fecha Inicio</th>
             <th>Fecha Vencimiento</th>
             <th>Estado</th>
-            <th >Action</th>
+            <th>Action</th>
         </tr>
         </thead>
         <tbody>
         @foreach($userMembresias as $userMembresia)
             <tr>
-            <td>
-                {{ $userMembresia->user->primer_nombre ?? '' }} {{ $userMembresia->user->segundo_nombre ?? '' }}
-                {{ $userMembresia->user->primer_apellido ?? '' }} {{ $userMembresia->user->segundo_apellido ?? '' }}
-            </td>
-            <td>{{ $userMembresia->membresia->nombre ?? 'Sin membresía' }}</td>
-            <td>{{ $userMembresia->fecha_inicio }}</td>
-            <td>{{ $userMembresia->fecha_vencimiento }}</td>
-            <td>{{ $userMembresia->estado }}</td>
+                <td>
+                    {{ $userMembresia->user->primer_nombre ?? '' }} {{ $userMembresia->user->segundo_nombre ?? '' }}
+                    {{ $userMembresia->user->primer_apellido ?? '' }} {{ $userMembresia->user->segundo_apellido ?? '' }}
+                </td>
+                <td>{{ $userMembresia->membresia->nombre ?? 'Sin membresía' }}</td>
+                <td>{{ $userMembresia->fecha_inicio }}</td>
+                <td>{{ $userMembresia->fecha_vencimiento }}</td>
+                <td>
+                    @php
+                        $colores = [
+                            'activa'     => 'success',
+                            'expirada'   => 'danger',
+                            'pendiente'  => 'warning',
+                            'suspendida' => 'secondary',
+                        ];
+                        $badge = $colores[$userMembresia->estado] ?? 'dark';
+                    @endphp
+                    <span class="badge badge-{{ $badge }}">
+                        {{ ucfirst($userMembresia->estado ?? 'Sin estado') }}
+                    </span>
+                </td>
                 <td width="120">
                     {!! Form::open(['route' => ['userMembresias.destroy', $userMembresia->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>
