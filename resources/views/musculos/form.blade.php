@@ -15,3 +15,19 @@
     <label>Imagen</label>
     <input type="file" name="file_imagen" class="form-control">
 </div>
+
+
+
+
+
+<div class="form-group">
+    <label>Modelo 3D (opcional)</label>
+    <input type="file" name="file_modelo_3d" class="form-control">
+
+    @if(isset($musculo) && $musculo->modelo_3d)
+        <small class="form-text text-muted">
+            Archivo actual: 
+            <a href="{{ asset('storage/'.$musculo->modelo_3d) }}" target="_blank">Ver</a>
+        </small>
+    @endif
+</div>

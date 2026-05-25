@@ -23,6 +23,7 @@
                     <th>Equipo</th>
                     <th>Nivel Dificultad</th>
                     <th>Video</th>
+                    <th>Modelo 3D</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -62,7 +63,18 @@
                             <span class="text-muted">Sin video</span>
                         @endif
                     </td>
+                    <td>
+                        @if($ejercicio->modelo_3d)
+                            <a class="btn btn-sm btn-outline-primary" 
+                               href="{{ url('storage', $ejercicio->modelo_3d) }}" target="_blank">
+                                <i class="fas fa-cube"></i> Ver
+                            </a>
+                        @else
+                            <span class="text-muted">Sin modelo</span>
+                        @endif
+                    </td>
                     <td width="120">
+
                         {!! Form::open(['route' => ['ejercicios.destroy', $ejercicio->id], 'method' => 'delete']) !!}
                         <div class="btn-group">
                             <a href="{{ route('ejercicios.edit', [$ejercicio->id]) }}"

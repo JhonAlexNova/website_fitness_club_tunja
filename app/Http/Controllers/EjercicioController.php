@@ -43,6 +43,11 @@ class EjercicioController extends AppBaseController
                 ->putFile('multimedia', $request->file('file_video'));
         }
 
+        if ($request->file('file_modelo_3d')) {
+            $input['modelo_3d'] = $request->file('file_modelo_3d')->store('multimedia-modelos3d', 'public');
+        }
+
+
         $ejercicio = $this->ejercicioRepository->create($input);
 
         if ($request->filled('musculo_principal')) {
@@ -118,8 +123,9 @@ class EjercicioController extends AppBaseController
                 $input["video_url"] = $request->file('file_video')->store('multimedia', 'public');
             }
 
-            // Evitar que el repositorio intente serializar el objeto UploadedFile
+            // Evitar que el repositorio intente serializar objetos UploadedFile
             unset($input['file_video']);
+            unset($input['file_modelo_3d']);
 
             // Actualizar el ejercicio
             $ejercicio = $this->ejercicioRepository->update($input, $id);

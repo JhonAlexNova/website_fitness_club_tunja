@@ -39,7 +39,8 @@ class Ejercicio extends Model
         'musculo_objetivo',
         'equipo',
         'nivel_dificultad',
-        'video_url'
+        'video_url',
+        'modelo_3d'
     ];
 
     /**
@@ -54,8 +55,14 @@ class Ejercicio extends Model
         'musculo_objetivo' => 'string',
         'equipo' => 'string',
         'nivel_dificultad' => 'string',
-        'video_url' => 'string'
+        'video_url' => 'string',
+        'modelo_3d' => 'string'
     ];
+
+    public function setModelo3dAttribute($value)
+    {
+        $this->attributes['modelo_3d'] = $value;
+    }
 
     /**
      * Validation rules
@@ -68,6 +75,7 @@ class Ejercicio extends Model
         'equipo' => 'nullable|string|max:50',
         'nivel_dificultad' => 'nullable|string',
         'video_url' => 'nullable|string',
+        'modelo_3d' => 'nullable|string',
         'created_at' => 'nullable',
         'updated_at' => 'nullable',
         'deleted_at' => 'nullable'
