@@ -46,8 +46,11 @@ class MembresiaApiController extends AppBaseController
     public function membresia_usuario(Request $request)
     {
         $membresiaUser = UserMembresia::where('user_id', $request->user()->id)
-            ->get()->last();
-        
+            ->where('fecha_vencimiento', '>=', now()->toDateString())
+            ->where('estado', '!=', 'inactivo')
+            ->latest('fecha_vencimiento')
+            ->first();
+
         return response()->json($membresiaUser, 200);
     }
 

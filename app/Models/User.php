@@ -37,7 +37,7 @@ class User extends Authenticatable
         'porcentaje_grasa',
         'porcentaje_musculo',
         'observaciones',
-        'fecha_inscripcion'
+        'codigo_invitacion', // ← nuevo
     ];
 
     protected $hidden = [

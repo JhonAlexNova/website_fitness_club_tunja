@@ -643,4 +643,46 @@
       </div>
    </div>
 </div>
+
+<!-- CONTACTO -->
+<div id="contacto" class="contact-area pad90 bg-dark text-white">
+   <div class="container">
+
+      <div class="row">
+         <div class="col-md-12 text-center mb-5">
+            <h2>Contáctanos</h2>
+            <p>Estamos listos para ayudarte a transformar tu vida.</p>
+         </div>
+      </div>
+
+      <div class="row">
+
+         <div class="col-md-4 text-center">
+            <div class="contact-box">
+               <i class="fa fa-map-marker fa-3x mb-3"></i>
+               <h4>Ubicación</h4>
+               <p>Tunja, Boyacá - Colombia</p>
+            </div>
+         </div>
+
+         <div class="col-md-4 text-center">
+            <div class="contact-box">
+               <i class="fa fa-phone fa-3x mb-3"></i>
+               <h4>Teléfono</h4>
+               <p>+57 3214978403</p>
+            </div>
+         </div>
+
+         <div class="col-md-4 text-center">
+            <div class="contact-box">
+               <i class="fa fa-envelope fa-3x mb-3"></i>
+               <h4>Correo</h4>
+               <p>fitnessclubtunja@gmail.com</p>
+            </div>
+         </div>
+
+      </div>
+
+   </div>
+</div>
 @endsection

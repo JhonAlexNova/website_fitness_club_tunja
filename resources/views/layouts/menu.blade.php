@@ -493,4 +493,12 @@
             <p>Transacciones</p>
         </a>
     </li>
+
+    <!-- CÓDIGOS INFLUENCERS -->
+    <li class="nav-item">
+        <a href="{{ route('codigos-influencers.index') }}" class="nav-link {{ Request::is('codigos-influencers*') ? 'active' : '' }}">
+            <i class="nav-icon fas fa-tag"></i>
+            <p>Códigos Influencers</p>
+        </a>
+    </li>
 </ul>

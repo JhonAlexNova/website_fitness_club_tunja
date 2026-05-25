@@ -184,6 +184,9 @@ Route::group(["middleware"=>["auth","config"],"prefix"=>"admon"],function(){
             /* mediciones */
             Route::resource('medicions', App\Http\Controllers\MedicionController::class);
             
+            /* Códigos influencers */
+            Route::resource('codigos-influencers', App\Http\Controllers\CodigosInfluencersController::class);
+
             /* Facturas */
            Route::post('/facturas/cambiar-estado', [FacturaController::class, 'cambiarEstado'])->name('facturas.cambiarEstado');
 
