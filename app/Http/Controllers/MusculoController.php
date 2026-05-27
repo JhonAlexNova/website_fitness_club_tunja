@@ -24,12 +24,18 @@ class MusculoController extends Controller
         $request->validate([
             'nombre'    => 'required|string|max:100|unique:musculos,nombre',
             'categoria' => 'required|in:cuerpo_superior,cuerpo_inferior',
+            'file_modelo_3d' => 'nullable|file'
         ]);
+
 
         $data = $request->only(['nombre', 'categoria']);
 
         if ($request->hasFile('file_imagen')) {
             $data['imagen'] = $request->file('file_imagen')->store('musculos', 'public');
+        }
+
+        if ($request->hasFile('file_modelo_3d')) {
+            $data['modelo_3d'] = $request->file('file_modelo_3d')->store('musculos-modelos3d', 'public');
         }
 
         Musculo::create($data);
@@ -62,6 +68,13 @@ class MusculoController extends Controller
                 Storage::disk('public')->delete($musculo->imagen);
             }
             $data['imagen'] = Storage::disk('public')->put('musculos', $request->file('file_imagen'));
+        }
+
+        if ($request->hasFile('file_modelo_3d')) {
+            if ($musculo->modelo_3d && Storage::disk('public')->exists($musculo->modelo_3d)) {
+                Storage::disk('public')->delete($musculo->modelo_3d);
+            }
+            $data['modelo_3d'] = Storage::disk('public')->put('musculos-modelos3d', $request->file('file_modelo_3d'));
         }
 
         $musculo->update($data);

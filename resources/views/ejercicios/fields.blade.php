@@ -33,6 +33,20 @@
     @endif
 </div>
 
+<!-- Modelo 3D Field (opcional) -->
+<div class="form-group col-sm-6">
+    {!! Form::label('file_modelo_3d', 'Modelo 3D (opcional):') !!}
+    {!! Form::file('file_modelo_3d', ['class' => 'form-control', 'accept' => '.glb,.gltf,.fbx,.obj,.stl,.dae,.3ds']) !!}
+
+    @if(isset($ejercicio) && $ejercicio->modelo_3d)
+        <small class="form-text text-muted">
+            Archivo actual: <a href="{{ Storage::url($ejercicio->modelo_3d) }}" target="_blank">Ver</a>
+            <br>Sube uno nuevo solo si quieres reemplazarlo.
+        </small>
+    @endif
+</div>
+
+
 <!-- Descripción Field -->
 <div class="form-group col-sm-12">
     {!! Form::label('descripcion', 'Descripción / Instrucciones:') !!}
