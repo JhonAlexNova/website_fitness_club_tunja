@@ -26,6 +26,11 @@ use DB;
 
 use Auth;
 
+use App\Models\UserMembresia;
+use App\Models\Membresia;
+use App\Models\DetalleFactura;
+use Carbon\Carbon;
+
 class FacturaController extends AppBaseController
 {
     /** @var FacturaRepository $facturaRepository*/
@@ -79,8 +84,8 @@ class FacturaController extends AppBaseController
             return response()->json(['response' => false, 'message' => 'Factura not found']);
         }
 
-        $estadoAnterior = $factura->estado;
-        $factura->estado    = $request->estado;
+        $estadoAnterior  = $factura->estado;
+        $factura->estado     = $request->estado;
         $factura->comentario = $request->comentario;
         $factura->save();
 
@@ -95,6 +100,38 @@ class FacturaController extends AppBaseController
                 ]);
 
                 Mail::to($usuario->email)->send(new PagoAprobadoMail($usuario, $factura));
+            }
+
+            // Crear/activar membresía si la factura es de tipo membresia
+            if ($factura->tipo === 'membresia') {
+                $detalle   = DetalleFactura::where('factura_id', $factura->id)
+                    ->whereNotNull('membresia_id')
+                    ->first();
+
+                if ($detalle) {
+                    $membresia = Membresia::find($detalle->membresia_id);
+
+                    $fechaInicio      = Carbon::today();
+                    $fechaVencimiento = $membresia->tipo_duracion === 'meses'
+                        ? $fechaInicio->copy()->addMonths($membresia->duracion)
+                        : $fechaInicio->copy()->addDays($membresia->duracion);
+
+                    $userMembresia = UserMembresia::where('user_id', $factura->user_id)
+                        ->where('membresia_id', $detalle->membresia_id)
+                        ->latest()
+                        ->first();
+
+                    if (!$userMembresia) {
+                        $userMembresia = new UserMembresia();
+                        $userMembresia->user_id      = $factura->user_id;
+                        $userMembresia->membresia_id = $detalle->membresia_id;
+                    }
+
+                    $userMembresia->fecha_inicio      = $fechaInicio;
+                    $userMembresia->fecha_vencimiento = $fechaVencimiento;
+                    $userMembresia->estado            = 'activa';
+                    $userMembresia->save();
+                }
             }
         }
 
