@@ -23,6 +23,7 @@ class DetalleFactura extends Model
         'producto_id',
         "servicio_id",
         "membresia_id",
+        "pasadia_id",
         "clase_id",
         'cantidad',
         'total'
@@ -53,5 +54,10 @@ class DetalleFactura extends Model
     public function membresia()
     {
         return $this->belongsTo(Membresia::class, 'membresia_id');
+    }
+
+    public function pasadia()
+    {
+        return $this->belongsTo(Pasadia::class, 'pasadia_id');
     }
 }

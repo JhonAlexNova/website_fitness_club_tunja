@@ -353,7 +353,7 @@
                 <!-- MEMBRESÍAS -->
                 @if($elemento['modulo']['nombre'] === 'MEMBRESIAS')
                 @php
-                    $isMembresiasActive = Request::is('membresias*') || Request::is('userMembresias*') || Request::is('pagoMembresias*');
+                    $isMembresiasActive = Request::is('membresias*') || Request::is('userMembresias*') || Request::is('pagoMembresias*') || Request::is('pasadias*');
                 @endphp
                 <li class="nav-item {{ $isMembresiasActive ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link {{ $isMembresiasActive ? 'active' : '' }}">
@@ -368,6 +368,12 @@
                             <a href="{{ route('membresias.index') }}" class="nav-link {{ Request::is('membresias*') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Membresías</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('pasadias.index') }}" class="nav-link {{ Request::is('pasadias*') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Pasadías</p>
                             </a>
                         </li>
                         <li class="nav-item">

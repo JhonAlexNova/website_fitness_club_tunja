@@ -34,8 +34,6 @@ class UserMembresiaController extends AppBaseController
         $this->membresiaRepository = $membresiaRepo;
     }
 
-   
-
     /**
      * Display a listing of the UserMembresia.
      *
@@ -58,7 +56,7 @@ class UserMembresiaController extends AppBaseController
      */
     public function create()
     {
-        $clientes = User::selectRaw("id, CONCAT(primer_nombre, ' ', segundo_nombre, ' ', primer_apellido, ' ', segundo_apellido) as nombre_completo")
+        $clientes = User::selectRaw("id, CONCAT_WS(' ', primer_nombre, segundo_nombre, primer_apellido, segundo_apellido) as nombre_completo")
             ->where("tipo", "Cliente")
             ->get()
             ->pluck('nombre_completo', 'id');
@@ -127,7 +125,7 @@ class UserMembresiaController extends AppBaseController
             return redirect(route('userMembresias.index'));
         }
 
-        $clientes = User::selectRaw("id, CONCAT(primer_nombre, ' ', segundo_nombre, ' ', primer_apellido, ' ', segundo_apellido) as nombre_completo")
+        $clientes = User::selectRaw("id, CONCAT_WS(' ', primer_nombre, segundo_nombre, primer_apellido, segundo_apellido) as nombre_completo")
             ->where("tipo", "Cliente")
             ->get()
             ->pluck('nombre_completo', 'id');

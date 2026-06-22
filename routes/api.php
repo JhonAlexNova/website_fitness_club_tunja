@@ -12,14 +12,17 @@ use App\Http\Controllers\API\MedicionApiController;
 use App\Http\Controllers\API\FacturaApiController;
 use App\Http\Controllers\API\ProductoApiController;
 use App\Http\Controllers\API\MembresiaApiController;
+use App\Http\Controllers\API\PasadiaApiController;
 use App\Http\Controllers\API\RutinaApiController;
 use App\Http\Controllers\API\ClienteApiController;
 use App\Http\Controllers\API\MusculoApiController;
 use App\Http\Controllers\API\EjercicioApiController;
 use App\Http\Controllers\CoffeeProductController;
-use App\Http\Controllers\Api\PasswordResetController;
+use App\Http\Controllers\API\PasswordResetController;
 use App\Http\Controllers\API\SesionEntrenamientoApiController;
 use App\Http\Controllers\API\CodigoPromocionalApiController;
+use App\Http\Controllers\API\CategoriaApiController;
+use App\Http\Controllers\API\NotificacionApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -87,6 +90,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('membresias/usuario', [MembresiaApiController::class, 'membresia_usuario']);
     Route::resource('membresias', MembresiaApiController::class)->names('api.membresias');
 
+    // PASADÍAS
+    Route::resource('pasadias', PasadiaApiController::class)->names('api.pasadias');
+
     // RUTINAS
     Route::delete('rutinas/{id}', [\App\Http\Controllers\App\RutinaController::class, 'destroy'])->middleware('auth:sanctum');
     Route::get('/rutinas-generales',          [RutinaApiController::class, 'rutinasGenerales']);
@@ -119,3 +125,5 @@ Route::middleware('auth:sanctum')->group(function () {
 // CLASES PÚBLICAS
 Route::get('/clases',              [ClaseApiController::class, 'index']);
 Route::get('/clases/{id}/{fecha}', [ClaseApiController::class, 'show']);
+
+Route::get('/categorias', [CategoriaApiController::class, 'index']);

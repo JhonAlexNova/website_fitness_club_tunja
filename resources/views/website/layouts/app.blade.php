@@ -329,13 +329,13 @@
                         <h5 class="footer-section-title">Horarios</h5>
                         <div class="opening-hours">
                            <ul>
-                              <li>Lunes <span>06:00 - 21:00</span></li>
-                              <li>Martes <span>06:00 - 21:00</span></li>
-                              <li>Miércoles <span>06:00 - 21:00</span></li>
-                              <li>Jueves <span>06:00 - 21:00</span></li>
-                              <li>Viernes <span>06:00 - 21:00</span></li>
-                              <li>Sábado <span>07:00 - 17:00</span></li>
-                              <li>Domingo <span>Cerrado</span></li>
+                              <li>Lunes <span>06:00 AM - 11:00 AM / 04:00 PM - 09:00 PM</span></li>
+                              <li>Martes <span>06:00 AM - 11:00 AM / 04:00 PM - 09:00 PM</span></li>
+                              <li>Miércoles <span>06:00 AM - 11:00 AM / 04:00 PM - 09:00 PM</span></li>
+                              <li>Jueves <span>06:00 AM - 11:00 AM / 04:00 PM - 09:00 PM</span></li>
+                              <li>Viernes <span>06:00 AM - 11:00 AM / 04:00 PM - 09:00 PM</span></li>
+                              <li>Sábado <span>07:00 AM - 12:00 PM</span></li>
+                              <li>Domingo <span>08:00 AM - 12:00 PM</span></li>
                            </ul>
                         </div>
                      </div>

@@ -12,11 +12,22 @@ use App\Models\Punto;
 use App\Models\UserMembresia;
 use App\Models\Membresia;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Log;
 
 class WompiController extends Controller
 {
     public function confirmacion_wompi(Request $request)
     {
+        // 1. Validar que el evento realmente viene de Wompi
+        if (!$this->validarFirmaWompi($request)) {
+            Log::warning('Webhook Wompi rechazado: firma inválida', [
+                'referencia' => $request['data']['transaction']['reference'] ?? null,
+                'ip' => $request->ip(),
+            ]);
+
+            return response()->json(['message' => 'Firma inválida'], 401);
+        }
+
         $customerData_fullName = $request['data']['transaction']['customer_data']['full_name'];
         $firstName = explode(' ', trim($customerData_fullName))[0];
 
@@ -25,6 +36,12 @@ class WompiController extends Controller
         $reference = $request['data']['transaction']['reference'];
 
         $factura = Factura::where("referencia", $reference)->get()->last();
+
+        if (!$factura) {
+            Log::warning('Webhook Wompi: factura no encontrada', ['referencia' => $reference]);
+            return response()->json(['message' => 'Factura no encontrada'], 404);
+        }
+
         $factura->estado = $status;
         $factura->save();
 
@@ -67,6 +84,36 @@ class WompiController extends Controller
             $userMembresia->estado            = 'activa';
             $userMembresia->save();
         }
+
+        return response()->json(['message' => 'Evento procesado correctamente'], 200);
+    }
+
+    /**
+     * Valida que el evento recibido realmente fue enviado por Wompi,
+     * comparando el checksum calculado contra el recibido.
+     */
+    private function validarFirmaWompi(Request $request): bool
+    {
+        $properties       = $request['signature']['properties'] ?? null;
+        $checksumRecibido = $request['signature']['checksum']   ?? null;
+        $timestamp        = $request['timestamp']               ?? null;
+        $data             = $request['data']                    ?? null;
+
+        if (empty($properties) || empty($checksumRecibido) || empty($timestamp) || empty($data)) {
+            return false;
+        }
+
+        $cadena = '';
+        foreach ($properties as $propertyPath) {
+            $cadena .= data_get($data, $propertyPath);
+        }
+
+        $cadena .= $timestamp;
+        $cadena .= env('WOMPI_EVENTS_SECRET');
+
+        $checksumCalculado = hash('sha256', $cadena);
+
+        return hash_equals($checksumCalculado, $checksumRecibido);
     }
 
     public function generarPuntosCompra($factura)

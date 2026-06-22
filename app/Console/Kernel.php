@@ -9,7 +9,10 @@ class Kernel extends ConsoleKernel
 {
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('membresias:vencer')->dailyAt('00:01');
+        $schedule->command('membresias:vencer')
+            ->everyFifteenMinutes()
+            ->withoutOverlapping(10)
+            ->appendOutputTo(storage_path('logs/membresias_vencer.log'));
     }
 
     protected function commands()

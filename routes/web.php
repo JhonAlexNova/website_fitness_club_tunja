@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CoffeeShopController;
+use App\Http\Controllers\FacturaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -157,6 +158,8 @@ Route::group(["middleware"=>["auth","config"],"prefix"=>"admon"],function(){
             Route::post('pagoMembresias/{id}/aprobar', [App\Http\Controllers\PagoMembresiaController::class, 'aprobar'])->name('pagoMembresias.aprobar');
             Route::post('pagoMembresias/{id}/rechazar', [App\Http\Controllers\PagoMembresiaController::class, 'rechazar'])->name('pagoMembresias.rechazar');
 
+            //PASADIAS
+            Route::resource('pasadias', App\Http\Controllers\PasadiaController::class);
 
             /* EJERCICIOS */
             Route::resource('ejercicios', App\Http\Controllers\EjercicioController::class);
@@ -164,6 +167,7 @@ Route::group(["middleware"=>["auth","config"],"prefix"=>"admon"],function(){
             Route::resource('rutinaEjercicios', App\Http\Controllers\RutinaEjercicioController::class)->names("admon.ejerciciosRutina");
             Route::resource('userRutinas', App\Http\Controllers\UserRutinaController::class);
             Route::resource('rutinas-diarias-elite', \App\Http\Controllers\RutinaDiariaEliteController::class)->names('admon.rutinas-diarias-elite');
+
             /* mensajes */
             Route::resource('smsTemplates', App\Http\Controllers\SmsTemplateController::class);
             Route::prefix('sms')->group(function () {
@@ -171,7 +175,7 @@ Route::group(["middleware"=>["auth","config"],"prefix"=>"admon"],function(){
                 Route::post('/send', [App\Http\Controllers\SmsSendController::class, 'store'])->name('sms.send');
             });
             
-              /* Servicios */
+            /* Servicios */
             Route::resource('servicios', App\Http\Controllers\ServicioController::class);
             Route::resource('musculos', App\Http\Controllers\MusculoController::class);
 
@@ -187,9 +191,8 @@ Route::group(["middleware"=>["auth","config"],"prefix"=>"admon"],function(){
             /* Códigos influencers */
             Route::resource('codigos-influencers', App\Http\Controllers\CodigosInfluencersController::class);
 
-            /* Facturas */
-           Route::post('/facturas/cambiar-estado', [FacturaController::class, 'cambiarEstado'])->name('facturas.cambiarEstado');
-
+            /* Notificaciones */
+            Route::resource('notificaciones', App\Http\Controllers\NotificacionController::class);
       
 });
 
@@ -199,7 +202,6 @@ Route::group(["prefix"=>"app","middleware"=>"protectionAppRoute"],function(){
     Route::resource("perfil",App\Http\Controllers\App\PerfilController::class)->names("app.perfil");
     Route::get("editar-perfil",[App\Http\Controllers\App\PerfilController::class,"editar_perfil"]);
     Route::get("editar-contrasena",[App\Http\Controllers\App\PerfilController::class,"editar_contrasena"])->name("changePassword");
-    //Route::post("editar-contrasena",[App\Http\Controllers\App\PerfilController::class,"editar_contrasena"])->name("changePassword");
 
     Route::resource("/login",App\Http\Controllers\App\LoginController::class);
     Route::resource("clases",App\Http\Controllers\App\ClaseController::class);
@@ -215,10 +217,6 @@ Route::group(["prefix"=>"app","middleware"=>"protectionAppRoute"],function(){
     Route::resource("coffee-shop", App\Http\Controllers\CoffeeShopController::class);
 
     Route::get('cancelar-reserva/{id}', [App\Http\Controllers\App\ReservaController::class, 'cancelar'])->name('app.reserva.cancelar');
-  
-    /*  */
-    
-
 });
 
 

@@ -306,9 +306,12 @@
                <li class="nav-item full-width"><a href="" data-target="#level7" data-toggle="tab" class="nav-link small text-uppercase ">sunday</a></li>
             </ul>
             <div id="tabsJustifiedContent" class="tab-content">
+
+               <!--LUNES-->
+
                <div id="level1" class="tab-pane fade active show">
                   <div class="schdl-box">
-                     <h5>boxing</h5>
+                     <h5>Full Body</h5>
                      <p class="mb-0">06.00 am – 07.00am</p>
                   </div>
                   <div class="schdl-box">
@@ -316,7 +319,7 @@
                      <p class="mb-0">07.00 am – 08.00am</p>
                   </div>
                   <div class="schdl-box">
-                     <h5>bodybuiling</h5>
+                     <h5>-----</h5>
                      <p class="mb-0">08.00 am – 09.00am</p>
                   </div>
                   <div class="schdl-box">
@@ -324,64 +327,78 @@
                      <p class="mb-0">09.00 am – 10.00am</p>
                   </div>
                   <div class="schdl-box">
-                     <h5>crosfit</h5>
+                     <h5>-----</h5>
                      <p class="mb-0">10.00 am – 11.00am</p>
                   </div>
                   <div class="schdl-box">
                      <h5>-----</h5>
-                     <p class="mb-0">1.00 am – 12.00am</p>
-                  </div>
-                  <div class="schdl-box">
-                     <h5>fitness</h5>
                      <p class="mb-0">04.00 pm – 05.00pm</p>
                   </div>
                   <div class="schdl-box">
-                     <h5>cardio</h5>
+                     <h5>Full Body Kids</h5>
                      <p class="mb-0">05.00 pm – 06.00pm</p>
+                  </div>
+                  <div class="schdl-box">
+                     <h5>Funtional beats</h5>
+                     <p class="mb-0">06:30  – 07.30 </p>
                   </div>
                   <div class="schdl-box">
                      <h5>-----</h5>
                      <p class="mb-0">07.00 pm – 08.00pm</p>
                   </div>
                   <div class="schdl-box">
-                     <h5>bodybuiling</h5>
+                     <h5>-----</h5>
                      <p class="mb-0">08.00 pm – 09.00pm</p>
                   </div>
                </div>
+
+               <!--MARTES-->
+
                <div id="level2" class="tab-pane fade">
                   <div class="schdl-box">
-                     <h5>boxing</h5>
-                     <p class="mb-0">06.00 am – 07.00am</p>
+                     <h5>Down Force</h5>
+                     <p class="mb-0">5:00 am – 6:00 am</p>
+                  </div>
+                  <div class="schdl-box">
+                     <h5>Down Force</h5>
+                     <p class="mb-0">6:00 am – 7:00 am</p>
+                  </div>
+                  <div class="schdl-box">
+                     <h5>Down Force</h5>
+                     <p class="mb-0">7:00 am – 8:00am</p>
+                  </div>
+                  <div class="schdl-box">
+                     <h5>Down Force</h5>
+                     <p class="mb-0">8:00 am – 9:00am</p>
                   </div>
                   <div class="schdl-box">
                      <h5>-----</h5>
-                     <p class="mb-0">07.00 am – 08.00am</p>
-                  </div>
-                  <div class="schdl-box">
-                     <h5>bodybuiling</h5>
-                     <p class="mb-0">08.00 am – 09.00am</p>
+                     <p class="mb-0">9:00 am – 11.00am</p>
                   </div>
                   <div class="schdl-box">
                      <h5>-----</h5>
-                     <p class="mb-0">09.00 am – 10.00am</p>
+                     <p class="mb-0">4:00 pm – 6:00 pm</p>
                   </div>
                   <div class="schdl-box">
-                     <h5>crosfit</h5>
-                     <p class="mb-0">10.00 am – 11.00am</p>
+                     <h5>Down Force</h5>
+                     <p class="mb-0">6:00 pm – 7:00 pm</p>
                   </div>
-                  <div class="schdl-box">
-                     <h5>-----</h5>
-                     <p class="mb-0">1.00 am – 12.00am</p>
+                   <div class="schdl-box">
+                     <h5>Down Force</h5>
+                     <p class="mb-0">7:00 pm – 8:00 pm</p>
                   </div>
-                  <div class="schdl-box">
-                     <h5>fitness</h5>
-                     <p class="mb-0">04.00 pm – 05.00pm</p>
+                   <div class="schdl-box">
+                     <h5>Down Force</h5>
+                     <p class="mb-0">8:00 pm – 9:00 pm</p>
                   </div>
                </div>
+
+               <!--MIERCOLES-->
+
                <div id="level3" class="tab-pane fade">
                   <div class="schdl-box">
-                     <h5>boxing</h5>
-                     <p class="mb-0">06.00 am – 07.00am</p>
+                     <h5>Power Sport</h5>
+                     <p class="mb-0">5:00 am – 6:00am</p>
                   </div>
                   <div class="schdl-box">
                      <h5>-----</h5>
@@ -400,6 +417,9 @@
                      <p class="mb-0">04.00 pm – 05.00pm</p>
                   </div>
                </div>
+
+               <!--JUEVES-->
+
                <div id="level4" class="tab-pane fade">
                   <div class="schdl-box">
                      <h5>boxing</h5>
