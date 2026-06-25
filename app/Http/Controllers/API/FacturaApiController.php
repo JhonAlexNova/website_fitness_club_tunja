@@ -11,6 +11,7 @@ use App\Models\Factura;
 use App\Models\Servicio;
 use App\Models\DetalleFactura;
 use App\Models\Producto;
+use App\Models\CoffeeProduct;
 use Storage;
 
 class FacturaApiController extends Controller
@@ -72,33 +73,58 @@ class FacturaApiController extends Controller
             $total += $servicioModel->valor;
         }
 
-        // ── Productos ──────────────────────────────────────────────────────
-        foreach ($request->productos ?? [] as $item) {
-            $productoId = $item["product"]["id"] ?? null;
-            $quantity   = $item["quantity"] ?? 1;
+        // ── Productos Coffee Shop ────────────────────────────────────────────
+        if ($request->tipo === 'coffee_shop') {
+            foreach ($request->productos ?? [] as $item) {
+                $productoId = $item["product"]["id"] ?? null;
+                $quantity   = $item["quantity"] ?? 1;
 
-            if (!$productoId) continue;
+                if (!$productoId) continue;
 
-            $productoModel = Producto::find($productoId);
+                $coffeeProducto = CoffeeProduct::find($productoId);
 
-            if (!$productoModel) continue;
+                if (!$coffeeProducto) continue;
 
-            $productoModel->load("historial_precio");
-            $precio = $productoModel->historial_precio
-                ? $productoModel->historial_precio->valor
-                : $productoModel->precio_venta;
+                $totalProducto = $coffeeProducto->precio * $quantity;
 
-            $totalProducto = $precio * $quantity;
+                DetalleFactura::create([
+                    "factura_id"  => $factura->id,
+                    "producto_id" => $coffeeProducto->id,
+                    "cantidad"    => $quantity,
+                    "total"       => $totalProducto
+                ]);
 
-            DetalleFactura::create([
-                "factura_id"  => $factura->id,
-                "precio_id"   => $productoModel->historial_precio?->id,
-                "producto_id" => $productoModel->id,
-                "cantidad"    => $quantity,
-                "total"       => $totalProducto
-            ]);
+                $total += $totalProducto;
+            }
+        } else {
+            // ── Productos Tienda ──────────────────────────────────────────────
+            foreach ($request->productos ?? [] as $item) {
+                $productoId = $item["product"]["id"] ?? null;
+                $quantity   = $item["quantity"] ?? 1;
 
-            $total += $totalProducto;
+                if (!$productoId) continue;
+
+                $productoModel = Producto::find($productoId);
+
+                if (!$productoModel) continue;
+
+                $productoModel->load("historial_precio");
+                $precio = $productoModel->historial_precio
+                    ? $productoModel->historial_precio->valor
+                    : $productoModel->precio_venta;
+
+                $totalProducto = $precio * $quantity;
+
+                DetalleFactura::create([
+                    "factura_id"  => $factura->id,
+                    "precio_id"   => $productoModel->historial_precio?->id,
+                    "producto_id" => $productoModel->id,
+                    "cantidad"    => $quantity,
+                    "total"       => $totalProducto
+                ]);
+
+                $total += $totalProducto;
+            }
         }
 
         // ── Comprobante de transferencia ───────────────────────────────────

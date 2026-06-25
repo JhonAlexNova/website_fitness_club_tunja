@@ -41,7 +41,7 @@ class CoffeeProductController extends Controller
             'nombre' => 'required',
             'descripcion' => 'required',
             'precio' => 'required|numeric',
-            'imagen' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
+            'imagen' => 'nullable|image|mimes:jpg,jpeg,png|max:10000'
         ]);
 
         $data = $request->all();
