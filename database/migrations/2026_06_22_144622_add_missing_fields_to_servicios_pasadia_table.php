@@ -10,25 +10,16 @@ class AddMissingFieldsToServiciosPasadiaTable extends Migration
     {
         Schema::table('servicios_pasadia', function (Blueprint $table) {
             if (!Schema::hasColumn('servicios_pasadia', 'pasadia_id')) {
-                $table->unsignedBigInteger('pasadia_id')->after('id');
+                $table->unsignedBigInteger('pasadia_id');
             }
             if (!Schema::hasColumn('servicios_pasadia', 'servicio_id')) {
-                $table->unsignedBigInteger('servicio_id')->after('pasadia_id');
+                $table->unsignedBigInteger('servicio_id');
             }
-        });
-
-        Schema::table('servicios_pasadia', function (Blueprint $table) {
-            $table->foreign('pasadia_id')->references('id')->on('pasadias')->onDelete('cascade');
-            $table->foreign('servicio_id')->references('id')->on('servicios')->onDelete('cascade');
         });
     }
 
     public function down()
     {
-        Schema::table('servicios_pasadia', function (Blueprint $table) {
-            $table->dropForeign(['pasadia_id']);
-            $table->dropForeign(['servicio_id']);
-            $table->dropColumn(['pasadia_id', 'servicio_id']);
-        });
+        //
     }
 }
