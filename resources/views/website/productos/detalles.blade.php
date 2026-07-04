@@ -1,9 +1,97 @@
 @extends("website.layouts.app")
 @push("page_styles")
- <!-- Owl Stylesheets -->
 <link rel="stylesheet" href="{{url('libs/OwlCarousel2-2.3.4/dist/assets/owl.carousel.min.css')}}">
 <link rel="stylesheet" href="{{url('libs/OwlCarousel2-2.3.4/dist/assets/owl.theme.default.min.css')}}">
 <link rel="stylesheet" href="{{url('template/website/assets/css/producto-interno.css')}}">
+<style>
+body {
+    background: radial-gradient(circle at top, #0f0f1f, #050505) !important;
+    color: #fff;
+}
+
+.single-information-area {
+    padding-top: 100px;
+}
+
+/* IMAGEN PRODUCTO */
+.single-pro-tab-content .tab-content img {
+    width: 100%;
+    border-radius: 15px;
+    border: 1px solid rgba(138,43,226,0.3);
+}
+.single-pro-tab-content .single-product-tab li a img {
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid rgba(0,240,255,0.2);
+    opacity: 0.7;
+    transition: 0.3s;
+}
+.single-pro-tab-content .single-product-tab li a.active img,
+.single-pro-tab-content .single-product-tab li a img:hover {
+    opacity: 1;
+    border-color: #00f0ff;
+}
+
+/* INFO PRODUCTO */
+.product-info h3 a {
+    color: #fff !important;
+    font-size: 1.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+/* ESTRELLAS */
+.pro-rating i { color: #f39c12; }
+.pro-rating .review p { color: #aaa; }
+
+/* PRECIO */
+.pro-price p {
+    font-size: 2rem;
+    font-weight: 900;
+    background: linear-gradient(90deg, #00f0ff, #8a2be2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+.pro-price p span { color: inherit; margin-right: 0; }
+
+/* STOCK */
+.stock p { color: #aaa; }
+.stock p i { color: #aaa; }
+
+/* DESCRIPCIÓN */
+.product-desc {
+    color: #ccc !important;
+    border-top: 1px solid rgba(255,255,255,0.1) !important;
+    border-bottom: 1px solid rgba(255,255,255,0.1) !important;
+}
+.product-desc p { color: #ccc !important; }
+
+/* CANTIDAD */
+.cart-plus-minus input {
+    background: rgba(20,20,40,0.8) !important;
+    border: 1px solid rgba(138,43,226,0.4) !important;
+    color: #fff !important;
+    border-radius: 8px;
+}
+
+/* BOTÓN AGREGAR AL CARRITO */
+.pro-button-top a {
+    background: linear-gradient(90deg, #8a2be2, #00f0ff) !important;
+    border: none !important;
+    border-radius: 25px !important;
+    padding: 12px 35px !important;
+    color: #fff !important;
+    font-weight: 700 !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: 0.3s;
+}
+.pro-button-top a:hover {
+    opacity: 0.85;
+    transform: translateY(-2px);
+}
+</style>
 @endpush
 @section("title","Tienda Fitness Club Tunja")
 @section("content")

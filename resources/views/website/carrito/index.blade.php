@@ -1,5 +1,75 @@
 @extends("website.layouts.app")
 @push("page_styles")
+@push("page_styles")
+<link rel="stylesheet" href="{{url('template/website/assets/css/carrito.css')}}">
+<style>
+body {
+    background: radial-gradient(circle at top, #0f0f1f, #050505) !important;
+    color: #fff;
+}
+.page-head {
+    padding: 130px 100px 15px;
+}
+.shop-cart-bg .section-title h3 {
+    color: #fff;
+    background: linear-gradient(90deg, #8a2be2, #00f0ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+.breadcrumb li, .breadcrumb li a { color: #aaa !important; }
+
+.cart-main-area { background: transparent; }
+
+.table-content table {
+    background: rgba(20,20,40,0.8) !important;
+    border-radius: 15px;
+    overflow: hidden;
+}
+.table-content table thead {
+    background: linear-gradient(90deg, #8a2be2, #00f0ff) !important;
+}
+.table-content table td,
+.table-content table td.product-subtotal,
+.table-content table .product-price .amount,
+.table-content table td.product-name a {
+    color: #fff !important;
+}
+
+.cart-btn {
+    background: rgba(20,20,40,0.8) !important;
+    border-radius: 15px;
+}
+.cart-btn .btn-coupon input {
+    background: rgba(0,0,0,0.3) !important;
+    color: #fff !important;
+    border: 1px solid rgba(138,43,226,0.4) !important;
+}
+.cart-btn .btn-coupon a.primary-btn {
+    background: linear-gradient(90deg, #8a2be2, #00f0ff) !important;
+}
+.cart-btn .total-update input,
+.cart-btn .total-update a.btn-bk {
+    background: rgba(0,0,0,0.4) !important;
+}
+.cart-btn .total-update input:hover,
+.cart-btn .total-update a.btn-bk:hover {
+    background: linear-gradient(90deg, #8a2be2, #00f0ff) !important;
+}
+
+.cart-total h3 { color: #fff; }
+.cart-total .cart-bg span { color: #ccc !important; }
+.cart-total .total {
+    background: linear-gradient(90deg, #8a2be2, #00f0ff) !important;
+}
+
+/* FOOTER de este archivo (independiente del layout) */
+.footer-area.bg3 {
+    background: radial-gradient(circle at bottom, #0f0f1f, #050505) !important;
+}
+.footer-area p, .footer-area .news-info .footer-title h3 { color: #fff !important; }
+</style>
+@endpush
 <link rel="stylesheet" href="{{url('template/website/assets/css/carrito.css')}}">
 @endpush
 @section("title","Tienda Fitness Club Tunja")
@@ -44,7 +114,7 @@
                            <td class="product-thumbnail">
                               <a href="#"><img src="assets/images/price/thumb/1.jpg" alt="Cart img"></a>
                            </td>
-                           <td class="product-name"><a href="#">protein</a></td>
+                           <td class="product-name"><a href="#">proteina</a></td>
                            <td class="product-price"><span class="amount">$60.00</span></td>
                            <td class="product-quantity"><input type="number" value="1"></td>
                            <td class="product-subtotal">$60.00</td>

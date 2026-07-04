@@ -2,24 +2,160 @@
 @push("page_styles")
 <link rel="stylesheet" href="{{url('template/website/assets/css/tienda.css')}}">
 <style>
-   .card.border-0.mb-2.shadow-sm {
-    border: 1px #eaeaea solid !important;
-}
-.mb-0, .my-0 {
-    margin-bottom: 0!important;
-    border: .card.border-0.mb-2.shadow-sm;
-    border-bottom: 1px #eaeaea solid;
+body {
+    background: radial-gradient(circle at top, #0f0f1f, #050505) !important;
+    color: #fff;
 }
 
+/* HERO */
+.shop-bg.page-head {
+    padding: 150px 0 80px;
+}
+.shop-bg .section-title h3 {
+    color: #fff;
+    font-size: 2.5rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    background: linear-gradient(90deg, #8a2be2, #00f0ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+.breadcrumb li, .breadcrumb li a { color: #aaa !important; }
+
+/* ÁREA PRINCIPAL */
+.product-area.shopping-area {
+    background: transparent;
+}
+
+/* TÍTULO SECCIÓN */
+.section-title h3 {
+    color: #fff !important;
+    background: linear-gradient(90deg, #8a2be2, #00f0ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+.section-title p { color: #aaa !important; }
+
+/* SIDEBAR FILTROS */
+.accordion .card {
+    background: rgba(20,20,40,0.8) !important;
+    border: none !important;
+    border-radius: 15px !important;
+    margin-bottom: 15px !important;
+    backdrop-filter: blur(15px);
+    border-left: 4px solid #00f0ff !important;
+}
+.accordion .card:nth-child(even) {
+    border-left-color: #8a2be2 !important;
+}
+.accordion .card-header {
+    background: transparent !important;
+    border: none !important;
+}
 .btn-link {
-    font-weight: 400;
-    color: #000;
-    background-color: transparent;
-    font-weight: bold;
+    color: #fff !important;
+    font-weight: 700 !important;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
-.mt40 {
-    margin-top: 0;
+.btn-link:hover { color: #00f0ff !important; text-decoration: none !important; }
+.card-body { color: #aaa !important; background: transparent !important; }
+.form-check-label { color: #aaa !important; }
+.form-check-input { accent-color: #8a2be2; }
+
+/* CARDS DE PRODUCTOS */
+.product-box {
+    background: rgba(20,20,40,0.8) !important;
+    border-radius: 20px !important;
+    overflow: hidden;
+    border-left: 4px solid #00f0ff;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    transition: 0.3s;
+    margin-bottom: 25px;
 }
+.product-box:nth-child(even) { border-left-color: #8a2be2; }
+.product-box:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+
+.cart-box .cart-img img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+}
+
+.cart-dtl {
+    padding: 15px 20px 20px !important;
+}
+.cart-dtl .titulo h4 {
+    color: #fff !important;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+.cart-dtl .precio span {
+    font-size: 1.2rem;
+    font-weight: 900;
+    background: linear-gradient(90deg, #00f0ff, #8a2be2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+.cart-dtl .btnComprar {
+    margin-top: 12px;
+}
+.btnComprarProducto {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    border-radius: 25px;
+    background: linear-gradient(90deg, #8a2be2, #00f0ff);
+    color: #fff !important;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+.btnComprarProducto:hover {
+    opacity: 0.85;
+    transform: translateY(-2px);
+    color: #fff !important;
+    text-decoration: none;
+}
+
+/* OVERLAY */
+.primary-overlay:before {
+    background: rgba(138, 43, 226, 0.6) !important;
+}
+
+/* OVERRIDE tienda.css */
+.product-area .product-box {
+    background: rgba(20,20,40,0.8) !important;
+    padding: 0 0 15px 0 !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4) !important;
+    min-height: 420px !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+.product-area .product-box .cart-dtl {
+    flex: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    padding: 15px 20px 20px !important;
+}
+a.btnComprarProducto {
+    background: linear-gradient(90deg, #8a2be2, #00f0ff) !important;
+    width: 100% !important;
+    margin: 0 !important;
+}
+.precio { color: #fff !important; }
 </style>
 @endpush
 @section("title","Tienda Fitness Club Tunja")
@@ -48,9 +184,7 @@
       <div class="row">
          <div class="col-md-12">
             <div class="section-title text-center">
-               <div class="title-bar full-width mb20">
-                  <img src="{{url('template/website/assets/images/logo/ttl-bar.png')}}" alt="title-img">
-               </div>
+               <div class="title-bar full-width mb20" style="width:60px;height:3px;background:#1a3cff;margin:0 auto 20px;border-radius:3px;"></div>
                <h3>Productos y Equipamiento Fitness</h3>
                <p>Encuentra todo lo que necesitas para potenciar tu entrenamiento</p>
             </div>
@@ -162,14 +296,14 @@
             <div class="row">
                @foreach($productos as $producto)
                
-               <div class="col-lg-4 col-md-6 col-sm-6 col-xs-4 form-group">
+               <div class="col-lg-4 col-md-6 col-sm-6 col-6 mb-4">
                   <div class="product-box mt40">
                      <div class="cart-box primary-overlay">
                         <div class="cart-img full-width">
-                           <a href="assets/images/price/big12.jpg')}}">
-                           <img src="{{ !is_null($producto->portada)?url('storage',$producto->portada->url):url('img/imagen-placeholder.png') }}" alt="price img"><i class=" ovrlay fa fa-search"></i></a>
+                           <a href="{{ !is_null($producto->portada) ? url($producto->portada->url) : '#' }}">
+                                 <img src="{{ !is_null($producto->portada) && Storage::disk('public')->exists($producto->portada->url) ? asset('storage/' . $producto->portada->url) : asset('img/imagen-placeholder.png') }}"
+                           </a>
                         </div>
-                       
                      </div>
                      <div class="cart-dtl">
                         <div class="titulo">

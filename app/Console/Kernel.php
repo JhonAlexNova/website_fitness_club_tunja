@@ -10,8 +10,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('membresias:vencer')
-            ->everyFifteenMinutes()
-            ->withoutOverlapping(10)
+            ->dailyAt('00:00')
+            ->withoutOverlapping(1)
             ->appendOutputTo(storage_path('logs/membresias_vencer.log'));
     }
 

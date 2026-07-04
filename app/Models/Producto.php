@@ -96,7 +96,9 @@ class Producto extends Model
 
     public function portada()
     {
-        return $this->hasOne(ImagenProducto::class, 'producto_id')->where('es_portada', true);
+        return $this->hasOne(ImagenProducto::class, 'producto_id')
+                    ->where('es_portada', true)
+                    ->latest();
     }
 
     // Relación uno a muchos para la galería de imágenes

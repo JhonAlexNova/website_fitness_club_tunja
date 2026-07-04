@@ -173,6 +173,36 @@ class FacturaApiController extends Controller
         }
     }
 
+    public function historialTienda(Request $request)
+    {
+        $facturas = Factura::with(['detalles.producto.portada'])
+            ->where('user_id', $request->user()->id)
+            ->where('tipo', 'COMPRA_TIENDA')
+            ->orderBy('created_at', 'desc')
+            ->get()
+            ->map(function ($factura) {
+                return [
+                    'id'         => $factura->id,
+                    'referencia' => $factura->referencia,
+                    'tipo_pago'  => $factura->tipo_pago,
+                    'total'      => $factura->total,
+                    'estado'     => $factura->estado,
+                    'comentario' => $factura->comentario,
+                    'fecha'      => $factura->created_at->format('d/m/Y H:i'),
+                    'productos'  => $factura->detalles->map(function ($detalle) {
+                        return [
+                            'nombre'   => optional($detalle->producto)->nombre ?? 'Producto eliminado',
+                            'imagen'   => optional(optional($detalle->producto)->portada)->url,
+                            'cantidad' => $detalle->cantidad,
+                            'total'    => $detalle->total,
+                        ];
+                    }),
+                ];
+            });
+
+        return response()->json($facturas);
+    }
+
     public function misFacturas(Request $request)
     {
         $facturas = Factura::with(['detalles.membresia', 'detalles.pasadia'])

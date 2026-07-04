@@ -6,7 +6,7 @@
     .header .navbar.navbar-dark .navbar-toggler {
       color: #fff;
       border-color: 1px solid #fff;
-      background: #fc328a;
+      background: #1a3cff;
       border-radius: 10px;
       padding: 2px 10px; }
   .header .navbar .navbar-header {
@@ -21,7 +21,7 @@
     .header .navbar .navbar-header .navbar-toggler {
       color: #fff;
       border-color: 1px solid #fff;
-      background: #fc328a;
+      background: #1a3cff;
       border-radius: 10px;
       padding: 1px 8px;
       float: right;
@@ -32,7 +32,7 @@
     background-color: inherit; }
     .header .navbar .navbar-nav .nav-item.active .nav-link {
       background-color: inherit;
-      color: #fc328a; }
+      color: #1a3cff; }
       .header .navbar .navbar-nav .nav-item.active .nav-link:before {
         text-shadow: inherit;
         color: inherit; }
@@ -49,7 +49,7 @@
     line-height: 60px !important; }
     .slider-area1 .tp-caption .slide-text-one h1 span {
       font-size: 30px !important;
-      color: #fc328a; }
+      color: #1a3cff; }
   .slider-area1 .tp-caption .slide-text-two h1 {
     font-size: 18px !important; }
 
@@ -146,7 +146,7 @@
 
   /*4.6.2 about-service start*/
   .calculate-area {
-    background: rgba(252, 50, 138, 0.8); }
+    background: rgba(26, 60, 255, 0.8); }
 
   /*4.6.3 about-service-single start*/
   .single-tab-content {
@@ -184,7 +184,7 @@
     .header .navbar.navbar-dark .navbar-toggler {
       color: #fff;
       border-color: 1px solid #fff;
-      background: #fc328a;
+      background: #1a3cff;
       border-radius: 10px;
       padding: 1px 8px; }
   .header .navbar .navbar-header {
@@ -199,7 +199,7 @@
     .header .navbar .navbar-header .navbar-toggler {
       color: #fff;
       border-color: 1px solid #fff;
-      background: #fc328a;
+      background: #1a3cff;
       border-radius: 10px;
       padding: 1px 8px;
       float: right; }
@@ -209,7 +209,7 @@
     background-color: inherit; }
     .header .navbar .navbar-nav .nav-item.active .nav-link {
       background-color: inherit;
-      color: #fc328a; }
+      color: #1a3cff; }
       .header .navbar .navbar-nav .nav-item.active .nav-link:before {
         text-shadow: inherit;
         color: inherit; }
@@ -226,7 +226,7 @@
     line-height: 60px !important; }
     .slider-area1 .tp-caption.slide-text-one h1 span {
       font-size: 30px !important;
-      color: #fc328a; }
+      color: #1a3cff; }
   .slider-area1 .tp-caption.slide-text-two h1 {
     font-size: 18px !important; }
 
@@ -316,7 +316,7 @@
     .product-area .product-box .cart-dtl .add-cart a {
       font-size: 14px;
       padding: 8px 20px;
-      background: #fc328a;
+      background: #1a3cff;
       color: #fff;
       border-radius: 30px;
       display: inline-block; }
@@ -386,7 +386,7 @@
 
   /*4.6.2 about-service start*/
   .calculate-area {
-    background: rgba(252, 50, 138, 0.8); }
+    background: rgba(26, 60, 255, 0.8); }
 
   /*4.8.2 Booking start*/
   .booking-schedule {

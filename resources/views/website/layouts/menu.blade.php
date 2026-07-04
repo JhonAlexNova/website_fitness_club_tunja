@@ -23,22 +23,17 @@
                </a>
             </li>
 
-            <li class="nav-item">
-               <a class="nav-link" href="{{ url('tienda') }}">
-                  Tienda
-               </a>
-            </li>
 
             <!-- MEMBRESIAS -->
             <li class="nav-item">
-               <a class="nav-link" href="#membresias">
+               <a class="nav-link" href="{{ route('website.membresias.index') }}">
                   Membresías
                </a>
             </li>
 
             <!-- CONTACTO -->
             <li class="nav-item">
-               <a class="nav-link" href="#contacto">
+               <a class="nav-link" href="{{ url('/') }}#contacto">
                   Contacto
                </a>
             </li>
@@ -63,19 +58,7 @@
                @endguest
             </li>
 
-            <li class="nav-item d-none d-lg-block">
-               <div class="icon-menu">
-                  <ul>
-                     <li>|</li>
-
-                     <li>
-                        <a href="{{ route('website.carrito.index') }}">
-                           <i class="fa fa-shopping-cart"></i>
-                        </a>
-                     </li>
-                  </ul>
-               </div>
-            </li>
+            
 
          </ul>
       </div>

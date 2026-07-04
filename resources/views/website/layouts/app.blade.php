@@ -27,7 +27,7 @@
 
       <style>
          li.nav-item.btnLogin a {
-            background: #E91E63;
+            background: #1a3cff;
             position: revert-layer;
             height: fit-content;
             line-height: 0 !important;
@@ -65,7 +65,7 @@
          }
 
          .footer-area-custom .footer-contact-item i {
-            color: #E91E63;
+            color: #1a3cff;
             font-size: 16px;
             margin-top: 2px;
             min-width: 18px;
@@ -79,7 +79,7 @@
             letter-spacing: 1px;
             margin-bottom: 20px;
             padding-bottom: 10px;
-            border-bottom: 2px solid #E91E63;
+            border-bottom: 2px solid #1a3cff;
             display: inline-block;
          }
 
@@ -101,12 +101,12 @@
          }
 
          .footer-area-custom .footer-links ul li a:hover {
-            color: #E91E63;
+            color: #1a3cff;
          }
 
          .footer-area-custom .footer-links ul li a i {
             margin-right: 8px;
-            color: #E91E63;
+            color: #1a3cff;
             font-size: 12px;
          }
 
@@ -130,7 +130,7 @@
          }
 
          .footer-area-custom .opening-hours ul li span {
-            color: #E91E63;
+            color: #1a3cff;
             font-weight: 600;
          }
 
@@ -155,7 +155,7 @@
          }
 
          .footer-area-custom .social-links a:hover {
-            background: #E91E63;
+            background: #1a3cff;
             color: #fff;
          }
 
@@ -179,7 +179,7 @@
          }
 
          .footer-area-custom .footer-bottom a {
-            color: #E91E63;
+            color: #1a3cff;
             text-decoration: none;
          }
 
@@ -221,37 +221,37 @@
                   <div class="footer-gallery owl-carousel">
                      <div class="item active">
                         <a href="{{url('template/website/assets/images/instagram/big1.jpg')}}">
-                           <img src="{{url('assets/images/instagram/1.jpg')}}" alt="Instagram Fitness Club">
+                           <img src="{{url('template/website/assets/images/instagram/1.jpg')}}" alt="Instagram Fitness Club">
                            <i class="fa fa-search"></i>
                         </a>
                      </div>
                      <div class="item">
                         <a href="{{url('template/website/assets/images/instagram/big2.jpg')}}">
-                           <img src="{{url('assets/images/instagram/2.jpg')}}" alt="Instagram Fitness Club">
+                           <img src="{{url('template/website/assets/images/instagram/2.jpg')}}" alt="Instagram Fitness Club">
                            <i class="fa fa-search"></i>
                         </a>
                      </div>
                      <div class="item">
                         <a href="{{url('template/website/assets/images/instagram/big3.jpg')}}">
-                           <img src="{{url('assets/images/instagram/3.jpg')}}" alt="Instagram Fitness Club">
+                           <img src="{{url('template/website/assets/images/instagram/3.jpg')}}" alt="Instagram Fitness Club">
                            <i class="fa fa-search"></i>
                         </a>
                      </div>
                      <div class="item">
                         <a href="{{url('template/website/assets/images/instagram/big4.jpg')}}">
-                           <img src="{{url('assets/images/instagram/4.jpg')}}" alt="Instagram Fitness Club">
+                           <img src="{{url('template/website/assets/images/instagram/4.jpg')}}" alt="Instagram Fitness Club">
                            <i class="fa fa-search"></i>
                         </a>
                      </div>
                      <div class="item">
                         <a href="{{url('template/website/assets/images/instagram/big5.jpg')}}">
-                           <img src="{{url('assets/images/instagram/5.jpg')}}" alt="Instagram Fitness Club">
+                           <img src="{{url('template/website/assets/images/instagram/5.jpg')}}" alt="Instagram Fitness Club">
                            <i class="fa fa-search"></i>
                         </a>
                      </div>
                      <div class="item">
                         <a href="{{url('template/website/assets/images/instagram/big6.jpg')}}">
-                           <img src="{{url('assets/images/instagram/6.jpg')}}" alt="Instagram Fitness Club">
+                           <img src="{{url('template/website/assets/images/instagram/6.jpg')}}" alt="Instagram Fitness Club">
                            <i class="fa fa-search"></i>
                         </a>
                      </div>
@@ -298,16 +298,16 @@
                         <div class="footer-links">
                            <ul>
                               <li><a href="{{ url('/') }}"><i class="fa fa-angle-right"></i> Inicio</a></li>
-                              <li><a href="{{ url('tienda') }}"><i class="fa fa-angle-right"></i> Tienda</a></li>
-                              <li><a href="#membresias"><i class="fa fa-angle-right"></i> Membresías</a></li>
+                              <!--<li><a href="{{ url('tienda') }}"><i class="fa fa-angle-right"></i> Tienda</a></li>-->
+                              <li><a href="{{ route('website.membresias.index') }}"><i class="fa fa-angle-right"></i> Membresías</a></li>
                               <li><a href="#contacto"><i class="fa fa-angle-right"></i> Contacto</a></li>
-                              <li>
+                              <!--<li>
                                  @guest
                                     <a href="{{ route('login') }}"><i class="fa fa-angle-right"></i> Acceder</a>
                                  @else
                                     <a href="{{ url('app') }}"><i class="fa fa-angle-right"></i> Mi Cuenta</a>
                                  @endguest
-                              </li>
+                              </li>-->
                            </ul>
                         </div>
                      </div>
@@ -317,9 +317,10 @@
                         <h5 class="footer-section-title">Membresías</h5>
                         <div class="footer-links">
                            <ul>
-                              <li><a href="#membresias"><i class="fa fa-angle-right"></i> Trimestral</a></li>
-                              <li><a href="#membresias"><i class="fa fa-angle-right"></i> Semestral</a></li>
-                              <li><a href="#membresias"><i class="fa fa-angle-right"></i> Anual</a></li>
+                              <li><a href="{{ route('website.membresias.index') }}"><i class="fa fa-angle-right"></i> Membresías</a></li>
+                              <!--<li><a href="{{ route('website.membresias.index') }}"><i class="fa fa-angle-right"></i> Trimestral</a></li>
+                              <li><a href="{{ route('website.membresias.index') }}"><i class="fa fa-angle-right"></i> Semestral</a></li>
+                              <li><a href="{{ route('website.membresias.index') }}"><i class="fa fa-angle-right"></i> Anual</a></li>-->
                            </ul>
                         </div>
                      </div>
