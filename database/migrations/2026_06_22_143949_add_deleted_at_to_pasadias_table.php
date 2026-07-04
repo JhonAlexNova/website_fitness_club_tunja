@@ -8,15 +8,19 @@ class AddDeletedAtToPasadiasTable extends Migration
 {
     public function up()
     {
-        Schema::table('pasadias', function (Blueprint $table) {
-            $table->softDeletes();
-        });
+        if (!Schema::hasColumn('pasadias', 'deleted_at')) {
+            Schema::table('pasadias', function (Blueprint $table) {
+                $table->softDeletes();
+            });
+        }
     }
 
     public function down()
     {
-        Schema::table('pasadias', function (Blueprint $table) {
-            $table->dropColumn('deleted_at');
-        });
+        if (Schema::hasColumn('pasadias', 'deleted_at')) {
+            Schema::table('pasadias', function (Blueprint $table) {
+                $table->dropSoftDeletes();
+            });
+        }
     }
 }

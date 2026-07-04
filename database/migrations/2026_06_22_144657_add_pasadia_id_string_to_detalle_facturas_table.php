@@ -10,7 +10,7 @@ class AddPasadiaIdStringToDetalleFacturasTable extends Migration
     {
         Schema::table('detalle_facturas', function (Blueprint $table) {
             if (!Schema::hasColumn('detalle_facturas', 'pasadia_id')) {
-                $table->string('pasadia_id', 255)->nullable()->after('membresia_id');
+                $table->string('pasadia_id', 255)->nullable();
             }
         });
     }

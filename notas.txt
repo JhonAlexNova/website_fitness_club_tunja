@@ -1,2 +1,5 @@
 mkdir -p storage/framework/views
 mkdir -p storage/framework/sessions
+
+*Despliegue dashboard*
+git push hosting main

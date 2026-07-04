@@ -20809,3 +20809,13 @@
 #61 C:\\wamp64\\www\\dashboard_fitness_club_tunja\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #62 {main}
 "} 
+[2026-07-01 08:46:41] local.ERROR: There are no commands defined in the "boost" namespace. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\NamespaceNotFoundException(code: 0): There are no commands defined in the \"boost\" namespace. at C:\\xampp\\htdocs\\apps stars\\dashboard_fitness_club_tunja\\vendor\\symfony\\console\\Application.php:650)
+[stacktrace]
+#0 C:\\xampp\\htdocs\\apps stars\\dashboard_fitness_club_tunja\\vendor\\symfony\\console\\Application.php(701): Symfony\\Component\\Console\\Application->findNamespace('boost')
+#1 C:\\xampp\\htdocs\\apps stars\\dashboard_fitness_club_tunja\\vendor\\symfony\\console\\Application.php(259): Symfony\\Component\\Console\\Application->find('boost:mcp')
+#2 C:\\xampp\\htdocs\\apps stars\\dashboard_fitness_club_tunja\\vendor\\symfony\\console\\Application.php(171): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#3 C:\\xampp\\htdocs\\apps stars\\dashboard_fitness_club_tunja\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Application.php(94): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#4 C:\\xampp\\htdocs\\apps stars\\dashboard_fitness_club_tunja\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(129): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#5 C:\\xampp\\htdocs\\apps stars\\dashboard_fitness_club_tunja\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#6 {main}
+"} 
