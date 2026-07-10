@@ -24,8 +24,19 @@ class PagoMembresiaController extends AppBaseController
 
     public function index(Request $request)
     {
-        $pagoMembresias = Factura::with(['user', 'detalles.membresia'])
-            ->where('tipo', 'membresia')
+        $query = Factura::with(['user', 'detalles.membresia'])
+            ->where('tipo', 'membresia');
+
+        // Filtro por rango de fechas (created_at)
+        if ($request->filled('fecha_desde')) {
+            $query->whereDate('created_at', '>=', $request->fecha_desde);
+        }
+
+        if ($request->filled('fecha_hasta')) {
+            $query->whereDate('created_at', '<=', $request->fecha_hasta);
+        }
+
+        $pagoMembresias = $query
             ->orderBy('created_at', 'desc')
             ->get()
             ->map(function ($factura) {
@@ -42,7 +53,10 @@ class PagoMembresiaController extends AppBaseController
                 ];
             });
 
-        return view('pago_membresias.index')->with('pagoMembresias', $pagoMembresias);
+        return view('pago_membresias.index')
+            ->with('pagoMembresias', $pagoMembresias)
+            ->with('fechaDesde', $request->fecha_desde)
+            ->with('fechaHasta', $request->fecha_hasta);
     }
 
     public function create()

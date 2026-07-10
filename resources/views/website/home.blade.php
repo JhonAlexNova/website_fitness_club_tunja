@@ -5,6 +5,16 @@
        color:#fff !important
    }
 
+   /* Fix: la imagen de fondo del slider tenía z-index más alto que el texto,
+      lo que hacía que el texto quedara tapado (visible en móvil) */
+   #rev_slider_1_wrapper .tp-caption {
+       z-index: 100 !important;
+   }
+   #rev_slider_1_wrapper .tp-bgimg,
+   #rev_slider_1_wrapper .rev-slidebg {
+       z-index: 1 !important;
+   }
+
    /* ===== TEMA OSCURO GENERAL ===== */
    body {
        background: radial-gradient(circle at top, #0f0f1f, #050505) !important;
@@ -90,16 +100,6 @@
        display: block;
    }
 
-   @media (max-width: 768px) {
-       .features-area .features-body {
-           flex-wrap: wrap;
-       }
-       .features-area .features-body .features-box {
-           flex: 0 0 100%;
-           max-width: 100%;
-       }
-   }
-
    /* ===== CALL TO ACTION 1 ===== */
    .call-to-action1 {
        background: transparent;
@@ -161,23 +161,30 @@
    }
 
    /* ===== CLASES DE ENTRENAMIENTO (portfolio-area) ===== */
-   .portfolio-area.bg1 {
-       background: radial-gradient(circle at top, #0f0f1f, #050505) !important;
+   .portfolio-area .port-carousel {
+       display: flex;
+       gap: 15px;
+       flex-wrap: wrap;
    }
    .portfolio-area .port-box {
-       border-radius: 20px;
+       flex: 1 1 calc(25% - 12px);
+       min-width: 220px;
+   }
+   .portfolio-area .port-box .port-img {
+       height: 320px;
        overflow: hidden;
-       border: 1px solid rgba(138,43,226,0.2);
+       border-radius: 12px;
    }
-   .portfolio-area .port-box .port-dtl h5 {
-       color: #fff !important;
-       font-weight: 800;
+   .portfolio-area .port-box .port-img a {
+       display: block;
+       width: 100%;
+       height: 100%;
    }
-   .portfolio-area .port-box .port-dtl p {
-       color: #ccc !important;
-   }
-   .portfolio-area .primary-overlay:before {
-       background: rgba(138, 43, 226, 0.6) !important;
+   .portfolio-area .port-box .port-img img {
+       width: 100%;
+       height: 100%;
+       object-fit: cover;
+       display: block;
    }
 
    /* ===== CLASS SCHEDULE ===== */
@@ -225,6 +232,186 @@
    #contacto {
        background: radial-gradient(circle at bottom, #0f0f1f, #050505) !important;
    }
+
+   /* Salvaguarda: nunca permitir scroll horizontal en toda la página */
+   html, body {
+       overflow-x: hidden !important;
+       max-width: 100%;
+   }
+
+   /* =========================================================
+      ===================  RESPONSIVE MOBILE  ==================
+      ========================================================= */
+   @media (max-width: 768px) {
+       /* Textos del slider: el style.css original fuerza 65px/28px con !important
+          en TODOS los tamaños de pantalla, bloqueando el responsive del plugin.
+          Los reducimos aquí para que quepan en móvil sin encimarse. */
+       #rev_slider_1_wrapper .tp-caption.slide-text-one h1,
+       #rev_slider_1_wrapper .tp-caption.slide-text-one h1 span {
+           font-size: 22px !important;
+           line-height: 26px !important;
+       }
+       #rev_slider_1_wrapper .tp-caption.slide-text-two h1 {
+           font-size: 13px !important;
+           line-height: 18px !important;
+       }
+       #rev_slider_1_wrapper .tp-caption.rev-btn {
+           padding: 8px 14px !important;
+           font-size: 12px !important;
+       }
+       /* El HTML trae data-whitespace="nowrap" -> impide el salto de línea
+          y corta el texto en el borde de la pantalla. Lo forzamos a wrap. */
+       #rev_slider_1_wrapper .tp-caption.slide-text-one,
+       #rev_slider_1_wrapper .tp-caption.slide-text-two {
+           white-space: normal !important;
+           text-align: center !important;
+       }
+       /* Centrar y dar ancho real a cada capa por id (más confiable que por clase) */
+       #rev_slider_1_wrapper .tp-caption[id*="layer-1"],
+       #rev_slider_1_wrapper .tp-caption[id*="layer-2"],
+       #rev_slider_1_wrapper .tp-caption[id*="layer-4"] {
+           left: 50% !important;
+           transform: translateX(-50%) !important;
+           width: 94% !important;
+           max-width: 94% !important;
+           text-align: center !important;
+       }
+       #rev_slider_1_wrapper .tp-caption[id*="layer-1"] {
+           top: 70px !important;
+       }
+       #rev_slider_1_wrapper .tp-caption[id*="layer-2"] {
+           top: 110px !important;
+       }
+       #rev_slider_1_wrapper .tp-caption[id*="layer-4"] {
+           top: 350px !important;
+       }
+
+       /* Títulos de sección (Clases de Entrenamiento, etc.) se desbordaban
+          porque style.css fuerza 40px fijo en todas las pantallas */
+       .section-title h3 {
+           font-size: 1.6rem !important;
+           line-height: 1.3 !important;
+           letter-spacing: 0.5px;
+           word-break: break-word;
+       }
+       .section-title p {
+           font-size: 0.9rem !important;
+           margin: 15px 0 25px !important;
+       }
+       #contacto h2 {
+           font-size: 1.7rem !important;
+       }
+       /* Flechas de navegación: forzarlas a los extremos reales de la pantalla */
+       #rev_slider_1_wrapper .tparrows {
+           position: absolute !important;
+           top: 50% !important;
+           transform: translateY(-50%) !important;
+       }
+       #rev_slider_1_wrapper .tp-leftarrow {
+           left: 8px !important;
+           right: auto !important;
+       }
+       #rev_slider_1_wrapper .tp-rightarrow {
+           right: 8px !important;
+           left: auto !important;
+       }
+       /* Slider */
+       #rev_slider_1_wrapper,
+       #rev_slider_1_wrapper .rev_slider,
+       #rev_slider_1_wrapper .forcefullwidth_wrapper_tp_banner,
+       #rev_slider_1_wrapper ul,
+       #rev_slider_1_wrapper > ul > li {
+           height: 460px !important;
+           min-height: 460px !important;
+           max-height: 460px !important;
+       }
+       .slider-area1 {
+           height: 460px;
+       }
+
+       /* Features */
+       .features-area .features-body {
+           flex-wrap: wrap;
+       }
+       .features-area .features-body .features-box {
+           flex: 0 0 100%;
+           max-width: 100%;
+           min-height: 380px;
+       }
+
+       /* Call to action */
+       .call-to-action1 .cta-img { margin-bottom: 20px; }
+       .call-to-action1 .cta-box h5.title { font-size: 1.5rem; }
+       .call-to-action1 .cta-box h4.sub-title { font-size: 1.2rem; }
+       .call-to-action1 .bttn { text-align: center; }
+
+       /* Portfolio / Clases de entrenamiento */
+       .portfolio-area .port-carousel {
+           flex-direction: column;
+       }
+       .portfolio-area .port-box {
+           flex: 1 1 100%;
+           min-width: 100%;
+       }
+       .portfolio-area .port-box .port-img {
+           height: 240px;
+       }
+       .portfolio-area .port-box .port-dtl {
+           opacity: 1 !important;
+           position: relative !important;
+           bottom: 0 !important;
+           padding: 15px 10px;
+       }
+
+       /* Schedule mobile: mismo layout (día a un lado, clases al otro), clases en columnas de a dos */
+       .schedule-area .schdl-tab-area {
+           width: 28% !important;
+       }
+       .schedule-area .schdl-tab-area li a {
+           font-size: 12px;
+           padding: 9px 6px !important;
+       }
+       .schedule-area .tab-content {
+           width: 72% !important;
+       }
+       .schedule-area .tab-content .tab-pane.active {
+           display: flex;
+           flex-wrap: wrap !important;
+           justify-content: space-between;
+       }
+       .schedule-area .tab-content .tab-pane .schdl-box {
+           width: calc(50% - 8px);
+           min-width: 0;
+           height: auto;
+           min-height: 90px;
+           margin: 0 0 12px !important;
+           flex-shrink: 0;
+           padding: 12px 8px;
+       }
+       .schedule-area .tab-content .tab-pane .schdl-box h5 {
+           font-size: 13px !important;
+       }
+       .schedule-area .tab-content .tab-pane .schdl-box p {
+           font-size: 11px !important;
+       }
+
+       /* Contacto */
+       #contacto .col-md-4 { margin-bottom: 10px; }
+   }
+
+   @media (max-width: 480px) {
+       #rev_slider_1_wrapper,
+       #rev_slider_1_wrapper .rev_slider,
+       #rev_slider_1_wrapper .forcefullwidth_wrapper_tp_banner,
+       #rev_slider_1_wrapper ul,
+       #rev_slider_1_wrapper > ul > li {
+           height: 400px !important;
+           min-height: 400px !important;
+           max-height: 400px !important;
+       }
+       .slider-area1 { height: 400px; }
+       .schedule-area .schdl-tab-area li a { font-size: 11px; padding: 8px 4px !important; }
+   }
 </style>
 <div class="slider-area1">
    <!--  -->
@@ -232,7 +419,7 @@
       <div id="rev_slider_1" class="rev_slider fullscreenbanner" style="display:none;" data-version="5.0.7">
          <ul>
             <li data-index="rs-1" data-transition="slideoververtical">
-               <img src="{{url('template/website/assets/images/slider-show/s-1.jpg')}}" alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina="">
+               <img src="{{url('template/website/assets/images/slider-show/s-7.jpg')}}" alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina="">
                <div class="tp-caption slide-text-one tp-resizeme" id="slide-1-layer-1" data-x="['left','center','center','center']" data-hoffset="['65','50','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['-100','-145','-60','-100']" data-fontsize="['inherit','20','20','17']" data-lineheight="['60','30','30','26']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_in="x:[-100%];opacity:0;s:2000;e:Power4.easeInOut;" data-start="500" data-responsive_offset="on" style="z-index: 5; white-space: nowrap; font-family: 'Roboto Condensed', sans-serif">
                   <h1>Entrena <span>con pasión</span></h1>
                </div>
@@ -304,7 +491,7 @@
    <div class="row">
    <div class="col-lg-6">
       <div class="cta-img">
-         <img src="{{url('template/website/assets/images/call-to-action/cta.jpg')}}" alt="Chica entrenando">
+         <img src="{{url('template/website/assets/images/call-to-action/5.png')}}" alt="Chica entrenando">
       </div>
    </div>
    <div class="col-lg-6">
@@ -342,9 +529,8 @@
    <div class="port-carousel port-zoom">
       <div class="port-box primary-overlay">
          <div class="port-img">
-            <a href="{{url('template/website/assets/images/class-schedule/big1.jpg')}}">
-               <img src="{{url('template/website/assets/images/class-schedule/1.jpg')}}" alt="clase de entrenamiento">
-               <i class="ovrlay fa fa-search"></i>
+            <a href="{{url('template/website/assets/images/class-schedule/Up_Force.png')}}">
+               <img src="{{url('template/website/assets/images/class-schedule/Up_Force.png')}}" alt="clase de entrenamiento">
             </a>
          </div>
          <div class="port-dtl">
@@ -354,41 +540,38 @@
       </div>
       <div class="port-box primary-overlay">
          <div class="port-img">
-            <a href="{{url('template/website/assets/images/class-schedule/big2.jpg')}}">
-               <img src="{{url('template/website/assets/images/class-schedule/2.jpg')}}" alt="clase de entrenamiento">
-               <i class="ovrlay fa fa-search"></i>
+            <a href="{{url('template/website/assets/images/class-schedule/Indoor_Cycling.png')}}">
+               <img src="{{url('template/website/assets/images/class-schedule/Indoor_Cycling.png')}}" alt="clase de entrenamiento">
             </a>
          </div>
          <div class="port-dtl">
-            <h5>HIIT (Entrenamiento de Alta Intensidad)</h5>
+            <h5>Indoor Cycling</h5>
             <p>Quema calorías rápidamente con entrenamientos de alta intensidad diseñados para todos los niveles.</p>
          </div>
       </div>
       <div class="port-box primary-overlay">
          <div class="port-img">
             <a href="{{url('template/website/assets/images/class-schedule/big3.jpg')}}">
-               <img src="{{url('template/website/assets/images/class-schedule/3.jpg')}}" alt="clase de entrenamiento">
-               <i class="ovrlay fa fa-search"></i>
+               <img src="{{url('template/website/assets/images/class-schedule/Zumba.png')}}" alt="clase de entrenamiento">
             </a>
          </div>
          <div class="port-dtl">
-            <h5>Clases de Yoga</h5>
-            <p>Relájate y mejora tu flexibilidad con nuestras sesiones de yoga para todos los niveles.</p>
+            <h5>Zumba</h5>
+            <p>Una clase dinámica que combina baile y ejercicio para mejorar tu condición física, quemar calorías y divertirte al ritmo de la música.</p>
          </div>
       </div>
       <div class="port-box primary-overlay">
          <div class="port-img">
             <a href="{{url('template/website/assets/images/class-schedule/big4.jpg')}}">
-               <img src="{{url('template/website/assets/images/class-schedule/4.jpg')}}" alt="clase de entrenamiento">
-               <i class="ovrlay fa fa-search"></i>
+               <img src="{{url('template/website/assets/images/class-schedule/Cardio_Box.png')}}" alt="clase de entrenamiento">
             </a>
          </div>
          <div class="port-dtl">
-            <h5>CrossFit</h5>
-            <p>Desafía tus límites con entrenamientos funcionales de alta intensidad en nuestras clases de CrossFit.</p>
+            <h5>Cardio Box</h5>
+            <p>Una clase de alta intensidad que combina movimientos de boxeo con ejercicios cardiovasculares para mejorar la resistencia, la coordinación y la condición física.</p>
          </div>
       </div>
-      <div class="port-box primary-overlay">
+      <!--<div class="port-box primary-overlay">
          <div class="port-img">
             <a href="{{url('template/website/assets/images/class-schedule/big1.jpg')}}">
                <img src="{{url('template/website/assets/images/class-schedule/1.jpg')}}" alt="clase de entrenamiento">
@@ -399,105 +582,9 @@
             <h5>Entrenamiento Personalizado</h5>
             <p>Consigue resultados con un plan de entrenamiento adaptado a tus objetivos personales.</p>
          </div>
-      </div>
+      </div>-->
    </div>
 </div>
-
-<!--  -->
-
-
-<!--  
-<div class="pricing-area text-center pad90">
-   <div class="container">
-      <div class="row">
-         <div class="col-md-12">
-            <div class="section-title text-center">
-               <div class="title-bar full-width mb20">
-                  <img src="{{url('template/website/assets/images/logo/ttl-bar.png')}}" alt="title-img">
-               </div>
-               <h3>Planes de Membresía</h3>
-            </div>
-         </div>
-      </div>
-      <div class="row">
-         <div class="col-md-4">
-            <div class="price-box">
-               <div class="price-empty"></div>
-               <div class="price-quantity">
-                  <div class="qnty-box">
-                     <div class="box-element">
-                        <h5>$250,000 COP</h5>
-                        <p>Trimestral</p>
-                     </div>
-                  </div>
-                  <div class="price-dtl">
-                     <ul>
-                        <li class="first-child">3 días a la semana</li>
-                        <li>Entrenador profesional</li>
-                        <li>Rutinas de musculación</li>
-                        <li>Ejercicios funcionales</li>
-                        <li>Clases de boxeo y fitness</li>
-                     </ul>
-                     <div class="price-btn bttn">
-                        <button type="submit" class="btn btn-primary">Comprar ahora</button>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-         <div class="col-md-4">
-            <div class="price-box active">
-               <div class="price-empty"></div>
-               <div class="price-quantity">
-                  <div class="qnty-box">
-                     <div class="box-element">
-                        <h5>$450,000 COP</h5>
-                        <p>Semestral</p>
-                     </div>
-                  </div>
-                  <div class="price-dtl">
-                     <ul>
-                        <li class="first-child">Acceso ilimitado</li>
-                        <li>Entrenador personal 2 veces al mes</li>
-                        <li>Rutinas de musculación</li>
-                        <li>Ejercicios funcionales</li>
-                        <li>Clases de boxeo y fitness</li>
-                     </ul>
-                     <div class="price-btn bttn">
-                        <button type="submit" class="btn btn-primary">Comprar ahora</button>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-         <div class="col-md-4">
-            <div class="price-box">
-               <div class="price-empty"></div>
-               <div class="price-quantity">
-                  <div class="qnty-box">
-                     <div class="box-element">
-                        <h5>$850,000 COP</h5>
-                        <p>Anual</p>
-                     </div>
-                  </div>
-                  <div class="price-dtl">
-                     <ul>
-                        <li class="first-child">Acceso ilimitado</li>
-                        <li>Entrenador personal mensual</li>
-                        <li>Rutinas de musculación</li>
-                        <li>Ejercicios funcionales</li>
-                        <li>Clases de boxeo, yoga y spinning</li>
-                     </ul>
-                     <div class="price-btn bttn">
-                        <button type="submit" class="btn btn-primary">Comprar ahora</button>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
-</div>-->
 
 <!--  -->
 <div class="schedule-area bg2 parallax pad90">
@@ -508,8 +595,8 @@
                <div class="title-bar full-width mb20">
                   <div style="width:60px;height:3px;background:#1a3cff;margin:0 auto;border-radius:3px;"></div>
                </div>
-               <h3>class schedule</h3>
-               <p>make yourself stronger than your excuses</p>
+               <h3>Horario de clases</h3>
+               <p>Se mas fuerte que tus excusas</p>
             </div>
          </div>
       </div>
@@ -522,7 +609,6 @@
                <li class="nav-item full-width"><a href="" data-target="#level4" data-toggle="tab" class="nav-link small text-uppercase ">thursday</a></li>
                <li class="nav-item full-width"><a href="" data-target="#level5" data-toggle="tab" class="nav-link small text-uppercase ">friday</a></li>
                <li class="nav-item full-width"><a href="" data-target="#level6" data-toggle="tab" class="nav-link small text-uppercase ">saturday</a></li>
-               <li class="nav-item full-width"><a href="" data-target="#level7" data-toggle="tab" class="nav-link small text-uppercase ">sunday</a></li>
             </ul>
             <div id="tabsJustifiedContent" class="tab-content">
 
@@ -531,43 +617,43 @@
                <div id="level1" class="tab-pane fade active show">
                   <div class="schdl-box">
                      <h5>Full Body</h5>
-                     <p class="mb-0">06.00 am – 07.00am</p>
+                     <p class="mb-0">6:00 am – 7:00 am</p>
                   </div>
                   <div class="schdl-box">
                      <h5>-----</h5>
-                     <p class="mb-0">07.00 am – 08.00am</p>
+                     <p class="mb-0">7:00 am – 8:00 am</p>
                   </div>
                   <div class="schdl-box">
                      <h5>-----</h5>
-                     <p class="mb-0">08.00 am – 09.00am</p>
+                     <p class="mb-0">8:00 am – 9:00 am</p>
                   </div>
                   <div class="schdl-box">
                      <h5>-----</h5>
-                     <p class="mb-0">09.00 am – 10.00am</p>
+                     <p class="mb-0">09:00 am – 10:00 am</p>
                   </div>
                   <div class="schdl-box">
                      <h5>-----</h5>
-                     <p class="mb-0">10.00 am – 11.00am</p>
+                     <p class="mb-0">10:00 am – 11:00 am</p>
                   </div>
                   <div class="schdl-box">
                      <h5>-----</h5>
-                     <p class="mb-0">04.00 pm – 05.00pm</p>
+                     <p class="mb-0">04:00 pm – 05:00 pm</p>
                   </div>
                   <div class="schdl-box">
                      <h5>Full Body Kids</h5>
-                     <p class="mb-0">05.00 pm – 06.00pm</p>
+                     <p class="mb-0">05:00 pm – 06:00 pm</p>
                   </div>
                   <div class="schdl-box">
                      <h5>Funtional beats</h5>
-                     <p class="mb-0">06:30  – 07.30 </p>
+                     <p class="mb-0">06:30  – 07:30 </p>
                   </div>
                   <div class="schdl-box">
                      <h5>-----</h5>
-                     <p class="mb-0">07.00 pm – 08.00pm</p>
+                     <p class="mb-0">07:00 pm – 08:00pm</p>
                   </div>
                   <div class="schdl-box">
                      <h5>-----</h5>
-                     <p class="mb-0">08.00 pm – 09.00pm</p>
+                     <p class="mb-0">08:00 pm – 09:00 pm</p>
                   </div>
                </div>
 
@@ -584,15 +670,15 @@
                   </div>
                   <div class="schdl-box">
                      <h5>Down Force</h5>
-                     <p class="mb-0">7:00 am – 8:00am</p>
+                     <p class="mb-0">7:00 am – 8:00 am</p>
                   </div>
                   <div class="schdl-box">
                      <h5>Down Force</h5>
-                     <p class="mb-0">8:00 am – 9:00am</p>
+                     <p class="mb-0">8:00 am – 9:00 am</p>
                   </div>
                   <div class="schdl-box">
                      <h5>-----</h5>
-                     <p class="mb-0">9:00 am – 11.00am</p>
+                     <p class="mb-0">9:00 am – 11.00 am</p>
                   </div>
                   <div class="schdl-box">
                      <h5>-----</h5>
@@ -617,23 +703,43 @@
                <div id="level3" class="tab-pane fade">
                   <div class="schdl-box">
                      <h5>Power Sport</h5>
-                     <p class="mb-0">5:00 am – 6:00am</p>
+                     <p class="mb-0">5:00 am – 6:00 am</p>
+                  </div>
+                  <div class="schdl-box">
+                     <h5>Power Sport</h5>
+                     <p class="mb-0">6:00 am – 7:00 am</p>
+                  </div>
+                  <div class="schdl-box">
+                     <h5>Power Sport</h5>
+                     <p class="mb-0">7:00 am – 8:00 am</p>
+                  </div>
+                  <div class="schdl-box">
+                     <h5>Funtional Senior</h5>
+                     <p class="mb-0">8:00 am – 9:00 am</p>
                   </div>
                   <div class="schdl-box">
                      <h5>-----</h5>
-                     <p class="mb-0">09.00 am – 10.00am</p>
-                  </div>
-                  <div class="schdl-box">
-                     <h5>crosfit</h5>
-                     <p class="mb-0">10.00 am – 11.00am</p>
+                     <p class="mb-0">9:00 am – 11:00 am</p>
                   </div>
                   <div class="schdl-box">
                      <h5>-----</h5>
-                     <p class="mb-0">1.00 am – 12.00am</p>
+                     <p class="mb-0">4:00 pm – 5:00 pm</p>
                   </div>
                   <div class="schdl-box">
-                     <h5>fitness</h5>
-                     <p class="mb-0">04.00 pm – 05.00pm</p>
+                     <h5>Full Body Kids</h5>
+                     <p class="mb-0">5:00 pm – 6:00 pm</p>
+                  </div>
+                  <div class="schdl-box">
+                     <h5>-----</h5>
+                     <p class="mb-0">6:00 pm – 6:30 pm</p>
+                  </div>
+                  <div class="schdl-box">
+                     <h5>Zumba</h5>
+                     <p class="mb-0">6:30 pm – 7:00 pm</p>
+                  </div>
+                  <div class="schdl-box">
+                     <h5>Power Sport</h5>
+                     <p class="mb-0">7:00 pm – 8:00 pm</p>
                   </div>
                </div>
 
@@ -641,234 +747,101 @@
 
                <div id="level4" class="tab-pane fade">
                   <div class="schdl-box">
-                     <h5>boxing</h5>
-                     <p class="mb-0">06.00 am – 07.00am</p>
+                     <h5>Up Force</h5>
+                     <p class="mb-0">5:00 am – 6:00 am</p>
+                  </div>
+                  <div class="schdl-box">
+                     <h5>Up Force</h5>
+                     <p class="mb-0">6:00 am – 7:00 am</p>
+                  </div>
+                  <div class="schdl-box">
+                     <h5>Up Force</h5>
+                     <p class="mb-0">7:00 am – 8:00 am</p>
+                  </div>
+                  <div class="schdl-box">
+                     <h5>Up Force</h5>
+                     <p class="mb-0">8:00 am – 9:00 am</p>
                   </div>
                   <div class="schdl-box">
                      <h5>-----</h5>
-                     <p class="mb-0">07.00 am – 08.00am</p>
+                     <p class="mb-0">9:00 am – 11:00 am</p>
                   </div>
                   <div class="schdl-box">
                      <h5>-----</h5>
-                     <p class="mb-0">1.00 am – 12.00am</p>
+                     <p class="mb-0">4:00 pm – 6:00 pm</p>
                   </div>
                   <div class="schdl-box">
-                     <h5>fitness</h5>
-                     <p class="mb-0">04.00 pm – 05.00pm</p>
+                     <h5>Up Force</h5>
+                     <p class="mb-0">6:00 pm – 7:00 pm</p>
+                  </div>
+                  <div class="schdl-box">
+                     <h5>Indoor Cycling</h5>
+                     <p class="mb-0">7:00 pm – 8:00 pm</p>
+                  </div>
+                  <div class="schdl-box">
+                     <h5>Up Force</h5>
+                     <p class="mb-0">8:00 pm – 9:00 pm</p>
                   </div>
                </div>
+
+               <!--VIERNES-->
+
                <div id="level5" class="tab-pane fade">
                   <div class="schdl-box">
-                     <h5>boxing</h5>
-                     <p class="mb-0">06.00 am – 07.00am</p>
+                     <h5>Cardio Box</h5>
+                     <p class="mb-0">06:00 am – 07:00 am</p>
                   </div>
                   <div class="schdl-box">
                      <h5>-----</h5>
-                     <p class="mb-0">07.00 am – 08.00am</p>
+                     <p class="mb-0">07:00 am – 08:00 am</p>
                   </div>
                   <div class="schdl-box">
-                     <h5>bodybuiling</h5>
-                     <p class="mb-0">08.00 am – 09.00am</p>
+                     <h5>Funtional Senior</h5>
+                     <p class="mb-0">08:00 am – 9:00 am</p>
                   </div>
                   <div class="schdl-box">
                      <h5>-----</h5>
-                     <p class="mb-0">09.00 am – 10.00am</p>
+                     <p class="mb-0">09.00 am – 11:00 am</p>
                   </div>
                   <div class="schdl-box">
-                     <h5>crosfit</h5>
-                     <p class="mb-0">10.00 am – 11.00am</p>
+                     <h5>-----</h5>
+                     <p class="mb-0">4:00 pm – 5:00 pm</p>
+                  </div>
+                  <div class="schdl-box">
+                     <h5>Cardio Box Kids</h5>
+                     <p class="mb-0">05:00 pm – 06:00 pm</p>
+                  </div>
+                  <div class="schdl-box">
+                     <h5>Cardio Box</h5>
+                     <p class="mb-0">06:00 am – 07:00 am</p>
+                  </div>
+                  <div class="schdl-box">
+                     <h5>-----</h5>
+                     <p class="mb-0">7:00 pm – 9:00 pm</p>
                   </div>
                </div>
+
+               <!--SÁBADO-->
+
                <div id="level6" class="tab-pane fade">
                   <div class="schdl-box">
                      <h5>-----</h5>
-                     <p class="mb-0">09.00 am – 10.00am</p>
+                     <p class="mb-0">5:00 am – 7:00 am</p>
                   </div>
                   <div class="schdl-box">
-                     <h5>crosfit</h5>
-                     <p class="mb-0">10.00 am – 11.00am</p>
+                     <h5>Bodybuilding</h5>
+                     <p class="mb-0">7:00 am – 8:00 am</p>
                   </div>
                   <div class="schdl-box">
                      <h5>-----</h5>
-                     <p class="mb-0">1.00 am – 12.00am</p>
-                  </div>
-                  <div class="schdl-box">
-                     <h5>fitness</h5>
-                     <p class="mb-0">04.00 pm – 05.00pm</p>
+                     <p class="mb-0">8:00 am – 12:00 am</p>
                   </div>
                </div>
-               <div id="level7" class="tab-pane fade">
-                  <div class="schdl-box">
-                     <h5>bodybuiling</h5>
-                     <p class="mb-0">08.00 am – 09.00am</p>
-                  </div>
-                  <div class="schdl-box">
-                     <h5>-----</h5>
-                     <p class="mb-0">09.00 am – 10.00am</p>
-                  </div>
-                  <div class="schdl-box">
-                     <h5>crosfit</h5>
-                     <p class="mb-0">10.00 am – 11.00am</p>
-                  </div>
-                  <div class="schdl-box">
-                     <h5>-----</h5>
-                     <p class="mb-0">1.00 am – 12.00am</p>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-      <div class="row">
-         <div class="col-md-12">
-            <div class="dwnload">
-               <a href="#"><span><i class="fa fa-download" aria-hidden="true"></i></span>download our full class schedule</a>
             </div>
          </div>
       </div>
    </div>
 </div>
-<!--<div class="product-area pad90">
-   <div class="container">
-      <div class="row">
-         <div class="col-md-12">
-            <div class="section-title text-center">
-               <div class="title-bar full-width mb20">
-                  <div style="width:60px;height:3px;background:#1a3cff;margin:0 auto;border-radius:3px;"></div>
-               </div>
-               <h3>special products</h3>
-               <p>look your best feel even better</p>
-            </div>
-         </div>
-      </div>
-      <div class="row">
-         <div class="col-md-12">
-            <div class="product-carousel">
-               <div class="col-md-12">
-                  <div class="product-box">
-                     <div class="cart-box primary-overlay">
-                        <div class="cart-img full-width">
-                           <a href="assets/images/price/big1.jpg')}}">
-                           <img src="{{url('template/website/assets/images/price/1.jpg')}}" alt="price img"><i class=" ovrlay fa fa-search"></i></a>
-                        </div>
-                        <div class="cart-element">
-                           <a href="#">quick look</a>
-                           <i class=" fa fa-heart"></i>
-                        </div>
-                     </div>
-                     <div class="cart-dtl">
-                        <h4>Muscle Gain<span>£85.00</span></h4>
-                        <div class="add-cart">
-                           <a href="#">add to cart</a>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <div class="col-md-12">
-                  <div class="product-box">
-                     <div class="cart-box primary-overlay">
-                        <div class="cart-img full-width">
-                           <a href="assets/images/price/big2.jpg')}}">
-                           <img src="{{url('template/website/assets/images/price/2.jpg')}}" alt="price img"><i class=" ovrlay fa fa-search"></i></a>
-                        </div>
-                        <div class="cart-element">
-                           <a href="#">quick look</a>
-                           <i class="fa fa-heart"></i>
-                        </div>
-                     </div>
-                     <div class="cart-dtl">
-                        <h4>supplements <span>£75.00</span></h4>
-                        <div class="add-cart">
-                           <a href="#">add to cart</a>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <div class="col-md-12">
-                  <div class="product-box">
-                     <div class="cart-box primary-overlay">
-                        <div class="cart-img full-width">
-                           <a href="assets/images/price/big3.jpg')}}">
-                           <img src="{{url('template/website/assets/images/price/3.jpg')}}" alt="price img"><i class=" ovrlay fa fa-search"></i></a>
-                        </div>
-                        <div class="cart-element">
-                           <a href="#">quick look</a>
-                           <i class="fa fa-heart"></i>
-                        </div>
-                     </div>
-                     <div class="cart-dtl">
-                        <h4>supplements <span>£95.00</span></h4>
-                        <div class="add-cart">
-                           <a href="#">add to cart</a>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <div class="col-md-12">
-                  <div class="product-box">
-                     <div class="cart-box primary-overlay">
-                        <div class="cart-img full-width">
-                           <a href="assets/images/price/big4.jpg')}}">
-                           <img src="{{url('template/website/assets/images/price/4.jpg')}}" alt="price img"><i class=" ovrlay fa fa-search"></i></a>
-                        </div>
-                        <div class="cart-element">
-                           <a href="#">quick look</a>
-                           <i class="fa fa-heart"></i>
-                        </div>
-                     </div>
-                     <div class="cart-dtl">
-                        <h4>Muscle Gain<span>£85.00</span></h4>
-                        <div class="add-cart">
-                           <a href="#">add to cart</a>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <div class="col-md-12">
-                  <div class="product-box">
-                     <div class="cart-box primary-overlay">
-                        <div class="cart-img full-width">
-                           <a href="assets/images/price/big3.jpg')}}">
-                           <img src="{{url('template/website/assets/images/price/3.jpg')}}" alt="price img"><i class=" ovrlay fa fa-search"></i></a>
-                        </div>
-                        <div class="cart-element">
-                           <a href="#">quick look</a>
-                           <i class="fa fa-heart"></i>
-                        </div>
-                     </div>
-                     <div class="cart-dtl">
-                        <h4>supplements <span>£95.00</span></h4>
-                        <div class="add-cart">
-                           <a href="#">add to cart</a>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <div class="col-md-12">
-                  <div class="product-box">
-                     <div class="cart-box primary-overlay">
-                        <div class="cart-img full-width">
-                           <a href="assets/images/price/big4.jpg')}}">
-                           <img src="{{url('template/website/assets/images/price/4.jpg')}}" alt="price img"><i class=" ovrlay fa fa-search"></i></a>
-                        </div>
-                        <div class="cart-element">
-                           <a href="#">quick look</a>
-                           <i class="fa fa-heart"></i>
-                        </div>
-                     </div>
-                     <div class="cart-dtl">
-                        <h4>Muscle Gain<span>£85.00</span></h4>
-                        <div class="add-cart">
-                           <a href="#">add to cart</a>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
-</div>-->
-
 
 <!-- CONTACTO -->
 <div id="contacto" class="pad90" style="background: radial-gradient(circle at bottom, #0f0f1f, #050505);">

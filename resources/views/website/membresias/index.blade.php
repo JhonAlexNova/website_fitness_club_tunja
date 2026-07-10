@@ -55,8 +55,8 @@ body {
     transition: 0.3s;
     background: rgba(20, 20, 40, 0.6);
     backdrop-filter: blur(15px);
-    padding: 25px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    padding: 18px 22px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
     border-left: 4px solid #00f0ff;
     opacity: 0;
     transform: translateY(40px);
@@ -111,7 +111,7 @@ body {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 .multi-price .price-main {
@@ -134,7 +134,7 @@ body {
 .feature {
     display: flex;
     align-items: flex-start;
-    padding: 8px 0;
+    padding: 5px 0;
     font-size: 0.9rem;
     gap: 10px;
 }
@@ -284,6 +284,16 @@ body {
     position: relative;
     z-index: 10;
 }
+@media (max-width: 768px) {
+    .main-title { font-size: 1.8rem; }
+    .subtitle { font-size: 1.3rem; }
+    .cards-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    .membership-card { padding: 20px; }
+    .price { font-size: 2rem; }
+}
 </style>
 @endpush
 @section("title","Membresias")
@@ -304,9 +314,8 @@ body {
                     <!-- Card 1: Semestral Elite -->
                     <div class="membership-card" data-plan="semestral">
                         <div class="card-content">
-                            <h3 class="plan-title">SEMESTRAL<br>ELITE</h3>
-                            <div class="price">$450.000</div>
-                            <p class="plan-subtitle">Membresía free por $75.000 mensuales:</p>
+                            <h3 class="plan-title">SPORT</h3>
+                            <div class="price">69.900</div>
                             
                             <ul class="features-list">
                                 <li class="feature included">
@@ -315,25 +324,13 @@ body {
                                 </li>
                                 <li class="feature included">
                                     <span class="check">✓</span>
-                                    <span class="text">App Fitness Club</span>
+                                    <span class="text">App Fitness Club 24/7</span>
                                 </li>
                                 <li class="feature included">
                                     <span class="check">✓</span>
-                                    <span class="text">Master clases</span>
-                                </li>
-                                <li class="feature excluded">
-                                    <span class="cross">✗</span>
-                                    <span class="text">Plan de Entrenamiento</span>
-                                </li>
-                                <li class="feature excluded">
-                                    <span class="cross">✗</span>
-                                    <span class="text">Valoración</span>
+                                    <span class="text">Horario libre</span>
                                 </li>
                             </ul>
-                            
-                            <button class="cta-button yellow" onclick="selectPlan('semestral', 'SEMESTRAL ELITE', '$450.000')">
-                                Obtener ahora
-                            </button>
                         </div>
                     </div>
 
@@ -341,26 +338,21 @@ body {
                     <div class="membership-card featured" data-plan="anual">
                         <div class="popular-badge">POPULAR</div>
                         <div class="card-content">
-                            <h3 class="plan-title">ELITE<br>ANUAL</h3>
-                            <div class="price">$769.900</div>
-                            <p class="plan-subtitle">Membresía elite por $64.158 mensuales:</p>
+                            <h3 class="plan-title">ELITE</h3>
+                            <div class="price">$90.000</div>
                             
                             <ul class="features-list">
-                                <li class="feature included">
-                                    <span class="check">✓</span>
-                                    <span class="text">Master clases</span>
-                                </li>
                                 <li class="feature included">
                                     <span class="check">✓</span>
                                     <span class="text">Personal Training</span>
                                 </li>
                                 <li class="feature included">
                                     <span class="check">✓</span>
-                                    <span class="text">Plan de Entrenamiento</span>
+                                    <span class="text">Entrenamiento Funcional</span>
                                 </li>
                                 <li class="feature included">
                                     <span class="check">✓</span>
-                                    <span class="text">App fitness club</span>
+                                    <span class="text">App Fitness Club 24/7</span>
                                 </li>
                                 <li class="feature included">
                                     <span class="check">✓</span>
@@ -368,21 +360,13 @@ body {
                                 </li>
                                 <li class="feature included">
                                     <span class="check">✓</span>
-                                    <span class="text">LIVE y Entrenamiento en Línea</span>
-                                </li>
-                                <li class="feature included">
-                                    <span class="check">✓</span>
-                                    <span class="text">Pausas Activas, Personales y Empresariales</span>
+                                    <span class="text">Horario Especial</span>
                                 </li>
                             </ul>
-                            
-                            <button class="cta-button yellow" onclick="selectPlan('anual', 'ELITE ANUAL', '$769.900')">
-                                Obtener ahora
-                            </button>
                         </div>
                     </div>
 
-                    <!-- Card 3: Elite Free -->
+                    <!-- Card 3: Elite Free 
                     <div class="membership-card" data-plan="free">
                         <div class="card-content">
                             <h3 class="plan-title">ELITE FREE</h3>
@@ -411,12 +395,8 @@ body {
                                     <span class="text">Pausas Activas, Personales y Empresariales</span>
                                 </li>
                             </ul>
-                            
-                            <button class="cta-button pink" onclick="selectPlan('free', 'ELITE FREE', '$600.000')">
-                                Obtener ahora
-                            </button>
                         </div>
-                    </div>
+                    </div>-->
 
 
                 </div>

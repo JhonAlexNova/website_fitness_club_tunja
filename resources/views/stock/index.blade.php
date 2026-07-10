@@ -48,7 +48,9 @@
 
     <!-- div abastecer -->
     <div id="modalAgregar"></div>
-    
+
+    <!-- modal editar producto -->
+    @include('stock.modal-editar-producto')
 
 @endsection
 
@@ -187,6 +189,75 @@
                 })
             
         }
+
+        /* ============ EDITAR / ELIMINAR PRODUCTO ============ */
+
+        $(document).on('click', '.btn-editar-producto', function(){
+            var producto_id = $(this).attr('producto_id');
+            var nombre = $(this).data('nombre');
+            var descripcion = $(this).data('descripcion');
+            var categoria_id = $(this).data('categoria_id');
+            var precio_venta = $(this).data('precio_venta');
+
+            $('#editar-producto-id').val(producto_id);
+            $('#editar-nombre').val(nombre);
+            $('#editar-descripcion').val(descripcion);
+            $('#editar-categoria').val(categoria_id);
+            $('#editar-precio-venta').val(precio_venta);
+
+            $('#modalEditarProducto').modal('show');
+        });
+
+        $(document).on('click', '#btn-guardar-producto', function(){
+            var producto_id = $('#editar-producto-id').val();
+
+            if(!$('#editar-nombre').val() || !$('#editar-categoria').val() || !$('#editar-precio-venta').val()){
+                alert('Por favor completa los campos obligatorios.');
+                return;
+            }
+
+            var data = {
+                nombre: $('#editar-nombre').val(),
+                descripcion: $('#editar-descripcion').val(),
+                categoria_id: $('#editar-categoria').val(),
+                precio_venta: $('#editar-precio-venta').val(),
+                _method: 'PUT'
+            };
+
+            $.ajax({
+                url: 'productos/' + producto_id,
+                method: 'POST',
+                data: data,
+                success: function(response){
+                    $('#modalEditarProducto').modal('hide');
+                    location.reload();
+                },
+                error: function(e){
+                    console.log(e);
+                    alert('Ocurrió un error al actualizar el producto.');
+                }
+            });
+        });
+
+        $(document).on('click', '.btn-eliminar-producto', function(){
+            var producto_id = $(this).attr('producto_id');
+
+            if(!confirm('¿Estás seguro de eliminar este producto? Esta acción no se puede deshacer.')){
+                return;
+            }
+
+            $.ajax({
+                url: 'productos/' + producto_id,
+                method: 'POST',
+                data: { _method: 'DELETE' },
+                success: function(response){
+                    $('#fila-producto-' + producto_id).remove();
+                },
+                error: function(e){
+                    console.log(e);
+                    alert('Ocurrió un error al eliminar el producto.');
+                }
+            });
+        });
 </script>
 @endpush
-

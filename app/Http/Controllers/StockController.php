@@ -9,19 +9,23 @@ use Illuminate\Support\Facades\DB;
 
 use App\Repositories\ProductoRepository;
 use App\Repositories\HistorialProductoRepository;
+use App\Repositories\CategoriaRepository;
 
 class StockController extends Controller
 {
     private $productoRepository;
     private $historialProductoRepository;
+    private $categoriaRepository;
 
     public function __construct(
         ProductoRepository $productoRepo,
-        HistorialProductoRepository $HistorialProductoRepo
+        HistorialProductoRepository $HistorialProductoRepo,
+        CategoriaRepository $categoriaRepo
     )
     {
         $this->productoRepository = $productoRepo;
         $this->historialProductoRepository = $HistorialProductoRepo;
+        $this->categoriaRepository = $categoriaRepo;
     }
 
     public function index()
@@ -44,10 +48,13 @@ class StockController extends Controller
             ];
         }
 
+        $categorias = $this->categoriaRepository->all();
+
         $backpack = [
             'productos'    => $productos,
             'cierreGlobal' => $cierreGlobal,
             'configGlobal' => $configGlobal,
+            'categorias'   => $categorias,
         ];
 
         return view('stock.index', $backpack);

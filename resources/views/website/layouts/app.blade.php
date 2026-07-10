@@ -9,9 +9,9 @@
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <link rel="shortcut icon" href="{{url('template/website/assets/favicon/favicon.ico')}}">
       <link rel="apple-touch-icon" href="{{url('template/website/assets/favicon/apple-icon-57x57.png')}}">
-      <link rel="apple-touch-icon" sizes="72x72" href="{{url('template/website/assets/favicon/apple-icon-72x72.png')}}">
-      <link rel="apple-touch-icon" sizes="114x114" href="{{url('template/website/assets/favicon/apple-icon-114x114.png')}}">
-      <link rel="apple-touch-icon" sizes="144x144" href="{{url('template/website/assets/favicon/apple-icon-144x144.png')}}">
+      <link rel="apple-touch-icon" sizes="72x72" href="{{url('template/website/assets/favicon/logo8.png')}}">
+      <link rel="apple-touch-icon" sizes="114x114" href="{{url('template/website/assets/favicon/logo8.png')}}">
+      <link rel="apple-touch-icon" sizes="144x144" href="{{url('template/website/assets/favicon/logo8.png')}}">
       <link rel="stylesheet" href="{{url('template/website/assets/css/vendor/bootstrap.min.css')}}">
       <link rel="stylesheet" href="{{url('template/website/assets/css/vendor/rev_slider/settings.css')}}">
       <link rel="stylesheet" href="{{url('template/website/assets/css/vendor/rev_slider/navigation.css')}}">
@@ -134,6 +134,15 @@
             font-weight: 600;
          }
 
+         /* Imagen de horarios: reemplaza la lista, se ve completa sin recortarse */
+         .footer-area-custom .footer-schedule-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: contain;
+            border-radius: 8px;
+         }
+
          .footer-area-custom .social-links {
             display: flex;
             gap: 10px;
@@ -187,14 +196,23 @@
             background: #111;
          }
 
-         @media (max-width: 768px) {
-            .footer-area-custom .col-md-3,
-            .footer-area-custom .col-md-4 {
-               margin-bottom: 35px;
+         @media (max-width: 991px) {
+            .navbar-brand img { max-width: 70px !important; }
+            li.nav-item.btnLogin a {
+               margin: 10px 0 !important;
+               display: inline-block;
             }
-            .footer-area-custom .footer-bottom {
-               justify-content: center;
+            .footer-area-custom .col-md-3,
+            .footer-area-custom .col-md-4,
+            .footer-area-custom .col-md-2 {
                text-align: center;
+               margin-bottom: 30px;
+            }
+            .footer-area-custom .footer-contact-item {
+               justify-content: center;
+            }
+            .footer-area-custom .social-links {
+               justify-content: center;
             }
          }
       </style>
@@ -222,37 +240,31 @@
                      <div class="item active">
                         <a href="{{url('template/website/assets/images/instagram/big1.jpg')}}">
                            <img src="{{url('template/website/assets/images/instagram/1.jpg')}}" alt="Instagram Fitness Club">
-                           <i class="fa fa-search"></i>
                         </a>
                      </div>
                      <div class="item">
                         <a href="{{url('template/website/assets/images/instagram/big2.jpg')}}">
                            <img src="{{url('template/website/assets/images/instagram/2.jpg')}}" alt="Instagram Fitness Club">
-                           <i class="fa fa-search"></i>
                         </a>
                      </div>
                      <div class="item">
                         <a href="{{url('template/website/assets/images/instagram/big3.jpg')}}">
                            <img src="{{url('template/website/assets/images/instagram/3.jpg')}}" alt="Instagram Fitness Club">
-                           <i class="fa fa-search"></i>
                         </a>
                      </div>
                      <div class="item">
                         <a href="{{url('template/website/assets/images/instagram/big4.jpg')}}">
                            <img src="{{url('template/website/assets/images/instagram/4.jpg')}}" alt="Instagram Fitness Club">
-                           <i class="fa fa-search"></i>
                         </a>
                      </div>
                      <div class="item">
                         <a href="{{url('template/website/assets/images/instagram/big5.jpg')}}">
                            <img src="{{url('template/website/assets/images/instagram/5.jpg')}}" alt="Instagram Fitness Club">
-                           <i class="fa fa-search"></i>
                         </a>
                      </div>
                      <div class="item">
                         <a href="{{url('template/website/assets/images/instagram/big6.jpg')}}">
                            <img src="{{url('template/website/assets/images/instagram/6.jpg')}}" alt="Instagram Fitness Club">
-                           <i class="fa fa-search"></i>
                         </a>
                      </div>
                   </div>
@@ -285,10 +297,13 @@
                            <span>fitnessclubtunja@gmail.com</span>
                         </div>
                         <div class="social-links">
-                           <a href="#" title="Facebook"><i class="fa fa-facebook"></i></a>
-                           <a href="#" title="Instagram"><i class="fa fa-instagram"></i></a>
-                           <a href="#" title="YouTube"><i class="fa fa-youtube"></i></a>
-                           <a href="#" title="WhatsApp"><i class="fa fa-whatsapp"></i></a>
+                           <a href="https://www.instagram.com/fitnessclub_tunja?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" title="Instagram"><i class="fa fa-instagram"></i></a>
+                           <a href="https://www.facebook.com/bikekafitnessclub?locale=es_LA" title="Facebook"><i class="fa fa-facebook"></i></a>
+                           <a href="https://www.tiktok.com/@fitnessclubtunja1?is_from_webapp=1&sender_device=pc" title="Tik tok">
+                              <svg viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" style="vertical-align:middle;">
+                                 <path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48z"/>
+                              </svg>
+                           </a>
                         </div>
                      </div>
 
@@ -298,8 +313,8 @@
                         <div class="footer-links">
                            <ul>
                               <li><a href="{{ url('/') }}"><i class="fa fa-angle-right"></i> Inicio</a></li>
-                              <!--<li><a href="{{ url('tienda') }}"><i class="fa fa-angle-right"></i> Tienda</a></li>-->
-                              <li><a href="{{ route('website.membresias.index') }}"><i class="fa fa-angle-right"></i> Membresías</a></li>
+                              <!--<li><a href="{{ url('tienda') }}"><i class="fa fa-angle-right"></i> Tienda</a></li>
+                              <li><a href="{{ route('website.membresias.index') }}"><i class="fa fa-angle-right"></i> Membresías</a></li>-->
                               <li><a href="#contacto"><i class="fa fa-angle-right"></i> Contacto</a></li>
                               <!--<li>
                                  @guest
@@ -325,20 +340,10 @@
                         </div>
                      </div>
 
-                     <!-- Columna 4: Horarios -->
+                     <!-- Columna 4: Horarios (reemplazado por imagen) -->
                      <div class="col-md-4 col-sm-12 mb-4">
                         <h5 class="footer-section-title">Horarios</h5>
-                        <div class="opening-hours">
-                           <ul>
-                              <li>Lunes <span>06:00 AM - 11:00 AM / 04:00 PM - 09:00 PM</span></li>
-                              <li>Martes <span>06:00 AM - 11:00 AM / 04:00 PM - 09:00 PM</span></li>
-                              <li>Miércoles <span>06:00 AM - 11:00 AM / 04:00 PM - 09:00 PM</span></li>
-                              <li>Jueves <span>06:00 AM - 11:00 AM / 04:00 PM - 09:00 PM</span></li>
-                              <li>Viernes <span>06:00 AM - 11:00 AM / 04:00 PM - 09:00 PM</span></li>
-                              <li>Sábado <span>07:00 AM - 12:00 PM</span></li>
-                              <li>Domingo <span>08:00 AM - 12:00 PM</span></li>
-                           </ul>
-                        </div>
+                        <img src="{{url('img/horarios.png')}}" alt="Horarios Fitness Club Tunja" class="footer-schedule-img">
                      </div>
 
                   </div><!-- /.row -->
