@@ -48,6 +48,7 @@ class MembresiaApiController extends AppBaseController
         $membresiaUser = UserMembresia::where('user_id', $request->user()->id)
             ->where('fecha_vencimiento', '>=', now()->toDateString())
             ->where('estado', '!=', 'inactivo')
+            ->with('membresia')   // 👈 esto es lo que faltaba
             ->latest('fecha_vencimiento')
             ->first();
 

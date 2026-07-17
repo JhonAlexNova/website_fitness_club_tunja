@@ -4,26 +4,24 @@ namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
-use Illuminate\Mail\Mailables\Content;
-use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
 class PagoAprobadoMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public function __construct(
-        public $usuario,
-        public $factura
-    ) {}
+    public $usuario;
+    public $factura;
 
-    public function envelope(): Envelope
+    public function __construct($usuario, $factura)
     {
-        return new Envelope(subject: '✅ Tu pago ha sido aprobado - Fitness Club');
+        $this->usuario = $usuario;
+        $this->factura = $factura;
     }
 
-    public function content(): Content
+    public function build()
     {
-        return new Content(view: 'emails.pago_aprobado');
+        return $this->subject('✅ Tu pago ha sido aprobado - Fitness Club')
+            ->view('emails.pago_aprobado');
     }
 }

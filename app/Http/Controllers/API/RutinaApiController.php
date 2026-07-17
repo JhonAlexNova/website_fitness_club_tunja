@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 
 class RutinaApiController extends Controller
 {
-    // Rutinas generales (es_general = true)
     public function rutinasGenerales()
     {
         $rutinas = Rutina::where('es_general', true)
@@ -19,7 +18,6 @@ class RutinaApiController extends Controller
         return response()->json($rutinas);
     }
 
-    // Rutinas asignadas al usuario autenticado
     public function rutinasUsuario()
     {
         $rutinas = Rutina::where('user_id', auth()->id())
@@ -30,10 +28,9 @@ class RutinaApiController extends Controller
         return response()->json($rutinas);
     }
 
-    // Ejercicios de una rutina específica
     public function ejericiosRutina($id)
     {
-        $ejercicios = RutinaEjercicio::with('ejercicio')
+        $ejercicios = RutinaEjercicio::with(['ejercicio.musculos'])
             ->where('id_rutina', $id)
             ->whereNull('deleted_at')
             ->get();
@@ -41,21 +38,19 @@ class RutinaApiController extends Controller
         return response()->json($ejercicios);
     }
 
-    // Crear rutina personalizada por el usuario
     public function storeRutinaUsuario(Request $request)
     {
         $request->validate([
-            'nombre_rutina'                       => 'required|string|max:100',
-            'descripcion'                         => 'nullable|string',
-            'duracion_semanas'                    => 'nullable|integer',
-            'ejercicios'                          => 'required|array|min:1',
-            'ejercicios.*.id_ejercicio'           => 'required|exists:ejercicios,id',
-            'ejercicios.*.series'                 => 'nullable|integer',
-            'ejercicios.*.repeticiones'           => 'nullable|integer',
-            'ejercicios.*.descanso_segundos'      => 'nullable|integer',
+            'nombre_rutina'                  => 'required|string|max:100',
+            'descripcion'                    => 'nullable|string',
+            'duracion_semanas'               => 'nullable|integer',
+            'ejercicios'                     => 'required|array|min:1',
+            'ejercicios.*.id_ejercicio'      => 'required|exists:ejercicios,id',
+            'ejercicios.*.series'            => 'nullable|integer',
+            'ejercicios.*.repeticiones'      => 'nullable|integer',
+            'ejercicios.*.descanso_segundos' => 'nullable|integer',
         ]);
 
-        // Crear la rutina
         $rutina = Rutina::create([
             'nombre_rutina'    => $request->nombre_rutina,
             'descripcion'      => $request->descripcion,
@@ -64,7 +59,6 @@ class RutinaApiController extends Controller
             'duracion_semanas' => $request->duracion_semanas ?? null,
         ]);
 
-        // Crear los ejercicios asociados
         foreach ($request->ejercicios as $ej) {
             RutinaEjercicio::create([
                 'id_rutina'         => $rutina->id,
@@ -79,5 +73,30 @@ class RutinaApiController extends Controller
             'message' => 'Rutina creada correctamente',
             'rutina'  => $rutina
         ], 201);
+    }
+
+    /**
+     * Actualizar nombre y/o descripción de una rutina propia del usuario.
+     * Solo puede editar sus propias rutinas (user_id = auth).
+     */
+    public function update(Request $request, $id)
+    {
+        $rutina = Rutina::where('id', $id)
+            ->where('user_id', auth()->id())
+            ->where('es_general', false)
+            ->whereNull('deleted_at')
+            ->firstOrFail();
+
+        $request->validate([
+            'nombre_rutina' => 'sometimes|required|string|max:100',
+            'descripcion'   => 'nullable|string',
+        ]);
+
+        $rutina->update($request->only(['nombre_rutina', 'descripcion']));
+
+        return response()->json([
+            'message' => 'Rutina actualizada correctamente',
+            'rutina'  => $rutina
+        ]);
     }
 }

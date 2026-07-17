@@ -28,6 +28,8 @@ Route::group(["middleware"=>["config"]],function(){
 /* RUTAS WEB SITE */
 Route::resource('/', App\Http\Controllers\WebSite\HomeController::class)->names('website.home');
 Route::resource('tienda', App\Http\Controllers\WebSite\TiendaController::class);
+    Route::get('cafeteria', [App\Http\Controllers\WebSite\CoffeeShopController::class, 'index'])->name('website.cafeteria.index');
+
 
 Route::group(["as" => "website."], function () {
     Route::resource('productos', App\Http\Controllers\WebSite\ProductoController::class);
@@ -192,6 +194,7 @@ Route::group(["middleware"=>["auth","config"],"prefix"=>"admon"],function(){
             Route::resource('codigos-influencers', App\Http\Controllers\CodigosInfluencersController::class);
 
             /* Notificaciones */
+            Route::post('notificaciones/marcar-leidas', [App\Http\Controllers\NotificacionController::class, 'marcarLeidas'])->name('notificaciones.marcarLeidas');
             Route::resource('notificaciones', App\Http\Controllers\NotificacionController::class);
       
 });

@@ -1,3 +1,10 @@
+<?php
+    // Notificaciones sin leer de facturas, indexadas por referencia_id (id de la factura)
+    $notifsNoLeidas = \App\Models\Notificacion::admin()
+        ->noLeidas()
+        ->deTabla('facturas')
+        ->pluck('id', 'referencia_id');
+?>
 <div class="table-responsive">
     <table class="table" id="facturas-table">
         <thead>
@@ -13,11 +20,14 @@
         </tr>
         </thead>
         <tbody>
-            <!--                             case 'FAILED':
-                            case 'DECLINED': -->
         @foreach($facturas as $factura)
             <tr>
-                <td>{{ $factura->referencia }}</td>
+                <td>
+                    {{ $factura->referencia }}
+                    @if(isset($notifsNoLeidas[$factura->id]))
+                        <span class="badge badge-danger ml-1">NUEVO</span>
+                    @endif
+                </td>
                 <td>{{ $factura->tipo }}</td>
                 <td>{{ $factura->tipo_pago }}</td>
                 <td>{{ $factura->total }}</td>

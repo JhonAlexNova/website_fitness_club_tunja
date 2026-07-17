@@ -96,6 +96,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // RUTINAS
     Route::delete('rutinas/{id}', [\App\Http\Controllers\App\RutinaController::class, 'destroy'])->middleware('auth:sanctum');
+    Route::put('/rutinas/{id}', [RutinaApiController::class, 'update']);
     Route::get('/rutinas-generales',          [RutinaApiController::class, 'rutinasGenerales']);
     Route::get('/rutinas-usuario',            [RutinaApiController::class, 'rutinasUsuario']);
     Route::get('/ejercicios-rutinas/{id}',    [RutinaApiController::class, 'ejericiosRutina']);

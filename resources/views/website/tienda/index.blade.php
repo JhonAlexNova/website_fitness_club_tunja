@@ -156,6 +156,18 @@ a.btnComprarProducto {
     margin: 0 !important;
 }
 .precio { color: #fff !important; }
+
+/* Estado vacío (sin productos) */
+.empty-state {
+    text-align: center;
+    color: #aaa;
+    padding: 60px 20px;
+    font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+    .shop-bg .section-title h3 { font-size: 1.8rem; }
+}
 </style>
 @endpush
 @section("title","Tienda Fitness Club Tunja")
@@ -170,7 +182,7 @@ a.btnComprarProducto {
          </div>
          <div class="col-md-12">
             <ol class="breadcrumb">
-               <li><a href="index.html">Inicio</a></li>
+               <li><a href="{{ url('/') }}">Inicio</a></li>
                <li>›</li>
                <li>Tienda Fitness</li>
             </ol>
@@ -193,7 +205,7 @@ a.btnComprarProducto {
       <div class="row">
          <div class="col-md-3">
             <!--  -->
-            
+
    <div class="accordion" id="filterAccordion">
       <!-- Categorías -->
       <div class="card border-0 mb-2 shadow-sm">
@@ -294,23 +306,25 @@ a.btnComprarProducto {
          </div>
          <div class="col-md-9">
             <div class="row">
-               @foreach($productos as $producto)
-               
+               @forelse($productos as $producto)
+
                <div class="col-lg-4 col-md-6 col-sm-6 col-6 mb-4">
                   <div class="product-box mt40">
                      <div class="cart-box primary-overlay">
                         <div class="cart-img full-width">
-                           <a href="{{ !is_null($producto->portada) ? url($producto->portada->url) : '#' }}">
-                                 <img src="{{ !is_null($producto->portada) && Storage::disk('public')->exists($producto->portada->url) ? asset('storage/' . $producto->portada->url) : asset('img/imagen-placeholder.png') }}"
+                           <a href="{{route('website.productos.show',$producto->url)}}">
+                              <img
+                                 src="{{ !is_null($producto->portada) && Storage::disk('public')->exists($producto->portada->url) ? asset('storage/' . $producto->portada->url) : asset('img/imagen-placeholder.png') }}"
+                                 alt="{{ $producto->nombre }}">
                            </a>
                         </div>
                      </div>
                      <div class="cart-dtl">
                         <div class="titulo">
-                           <h4>{{ $producto->nombre }} </h4>
+                           <h4>{{ $producto->nombre }}</h4>
                         </div>
                         <div class="precio">
-                           <span>£10.00</span>
+                           <span>${{ number_format($producto->precio, 0, ',', '.') }}</span>
                         </div>
                         <div class="btnComprar">
                            <a href="{{route('website.productos.show',$producto->url)}}" class="btnComprarProducto">Comprar</a>
@@ -318,7 +332,13 @@ a.btnComprarProducto {
                      </div>
                   </div>
                </div>
-               @endforeach
+               @empty
+               <div class="col-12">
+                  <div class="empty-state">
+                     Muy pronto tendremos productos disponibles. ¡Vuelve pronto!
+                  </div>
+               </div>
+               @endforelse
             </div>
          </div>
 

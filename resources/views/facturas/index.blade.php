@@ -43,8 +43,6 @@
 @push("page_scripts")
     <script>
         function abrirModalFactura(data) {
-            //return false;
-
             document.getElementById('modalReferencia').textContent = data.referencia;
             document.getElementById('modalTipo').textContent = data.tipo;
             document.getElementById('modalTipoPago').textContent = data.tipo_pago;
@@ -52,15 +50,14 @@
             document.getElementById('modalEstado').textContent = data.estado;
             document.getElementById('modalCliente').textContent = data.cliente;
             document.getElementById('modalFecha').textContent = data.fecha;
-            if(data.comprobante_url){
-                 $('#comprobanteImg').show();
-                document.getElementById('comprobanteImg').src = "/storage/"+data.comprobante_url;
-            }else{
+            if (data.comprobante_url) {
+                $('#comprobanteImg').show();
+                document.getElementById('comprobanteImg').src = "/storage/" + data.comprobante_url;
+            } else {
                 $('#comprobanteImg').hide();
             }
             document.getElementById('modalComentario').value = '';
 
-            // Guardar ID temporal
             document.getElementById('btnAprobar').onclick = function () {
                 enviarAccion(data.referencia, 'APPROVED');
             };
@@ -68,8 +65,8 @@
                 enviarAccion(data.referencia, 'REJECTED');
             };
 
-            // Mostrar modal
-            new bootstrap.Modal(document.getElementById('facturaModal')).show();
+            // Bootstrap 4 usa jQuery, no el objeto global "bootstrap"
+            $('#facturaModal').modal('show');
         }
 
         function enviarAccion(referencia, estado) {
@@ -86,8 +83,12 @@
             })
             .then(resp => resp.json())
             .then(resp => {
-                alert(resp.message || 'Estado actualizado');
-                //location.reload();
+                if (resp.response) {
+                    $('#facturaModal').modal('hide');
+                    location.reload();
+                } else {
+                    alert(resp.message || 'Error al actualizar');
+                }
             })
             .catch(err => alert('Error al actualizar'));
         }

@@ -24,10 +24,24 @@
             </li>
 
 
+            <!-- TIENDA -->
+            <li class="nav-item">
+               <a class="nav-link" href="{{ url('tienda') }}">
+                  Tienda
+               </a>
+            </li>
+
             <!-- MEMBRESIAS -->
             <li class="nav-item">
                <a class="nav-link" href="{{ route('website.membresias.index') }}">
                   Membresías
+               </a>
+            </li>
+
+            <!-- CAFETERÍA -->
+            <li class="nav-item">
+               <a class="nav-link" href="{{ route('website.cafeteria.index') }}">
+                  Cafetería
                </a>
             </li>
 

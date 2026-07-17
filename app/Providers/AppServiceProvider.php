@@ -4,6 +4,11 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
+use App\Models\Factura;
+use App\Models\Pago;
+use App\Observers\FacturaObserver;
+use App\Observers\PagoObserver;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -24,5 +29,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         date_default_timezone_set('America/Bogota');
+
+        Factura::observe(FacturaObserver::class);
+        Pago::observe(PagoObserver::class);
     }
 }

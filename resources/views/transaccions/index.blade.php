@@ -21,6 +21,8 @@
 
         @include('flash::message')
 
+        @include('partials.notificaciones_badge', ['tabla' => 'facturas'])
+
         <div class="clearfix"></div>
 
         <div class="card">
@@ -38,4 +40,3 @@
     </div>
 
 @endsection
-

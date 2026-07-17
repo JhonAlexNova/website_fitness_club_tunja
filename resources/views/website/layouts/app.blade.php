@@ -192,6 +192,64 @@
             text-decoration: none;
          }
 
+         /* ── BOTÓN FLOTANTE DE WHATSAPP ── */
+         .whatsapp-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #25d366, #128c7e);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+            z-index: 9999;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+         }
+
+         .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+         }
+
+         .whatsapp-float i {
+            color: #fff;
+            font-size: 30px;
+         }
+
+         .whatsapp-float .pulse-ring {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 2px solid #25d366;
+            animation: whatsapp-pulse 2s infinite;
+         }
+
+         @keyframes whatsapp-pulse {
+            0%   { transform: scale(1);   opacity: 0.6; }
+            100% { transform: scale(1.6); opacity: 0; }
+         }
+
+         @media (max-width: 768px) {
+            .whatsapp-float {
+               width: 52px;
+               height: 52px;
+               bottom: 18px;
+               right: 18px;
+            }
+            .whatsapp-float .pulse-ring {
+               width: 52px;
+               height: 52px;
+            }
+            .whatsapp-float i {
+               font-size: 26px;
+            }
+         }
+
          .footer-gallery-section {
             background: #111;
          }
@@ -360,6 +418,12 @@
 
          </footer>
       </div>
+
+      <!-- ══ BOTÓN FLOTANTE DE WHATSAPP ══ -->
+      <a href="https://wa.me/573214978403" target="_blank" class="whatsapp-float" title="Escríbenos por WhatsApp">
+         <span class="pulse-ring"></span>
+         <i class="fa fa-whatsapp"></i>
+      </a>
 
       <!-- Search popup -->
       <div id="search-popup" class="search-popup">

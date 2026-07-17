@@ -89,6 +89,14 @@ class FacturaController extends AppBaseController
         $factura->comentario = $request->comentario;
         $factura->save();
 
+        // Marcar como leída la(s) notificación(es) de esta factura al aprobar o rechazar
+        if (in_array($request->estado, ['APPROVED', 'REJECTED']) && $estadoAnterior !== $request->estado) {
+            Notificacion::admin()
+                ->deTabla('facturas')
+                ->where('referencia_id', $factura->id)
+                ->update(['leida' => true]);
+        }
+
         if ($request->estado === 'APPROVED' && $estadoAnterior !== 'APPROVED') {
             $usuario = User::find($factura->user_id);
 

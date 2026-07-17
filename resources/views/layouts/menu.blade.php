@@ -88,7 +88,10 @@
                 <li class="nav-item">
                     <a href="{{ route('pagos.index') }}" class="nav-link {{ Request::is('pagos*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-money-bill-wave"></i>
-                        <p>Pagos</p>
+                        <p>
+                            Pagos
+                            @include('partials.notificaciones_menu_badge', ['tabla' => 'pagos'])
+                        </p>
                     </a>
                 </li>
                 @endif
@@ -385,7 +388,10 @@
                         <li class="nav-item">
                             <a href="{{ route('pagoMembresias.index') }}" class="nav-link {{ Request::is('pagoMembresias*') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Pago Membresías</p>
+                                <p>
+                                    Pago Membresías
+                                    @include('partials.notificaciones_menu_badge', ['tabla' => 'facturas', 'tipos' => ['factura_membresia']])
+                                </p>
                             </a>
                         </li>
                     </ul>
@@ -496,7 +502,10 @@
     <li class="nav-item">
         <a href="{{ route('transaccions.index') }}" class="nav-link {{ Request::is('transaccions*') ? 'active' : '' }}">
             <i class="nav-icon fas fa-exchange-alt"></i>
-            <p>Transacciones</p>
+            <p>
+                Transacciones
+                @include('partials.notificaciones_menu_badge', ['tabla' => 'facturas', 'tipos' => ['factura_tienda', 'wompi_webhook']])
+            </p>
         </a>
     </li>
 
