@@ -20,10 +20,20 @@
         </div>
 
         <div class="form-group mb-3">
+            <label>Categoría</label>
+            <select name="coffee_category_id" class="form-control">
+                <option value="">-- Sin categoría --</option>
+                @foreach($coffee_categories as $category)
+                    <option value="{{ $category->id }}" {{ $coffee_product->coffee_category_id == $category->id ? 'selected' : '' }}>
+                        {{ $category->nombre }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
+
+        <div class="form-group mb-3">
             <label>Descripción</label>
-            <textarea name="descripcion" class="form-control" required>
-                {{ $coffee_product->descripcion }}
-            </textarea>
+            <textarea name="descripcion" class="form-control" required>{{ $coffee_product->descripcion }}</textarea>
         </div>
 
         <div class="form-group mb-3">

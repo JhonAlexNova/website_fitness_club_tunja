@@ -148,7 +148,7 @@
                 <!-- CATÁLOGO -->
                 @if($elemento['modulo']['nombre'] === 'CATALOGO')
                 @php
-                    $isCatalogoActive = Request::is('productos*') || Request::is('categorias*') || Request::is('stock*');
+                    $isCatalogoActive = Request::is('productos*') || Request::is('categorias*') || Request::is('stock*') || Request::is('admon/coffee-products*') || Request::is('admon/coffee-categories*');
                 @endphp
                 <li class="nav-item {{ $isCatalogoActive ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link {{ $isCatalogoActive ? 'active' : '' }}">
@@ -182,6 +182,13 @@
                             class="nav-link {{ Request::is('admon/coffee-products*') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Coffee Shop</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('coffee-categories.index') }}" 
+                            class="nav-link {{ Request::is('admon/coffee-categories*') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Categorías Coffee</p>
                             </a>
                         </li>
                     </ul>

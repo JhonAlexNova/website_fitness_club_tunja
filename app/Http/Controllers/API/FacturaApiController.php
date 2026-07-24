@@ -203,23 +203,108 @@ class FacturaApiController extends Controller
         return response()->json($facturas);
     }
 
-    public function misFacturas(Request $request)
+    /**
+     * Historial de pedidos del Coffee Shop.
+     *
+     * NOTA: en detalle_facturas, 'producto_id' apunta a la tabla 'coffee_products'
+     * cuando la factura es de tipo 'coffee_shop' (no a la tabla 'productos'),
+     * por eso se resuelve manualmente contra CoffeeProduct en vez de usar
+     * la relación producto() de DetalleFactura.
+     */
+    public function historialCoffee(Request $request)
     {
-        $facturas = Factura::with(['detalles.membresia', 'detalles.pasadia'])
+        $facturas = Factura::with(['detalles'])
             ->where('user_id', $request->user()->id)
+            ->where('tipo', 'coffee_shop')
             ->orderBy('created_at', 'desc')
             ->get()
             ->map(function ($factura) {
                 return [
                     'id'         => $factura->id,
                     'referencia' => $factura->referencia,
-                    'tipo'       => $factura->tipo,
                     'tipo_pago'  => $factura->tipo_pago,
                     'total'      => $factura->total,
                     'estado'     => $factura->estado,
                     'comentario' => $factura->comentario,
-                    'membresia'  => optional($factura->detalles->first()?->membresia)->nombre ?? '—',
-                    'pasadia'    => optional($factura->detalles->first()?->pasadia)->nombre ?? null,
+                    'fecha'      => $factura->created_at->format('d/m/Y H:i'),
+                    'productos'  => $factura->detalles
+                        ->filter(fn($d) => $d->producto_id !== null)
+                        ->map(function ($detalle) {
+                            $coffeeProducto = CoffeeProduct::find($detalle->producto_id);
+
+                            return [
+                                'nombre'   => optional($coffeeProducto)->nombre ?? 'Producto eliminado',
+                                'imagen'   => optional($coffeeProducto)->imagen,
+                                'cantidad' => $detalle->cantidad,
+                                'total'    => $detalle->total,
+                            ];
+                        })
+                        ->values(),
+                ];
+            });
+
+        return response()->json($facturas);
+    }
+
+    public function misFacturas(Request $request)
+    {
+        $facturas = Factura::with(['detalles.membresia', 'detalles.pasadia', 'detalles.producto'])
+            ->where('user_id', $request->user()->id)
+            ->orderBy('created_at', 'desc')
+            ->get()
+            ->map(function ($factura) {
+
+                $origen = 'otro';
+                $icono  = 'receipt-outline';
+                $detalleTexto = '—';
+
+                switch ($factura->tipo) {
+                    case 'COMPRA_TIENDA':
+                        $origen = 'tienda';
+                        $icono  = 'bag-handle-outline';
+                        $nombres = $factura->detalles
+                            ->filter(fn($d) => $d->producto_id !== null)
+                            ->map(fn($d) => optional($d->producto)->nombre ?? 'Producto eliminado');
+                        $detalleTexto = $nombres->isNotEmpty() ? $nombres->implode(', ') : 'Compra en tienda';
+                        break;
+
+                    case 'coffee_shop':
+                        $origen = 'coffee';
+                        $icono  = 'cafe-outline';
+                        $nombres = $factura->detalles
+                            ->filter(fn($d) => $d->producto_id !== null)
+                            ->map(function ($d) {
+                                $cp = CoffeeProduct::find($d->producto_id);
+                                return optional($cp)->nombre ?? 'Producto eliminado';
+                            });
+                        $detalleTexto = $nombres->isNotEmpty() ? $nombres->implode(', ') : 'Compra en Coffee Shop';
+                        break;
+
+                    case 'pasadia':
+                        $origen = 'pasadia';
+                        $icono  = 'ticket-outline';
+                        $detalleTexto = optional($factura->detalles->first()?->pasadia)->nombre ?? 'Pasadía';
+                        break;
+
+                    case 'membresia':
+                    default:
+                        $origen = 'membresia';
+                        $icono  = 'barbell-outline';
+                        $detalleTexto = optional($factura->detalles->first()?->membresia)->nombre ?? 'Membresía';
+                        break;
+                }
+
+                return [
+                    'id'         => $factura->id,
+                    'referencia' => $factura->referencia,
+                    'tipo'       => $factura->tipo,
+                    'origen'     => $origen,
+                    'icono'      => $icono,
+                    'detalle'    => $detalleTexto,
+                    'tipo_pago'  => $factura->tipo_pago,
+                    'total'      => $factura->total,
+                    'estado'     => $factura->estado,
+                    'comentario' => $factura->comentario,
                     'fecha'      => $factura->created_at->format('d/m/Y'),
                 ];
             });

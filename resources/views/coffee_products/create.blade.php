@@ -23,6 +23,16 @@
         </div>
 
         <div class="form-group mb-3">
+            <label>Categoría</label>
+            <select name="coffee_category_id" class="form-control">
+                <option value="">-- Sin categoría --</option>
+                @foreach($coffee_categories as $category)
+                    <option value="{{ $category->id }}">{{ $category->nombre }}</option>
+                @endforeach
+            </select>
+        </div>
+
+        <div class="form-group mb-3">
             <label>Descripción</label>
             <textarea name="descripcion" class="form-control" required></textarea>
         </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CoffeeProduct;
+use App\Models\CoffeeCategory;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,7 @@ class CoffeeProductController extends Controller
      */
     public function index()
     {
-        $coffee_products = CoffeeProduct::all();
+        $coffee_products = CoffeeProduct::with('coffeeCategory')->get();
         return view('coffee_products.index', compact('coffee_products'));
     }
 
@@ -26,7 +27,8 @@ class CoffeeProductController extends Controller
      */
     public function create()
     {
-        return view('coffee_products.create');
+        $coffee_categories = CoffeeCategory::where('activo', true)->orderBy('orden')->get();
+        return view('coffee_products.create', compact('coffee_categories'));
     }
 
     /**
@@ -41,6 +43,7 @@ class CoffeeProductController extends Controller
             'nombre' => 'required',
             'descripcion' => 'required',
             'precio' => 'required|numeric',
+            'coffee_category_id' => 'nullable|exists:coffee_categories,id',
             'imagen' => 'nullable|image|mimes:jpg,jpeg,png|max:10000'
         ]);
 
@@ -76,7 +79,8 @@ class CoffeeProductController extends Controller
    public function edit($id)
     {
         $coffee_product = CoffeeProduct::findOrFail($id);
-        return view('coffee_products.edit', compact('coffee_product'));
+        $coffee_categories = CoffeeCategory::where('activo', true)->orderBy('orden')->get();
+        return view('coffee_products.edit', compact('coffee_product', 'coffee_categories'));
     }
 
     /**
@@ -89,6 +93,14 @@ class CoffeeProductController extends Controller
     public function update(Request $request, $id)
     {
         $product = CoffeeProduct::findOrFail($id);
+
+        $request->validate([
+            'nombre' => 'required',
+            'descripcion' => 'required',
+            'precio' => 'required|numeric',
+            'coffee_category_id' => 'nullable|exists:coffee_categories,id',
+            'imagen' => 'nullable|image|mimes:jpg,jpeg,png|max:10000'
+        ]);
 
         $data = $request->all();
 
@@ -118,7 +130,7 @@ class CoffeeProductController extends Controller
 
     public function apiIndex()
     {
-        $productos = \App\Models\CoffeeProduct::all();
+        $productos = CoffeeProduct::with('coffeeCategory')->get();
 
         return response()->json($productos);
     }

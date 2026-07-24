@@ -18,6 +18,7 @@ use App\Http\Controllers\API\ClienteApiController;
 use App\Http\Controllers\API\MusculoApiController;
 use App\Http\Controllers\API\EjercicioApiController;
 use App\Http\Controllers\CoffeeProductController;
+use App\Http\Controllers\CoffeeCategoryController;
 use App\Http\Controllers\API\PasswordResetController;
 use App\Http\Controllers\API\SesionEntrenamientoApiController;
 use App\Http\Controllers\API\CodigoPromocionalApiController;
@@ -86,6 +87,8 @@ Route::middleware('auth:sanctum')->group(function () {
     // PRODUCTOS
     Route::post('/productos/categorias', [ProductoApiController::class, 'get_productos_by_categorias']);
     Route::get('/coffee-products',       [CoffeeProductController::class, 'apiIndex']);
+    Route::get('/coffee-categories',     [CoffeeCategoryController::class, 'apiIndex']);
+    Route::get('historial-coffee', [FacturaApiController::class, 'historialCoffee']);
 
     // MEMBRESÍAS
     Route::get('membresias/usuario', [MembresiaApiController::class, 'membresia_usuario']);

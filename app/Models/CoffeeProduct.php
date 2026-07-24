@@ -10,9 +10,15 @@ class CoffeeProduct extends Model
     use HasFactory;
 
     protected $fillable = [
-    'nombre',
-    'descripcion',
-    'precio',
-    'imagen'
-];
+        'nombre',
+        'descripcion',
+        'precio',
+        'imagen',
+        'coffee_category_id'
+    ];
+
+    public function coffeeCategory()
+    {
+        return $this->belongsTo(CoffeeCategory::class);
+    }
 }

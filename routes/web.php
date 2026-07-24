@@ -52,6 +52,7 @@ Route::group(["middleware"=>["auth","config"],"prefix"=>"admon"],function(){
             Route::resource('categorias', App\Http\Controllers\CategoriaController::class);
 
             Route::resource('coffee-products', App\Http\Controllers\CoffeeProductController::class);
+            Route::resource('coffee-categories', App\Http\Controllers\CoffeeCategoryController::class);
     
     
             Route::resource('productos', App\Http\Controllers\ProductoController::class);
