@@ -1,5 +1,5 @@
 <div class="">
-    <table class="table datatableSimple" id="baseEmpleados-table">
+    <table class="table datatableSimple" id="tableReservasClases">
         <thead>
         <tr>
             <th>Clase</th>
@@ -25,7 +25,6 @@
                 <td>{{ $reserva->horario_clase?->cupo_maximo ?? 'Horario eliminado' }}</td>
                 <td>{{ $reserva->inscritos }}</td>
                 <td>
-                    <!-- Pasamos la fecha de la reserva como un data-atributo -->
                     <a href="#" class="btn btn-primary btn-inscritos" data-fecha_reserva="{{ $reserva->fecha_reserva }}">
                         Inscritos
                     </a>

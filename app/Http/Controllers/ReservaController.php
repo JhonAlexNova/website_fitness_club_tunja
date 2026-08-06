@@ -9,6 +9,11 @@ use App\Models\Reserva;
 use App\Models\ClaseRecurrente;
 use App\Models\HorarioClaseUnica;
 
+use App\Models\Factura;
+use App\Models\DetalleFactura;
+use App\Models\Producto;
+use App\Models\CoffeeProduct;
+
 use Carbon\Carbon;
 use Flash;
 
@@ -26,26 +31,6 @@ class ReservaController extends Controller
         $reservas = array_merge($reservasUnicas->toArray(), $reservasRecurrentes->toArray());
 
         $reservas = collect($reservas);
-
-       // dd($reservas);
-
-       
-
-       /*  foreach($reservasUnicas as $reserva){
-            if($reserva["tipo_clase"]=="recurrente"){
-                $horario_clase =  ClaseRecurrente::with(["clase","instructor"])->find($reserva->horario_clase_id);
-                $inscritos = Reserva::where("fecha_reserva",$reserva->fecha_reserva)->select("id")->get()->count();
-                $reserva["horario_clase"] = $horario_clase;
-                $reserva["inscritos"] = $inscritos;
-                $data[] = $reserva; 
-            }else{
-                $horario_clase =  HorarioClaseUnica::with(["clase","instructor"])->find($reserva->horario_clase_id);
-                $inscritos = Reserva::where("horario_clase_id",$horario_clase->id)->select("id")->get()->count();
-                $reserva["horario_clase"] = $horario_clase;
-                $reserva["inscritos"] = $inscritos;
-                $data[] = $reserva;
-            }
-        } */
 
         $data = [];
         foreach($reservasRecurrentes as $reserva){
@@ -66,12 +51,67 @@ class ReservaController extends Controller
 
 
     public function inscritos_clase(Request $request){
-        $reservas = Reserva::with("cliente")->where("fecha_reserva",$request->fecha_reserva)->select("cliente_id","id","estado","created_at")->get();
+        $reservas = Reserva::with("cliente")
+            ->where("fecha_reserva",$request->fecha_reserva)
+            ->select("cliente_id","id","estado","created_at","horario_clase_id")
+            ->get();
+
+        // ── Agregamos los productos adicionales de cada reserva ──────────
+        $reservas = $reservas->map(function ($reserva) {
+            $reserva->productos_adicionales = $this->getProductosDeReserva($reserva);
+            return $reserva;
+        });
 
         $backpack = [
             "reservas" => $reservas
         ];
         return view("admin.reservas.table-inscritos-clase",$backpack);
+    }
+
+    /**
+     * Busca, para una reserva dada, la factura del cliente que contenga
+     * un detalle con ese mismo horario_clase_id (clase_id) y devuelve
+     * los productos (producto_id) que vengan en esa misma factura.
+     *
+     * @param  Reserva $reserva
+     * @return \Illuminate\Support\Collection  [ ['nombre' => ..., 'cantidad' => ...], ... ]
+     */
+    private function getProductosDeReserva($reserva)
+    {
+        // Buscamos el detalle de tipo "servicio" (inscripción a la clase)
+        // que corresponde a esta reserva, para obtener el factura_id.
+        $detalleClase = DetalleFactura::where("clase_id", $reserva->horario_clase_id)
+            ->whereHas("factura", function ($q) use ($reserva) {
+                $q->where("user_id", $reserva->cliente_id);
+            })
+            ->orderBy("created_at", "desc")
+            ->first();
+
+        if (empty($detalleClase)) {
+            return collect();
+        }
+
+        // Traemos los demás detalles de esa misma factura que tengan producto_id
+        $detallesProductos = DetalleFactura::where("factura_id", $detalleClase->factura_id)
+            ->whereNotNull("producto_id")
+            ->get();
+
+        return $detallesProductos->map(function ($detalle) {
+            // El producto_id puede pertenecer a la tabla "productos" (tienda)
+            // o a "coffee_products" (coffee shop), según cómo se guardó la venta.
+            $producto = Producto::find($detalle->producto_id);
+            $nombre = $producto ? $producto->nombre : null;
+
+            if (!$nombre) {
+                $coffeeProducto = CoffeeProduct::find($detalle->producto_id);
+                $nombre = $coffeeProducto ? $coffeeProducto->nombre : "Producto eliminado";
+            }
+
+            return [
+                "nombre"   => $nombre,
+                "cantidad" => $detalle->cantidad,
+            ];
+        });
     }
 
     /**

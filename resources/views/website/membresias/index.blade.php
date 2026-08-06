@@ -320,7 +320,7 @@ body {
                             <ul class="features-list">
                                 <li class="feature included">
                                     <span class="check">✓</span>
-                                    <span class="text">Personal Training</span>
+                                    <span class="text">Entrenamiento Asesorado</span>
                                 </li>
                                 <li class="feature included">
                                     <span class="check">✓</span>

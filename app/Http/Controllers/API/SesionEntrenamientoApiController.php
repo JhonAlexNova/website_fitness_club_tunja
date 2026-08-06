@@ -6,6 +6,7 @@ use App\Http\Controllers\AppBaseController;
 use App\Models\SesionEntrenamiento;
 use App\Models\SerieCompletada;
 use App\Models\RutinaEjercicio;
+use App\Models\Rutina;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
@@ -14,7 +15,6 @@ class SesionEntrenamientoApiController extends AppBaseController
 {
     /**
      * POST /rutinas/{id}/sesion/iniciar
-     * Crea una nueva sesión de entrenamiento para la rutina.
      */
     public function iniciar($rutinaId)
     {
@@ -32,7 +32,6 @@ class SesionEntrenamientoApiController extends AppBaseController
 
     /**
      * POST /sesiones/{id}/finalizar
-     * Cierra la sesión y calcula la duración.
      */
     public function finalizar($sesionId, Request $request)
     {
@@ -49,13 +48,13 @@ class SesionEntrenamientoApiController extends AppBaseController
             'notas'            => $request->notas ?? null,
         ]);
 
-        // Resumen: total series completadas y ejercicios trabajados
         $totalSeries = $sesion->series()->where('completada', true)->count();
         $ejercicios  = $sesion->series()
             ->distinct('id_rutina_ejercicio')
             ->count('id_rutina_ejercicio');
 
         return response()->json([
+            'sesion_id'        => $sesion->id,
             'duracion_minutos' => $duracion,
             'total_series'     => $totalSeries,
             'ejercicios'       => $ejercicios,
@@ -64,9 +63,6 @@ class SesionEntrenamientoApiController extends AppBaseController
 
     /**
      * POST /sesiones/{id}/series
-     * Registra una serie completada (o la desmarca si ya existía).
-     *
-     * Body: { id_rutina_ejercicio, numero_serie, repeticiones_realizadas, peso_utilizado }
      */
     public function marcarSerie($sesionId, Request $request)
     {
@@ -77,12 +73,10 @@ class SesionEntrenamientoApiController extends AppBaseController
             'peso_utilizado'         => 'nullable|numeric|min:0',
         ]);
 
-        // Verificar que la sesión pertenece al usuario
         $sesion = SesionEntrenamiento::where('id', $sesionId)
             ->where('id_user', Auth::id())
             ->firstOrFail();
 
-        // Toggle: si ya existe la desmarca, si no la crea
         $existing = SerieCompletada::where([
             'id_sesion'           => $sesionId,
             'id_rutina_ejercicio' => $request->id_rutina_ejercicio,
@@ -108,26 +102,60 @@ class SesionEntrenamientoApiController extends AppBaseController
 
     /**
      * GET /rutinas/{id}/historial
-     * Devuelve el historial de sesiones de una rutina para el usuario autenticado.
+     *
+     * Devuelve el historial detallado: fecha/hora, nombre de la rutina,
+     * cantidad de ejercicios trabajados, y por cada ejercicio la lista
+     * de series con las repeticiones y el peso REALES que se registraron
+     * (no los valores configurados en la rutina, sino lo que se marcó
+     * durante el entrenamiento).
      */
     public function historial($rutinaId)
     {
+        $rutina = Rutina::find($rutinaId);
+
         $sesiones = SesionEntrenamiento::with(['series.rutinaEjercicio.ejercicio'])
             ->where('id_rutina', $rutinaId)
             ->where('id_user', Auth::id())
             ->whereNotNull('finalizada_at')
             ->orderByDesc('iniciada_at')
-            ->limit(10)
+            ->limit(15)
             ->get()
-            ->map(function ($s) {
+            ->map(function ($s) use ($rutina) {
+                $seriesCompletadas = $s->series->where('completada', true);
+
+                $detalleEjercicios = $seriesCompletadas
+                    ->groupBy('id_rutina_ejercicio')
+                    ->map(function ($seriesDeEjercicio) {
+                        $primera = $seriesDeEjercicio->first();
+                        $rutinaEjercicio = $primera->rutinaEjercicio;
+
+                        return [
+                            'nombre'            => $rutinaEjercicio?->ejercicio?->nombre_ejercicio ?? 'Ejercicio',
+                            'descanso_segundos' => $rutinaEjercicio?->descanso_segundos,
+                            'series'            => $seriesDeEjercicio
+                                ->sortBy('numero_serie')
+                                ->values()
+                                ->map(function ($serie) {
+                                    return [
+                                        'numero'       => $serie->numero_serie,
+                                        'repeticiones' => $serie->repeticiones_realizadas,
+                                        'peso'         => $serie->peso_utilizado,
+                                    ];
+                                })->values(),
+                        ];
+                    })
+                    ->values();
+
                 return [
-                    'id'               => $s->id,
-                    'iniciada_at'      => $s->iniciada_at,
-                    'finalizada_at'    => $s->finalizada_at,
-                    'duracion_minutos' => $s->duracion_minutos,
-                    'notas'            => $s->notas,
-                    'total_series'     => $s->series->where('completada', true)->count(),
-                    'ejercicios'       => $s->series->unique('id_rutina_ejercicio')->count(),
+                    'id'                 => $s->id,
+                    'nombre_rutina'      => $rutina->nombre_rutina ?? 'Rutina',
+                    'iniciada_at'        => $s->iniciada_at,
+                    'finalizada_at'      => $s->finalizada_at,
+                    'duracion_minutos'   => $s->duracion_minutos,
+                    'notas'              => $s->notas,
+                    'total_series'       => $seriesCompletadas->count(),
+                    'ejercicios'         => $detalleEjercicios->count(),
+                    'detalle_ejercicios' => $detalleEjercicios,
                 ];
             });
 
@@ -136,7 +164,6 @@ class SesionEntrenamientoApiController extends AppBaseController
 
     /**
      * PUT /rutinas/{rutinaId}/ejercicios/{rutinaEjercicioId}
-     * Edita series, reps, peso, descanso o notas de un ejercicio en la rutina.
      */
     public function actualizarEjercicio($rutinaId, $rutinaEjercicioId, Request $request)
     {
@@ -153,7 +180,6 @@ class SesionEntrenamientoApiController extends AppBaseController
 
     /**
      * DELETE /rutinas/{rutinaId}/ejercicios/{rutinaEjercicioId}
-     * Elimina un ejercicio de la rutina.
      */
     public function eliminarEjercicio($rutinaId, $rutinaEjercicioId)
     {
@@ -168,7 +194,6 @@ class SesionEntrenamientoApiController extends AppBaseController
 
     /**
      * POST /rutinas/{rutinaId}/ejercicios
-     * Agrega un ejercicio a una rutina existente.
      */
     public function agregarEjercicio($rutinaId, Request $request)
     {

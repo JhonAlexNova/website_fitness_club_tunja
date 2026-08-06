@@ -46,6 +46,12 @@ class DetalleFactura extends Model
         'updated_at' => 'nullable'
     ];
 
+    // ── Relación agregada: necesaria para el whereHas() en ReservaController ──
+    public function factura()
+    {
+        return $this->belongsTo(Factura::class, 'factura_id');
+    }
+
     public function producto()
     {
         return $this->belongsTo(Producto::class, 'producto_id');

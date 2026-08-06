@@ -24,6 +24,7 @@ use App\Http\Controllers\API\SesionEntrenamientoApiController;
 use App\Http\Controllers\API\CodigoPromocionalApiController;
 use App\Http\Controllers\API\CategoriaApiController;
 use App\Http\Controllers\API\NotificacionApiController;
+use App\Http\Controllers\API\BuzonSugerenciaApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -123,6 +124,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/rutinas/{rutinaId}/ejercicios/{reId}',      [SesionEntrenamientoApiController::class, 'actualizarEjercicio']);
     Route::delete('/rutinas/{rutinaId}/ejercicios/{reId}',   [SesionEntrenamientoApiController::class, 'eliminarEjercicio']);
     Route::post('/rutinas/{rutinaId}/ejercicios',            [SesionEntrenamientoApiController::class, 'agregarEjercicio']);
+
+    // BUZÓN DE SUGERENCIAS
+    Route::post('/buzon-sugerencias', [BuzonSugerenciaApiController::class, 'store']);
+    Route::get('/mis-mensajes-buzon', [BuzonSugerenciaApiController::class, 'misMensajes']);
 
 });
 

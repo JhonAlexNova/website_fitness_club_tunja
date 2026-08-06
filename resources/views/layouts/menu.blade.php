@@ -523,4 +523,12 @@
             <p>Códigos Influencers</p>
         </a>
     </li>
+
+    <!-- BUZÓN DE SUGERENCIAS -->
+    <li class="nav-item">
+        <a href="{{ route('buzon-sugerencias.index') }}" class="nav-link {{ Request::is('buzon-sugerencias*') ? 'active' : '' }}">
+            <i class="nav-icon fas fa-envelope-open-text"></i>
+            <p>Buzón de Sugerencias</p>
+        </a>
+    </li>
 </ul>

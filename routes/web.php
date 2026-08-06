@@ -197,6 +197,12 @@ Route::group(["middleware"=>["auth","config"],"prefix"=>"admon"],function(){
             /* Notificaciones */
             Route::post('notificaciones/marcar-leidas', [App\Http\Controllers\NotificacionController::class, 'marcarLeidas'])->name('notificaciones.marcarLeidas');
             Route::resource('notificaciones', App\Http\Controllers\NotificacionController::class);
+            
+            /* Buzón de sugerencias */
+            Route::resource('buzon-sugerencias', App\Http\Controllers\BuzonSugerenciaController::class)
+                ->only(['index', 'show', 'destroy']);
+            Route::post('buzon-sugerencias/{id}/responder', [App\Http\Controllers\BuzonSugerenciaController::class, 'responder'])
+                ->name('buzon-sugerencias.responder');
       
 });
 
