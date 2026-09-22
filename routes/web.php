@@ -26,7 +26,7 @@ Route::group(["middleware"=>["config"]],function(){
 
 
 /* RUTAS WEB SITE */
-Route::resource('/', App\Http\Controllers\WebSite\HomeController::class)->names('website.home');
+Route::get('/', [App\Http\Controllers\WebSite\HomeController::class, 'index'])->name('website.home.index');
 Route::resource('tienda', App\Http\Controllers\WebSite\TiendaController::class);
     Route::get('cafeteria', [App\Http\Controllers\WebSite\CoffeeShopController::class, 'index'])->name('website.cafeteria.index');
 

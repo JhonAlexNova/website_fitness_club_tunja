@@ -231,6 +231,62 @@
    /* ===== CONTACTO (por si el style local no llegó a cargar) ===== */
    #contacto {
        background: radial-gradient(circle at bottom, #0f0f1f, #050505) !important;
+       scroll-margin-top: 96px;
+       position: relative;
+       z-index: 0;
+   }
+
+   #contacto .contact-card {
+       height: 100%;
+       min-height: 190px;
+       display: flex;
+       flex-direction: column;
+       align-items: center;
+       justify-content: center;
+       background: rgba(20,20,40,0.8);
+       border-radius: 20px;
+       padding: 32px 20px;
+       text-align: center;
+       backdrop-filter: blur(15px);
+       transition: transform 0.3s ease, box-shadow 0.3s ease;
+   }
+
+   #contacto .contact-card:hover {
+       transform: translateY(-6px);
+       box-shadow: 0 16px 32px rgba(0,0,0,0.35);
+   }
+
+   #contacto .contact-card a {
+       color: #aaa;
+       overflow-wrap: anywhere;
+   }
+
+   #contacto .contact-card a:hover {
+       color: #fff;
+   }
+
+   #contacto .contact-whatsapp {
+       display: inline-flex;
+       align-items: center;
+       justify-content: center;
+       gap: 8px;
+       max-width: 100%;
+       padding: 15px 32px;
+       border-radius: 30px;
+       background: linear-gradient(90deg,#25d366,#128c7e);
+       color: #fff;
+       font-weight: 700;
+       font-size: 1rem;
+       text-transform: uppercase;
+       letter-spacing: 1px;
+       text-decoration: none;
+       transition: transform 0.3s ease, box-shadow 0.3s ease;
+   }
+
+   #contacto .contact-whatsapp:hover {
+       color: #fff;
+       transform: translateY(-3px);
+       box-shadow: 0 10px 24px rgba(37,211,102,0.25);
    }
 
    /* Salvaguarda: nunca permitir scroll horizontal en toda la página */
@@ -857,7 +913,7 @@
       <div class="row justify-content-center">
 
          <div class="col-md-4 col-sm-6 mb-4">
-            <div style="background:rgba(20,20,40,0.8);border-radius:20px;padding:35px 20px;text-align:center;border-left:4px solid #00f0ff;backdrop-filter:blur(15px);transition:0.3s;" onmouseover="this.style.transform='translateY(-8px)'" onmouseout="this.style.transform='translateY(0)'">
+            <div class="contact-card" style="border-left:4px solid #00f0ff;">
                <i class="fa fa-map-marker" style="font-size:2.5rem;background:linear-gradient(90deg,#8a2be2,#00f0ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;"></i>
                <h4 style="color:#fff;font-size:1.1rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;margin:15px 0 10px;">Ubicación</h4>
                <p style="color:#aaa;font-size:0.95rem;margin:0;">Tunja, Boyacá — Colombia</p>
@@ -865,7 +921,7 @@
          </div>
 
          <div class="col-md-4 col-sm-6 mb-4">
-            <div style="background:rgba(20,20,40,0.8);border-radius:20px;padding:35px 20px;text-align:center;border-left:4px solid #8a2be2;backdrop-filter:blur(15px);transition:0.3s;" onmouseover="this.style.transform='translateY(-8px)'" onmouseout="this.style.transform='translateY(0)'">
+            <div class="contact-card" style="border-left:4px solid #8a2be2;">
                <i class="fa fa-phone" style="font-size:2.5rem;background:linear-gradient(90deg,#00f0ff,#8a2be2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;"></i>
                <h4 style="color:#fff;font-size:1.1rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;margin:15px 0 10px;">Teléfono</h4>
                <p style="color:#aaa;font-size:0.95rem;margin:0;">
@@ -875,7 +931,7 @@
          </div>
 
          <div class="col-md-4 col-sm-6 mb-4">
-            <div style="background:rgba(20,20,40,0.8);border-radius:20px;padding:35px 20px;text-align:center;border-left:4px solid #00f0ff;backdrop-filter:blur(15px);transition:0.3s;" onmouseover="this.style.transform='translateY(-8px)'" onmouseout="this.style.transform='translateY(0)'">
+            <div class="contact-card" style="border-left:4px solid #00f0ff;">
                <i class="fa fa-envelope" style="font-size:2.5rem;background:linear-gradient(90deg,#8a2be2,#00f0ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;"></i>
                <h4 style="color:#fff;font-size:1.1rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;margin:15px 0 10px;">Correo</h4>
                <p style="color:#aaa;font-size:0.95rem;margin:0;">
@@ -889,11 +945,8 @@
       <!-- Botón WhatsApp -->
       <div class="row">
          <div class="col-md-12 text-center mt-3">
-            <a href="https://wa.me/573214978403" target="_blank"
-               style="display:inline-block;padding:15px 40px;border-radius:30px;background:linear-gradient(90deg,#25d366,#128c7e);color:#fff;font-weight:700;font-size:1rem;text-transform:uppercase;letter-spacing:1px;text-decoration:none;transition:0.3s;"
-               onmouseover="this.style.transform='translateY(-3px)'"
-               onmouseout="this.style.transform='translateY(0)'">
-               <i class="fa fa-whatsapp" style="margin-right:8px;font-size:1.2rem;color:#fff;"></i>
+            <a href="https://wa.me/573214978403" target="_blank" rel="noopener noreferrer" class="contact-whatsapp">
+               <i class="fa fa-whatsapp" style="font-size:1.2rem;color:#fff;"></i>
                Escríbenos por WhatsApp
             </a>
          </div>

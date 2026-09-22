@@ -4,8 +4,8 @@
 <style>
     #cafeteria-section {
         background: radial-gradient(circle at top, #0f0f1f, #050505);
-        min-height: 100vh;
-        padding: 130px 0 90px;
+        min-height: calc(100vh - 80px);
+        padding: 56px 0 96px;
     }
 
     #cafeteria-section .title-section {
@@ -54,8 +54,13 @@
 
     #cafeteria-section .products-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
         gap: 25px;
+    }
+
+    #cafeteria-section .container,
+    #cafeteria-section .category-block {
+        min-width: 0;
     }
 
     #cafeteria-section .product-card {
@@ -107,6 +112,7 @@
         color: #fff;
         text-transform: uppercase;
         margin-bottom: 10px;
+        overflow-wrap: anywhere;
     }
 
     #cafeteria-section .product-desc {
@@ -114,6 +120,7 @@
         font-size: 0.9rem;
         flex: 1;
         margin-bottom: 15px;
+        overflow-wrap: anywhere;
     }
 
     #cafeteria-section .product-price {
@@ -140,8 +147,10 @@
     }
 
     @media (max-width: 768px) {
+        #cafeteria-section { padding: 36px 0 70px; }
         #cafeteria-section .main-title { font-size: 1.8rem; }
         #cafeteria-section .products-grid { grid-template-columns: 1fr; }
+        #cafeteria-section .category-block { margin-bottom: 40px; }
     }
 </style>
 

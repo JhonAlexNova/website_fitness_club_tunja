@@ -4,6 +4,14 @@
       <meta charset="UTF-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <title>@yield('title',"Fitness Club Tunja")</title>
+      <!-- Google tag (gtag.js) -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-FFWX0NG1BE"></script>
+      <script>
+         window.dataLayer = window.dataLayer || [];
+         function gtag(){dataLayer.push(arguments);}
+         gtag('js', new Date());
+         gtag('config', 'G-FFWX0NG1BE');
+      </script>
       <meta name="author" content="Fitness Club Tunja">
       <meta name="description" content="Fitness Club Tunja - Tu gimnasio en Tunja, Boyacá">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -26,14 +34,51 @@
       <script src="{{url('template/website/assets/js/vendor/modernizr-2.8.3.min.js')}}"></script>
 
       <style>
+         html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 96px;
+         }
+
+         body {
+            overflow-x: hidden;
+            background: #050505;
+         }
+
+         .main-container {
+            width: 100%;
+            overflow-x: hidden;
+         }
+
+         .main-container img {
+            max-width: 100%;
+         }
+
+         .header {
+            z-index: 1030;
+         }
+
+         .header .navbar,
+         .header .navbar > .container {
+            min-height: 80px;
+         }
+
          li.nav-item.btnLogin a {
             background: #1a3cff;
-            position: revert-layer;
-            height: fit-content;
-            line-height: 0 !important;
-            padding: 18px 10px 19px 11px !important;
-            margin: 22px 0 0 0;
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 44px;
+            line-height: 1.2 !important;
+            padding: 0 18px !important;
+            margin: 0 0 0 10px;
             border-radius: 3px;
+         }
+
+         li.nav-item.btnLogin a:hover,
+         li.nav-item.btnLogin a:focus {
+            background: #3152ff;
+            color: #fff !important;
          }
 
          /* ── FOOTER MEJORADO ── */
@@ -254,11 +299,43 @@
             background: #111;
          }
 
+         .footer-gallery .item a,
+         .footer-gallery .item img {
+            display: block;
+            width: 100%;
+         }
+
+         .footer-gallery .item img {
+            height: 220px;
+            object-fit: cover;
+         }
+
+         @media (min-width: 992px) {
+            body {
+               padding-top: 80px;
+            }
+         }
+
          @media (max-width: 991px) {
+            html {
+               scroll-padding-top: 0;
+            }
+
+            body {
+               padding-top: 58px;
+            }
+
+            .header .navbar,
+            .header .navbar > .container {
+               min-height: 0;
+            }
+
             .navbar-brand img { max-width: 70px !important; }
             li.nav-item.btnLogin a {
-               margin: 10px 0 !important;
+               margin: 8px 0 !important;
                display: inline-block;
+               min-height: 40px;
+               line-height: 40px !important;
             }
             .footer-area-custom .col-md-3,
             .footer-area-custom .col-md-4,
@@ -271,6 +348,10 @@
             }
             .footer-area-custom .social-links {
                justify-content: center;
+            }
+
+            .footer-gallery .item img {
+               height: 160px;
             }
          }
       </style>
@@ -373,7 +454,7 @@
                               <li><a href="{{ url('/') }}"><i class="fa fa-angle-right"></i> Inicio</a></li>
                               <!--<li><a href="{{ url('tienda') }}"><i class="fa fa-angle-right"></i> Tienda</a></li>
                               <li><a href="{{ route('website.membresias.index') }}"><i class="fa fa-angle-right"></i> Membresías</a></li>-->
-                              <li><a href="#contacto"><i class="fa fa-angle-right"></i> Contacto</a></li>
+                              <li><a href="{{ url('/') }}#contacto"><i class="fa fa-angle-right"></i> Contacto</a></li>
                               <!--<li>
                                  @guest
                                     <a href="{{ route('login') }}"><i class="fa fa-angle-right"></i> Acceder</a>

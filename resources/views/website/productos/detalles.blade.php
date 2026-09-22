@@ -10,7 +10,28 @@ body {
 }
 
 .single-information-area {
-    padding-top: 100px;
+    padding: 56px 0 96px !important;
+}
+
+.single-information-area .row > [class*="col-"] {
+    min-width: 0;
+}
+
+.single-pro-tab-content .tab-content {
+    border-radius: 15px;
+    overflow: hidden;
+    background: #111124;
+}
+
+.single-pro-tab-content .tab-content img {
+    max-height: 520px;
+    object-fit: contain;
+    display: block;
+}
+
+.single-pro-tab-content .single-product-tab {
+    margin-top: 14px;
+}
 }
 
 /* IMAGEN PRODUCTO */
@@ -38,6 +59,8 @@ body {
     font-size: 1.8rem;
     font-weight: 800;
     text-transform: uppercase;
+    line-height: 1.2;
+    overflow-wrap: anywhere;
 }
 
 /* ESTRELLAS */
@@ -66,6 +89,8 @@ body {
     border-bottom: 1px solid rgba(255,255,255,0.1) !important;
 }
 .product-desc p { color: #ccc !important; }
+.product-desc,
+.product-desc * { overflow-wrap: anywhere; }
 
 /* CANTIDAD */
 .cart-plus-minus input {
@@ -90,6 +115,31 @@ body {
 .pro-button-top a:hover {
     opacity: 0.85;
     transform: translateY(-2px);
+}
+
+.product-action {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.product-action form { margin: 0; }
+
+.product-action .cart-plus-minus input {
+    width: 72px;
+    min-height: 46px;
+    text-align: center;
+}
+
+@media (max-width: 767px) {
+    .single-information-area { padding: 40px 0 70px !important; }
+    .product-info { margin-top: 34px; }
+    .product-info h3 a { font-size: 1.45rem; }
+    .pro-price p { font-size: 1.65rem; }
+    .product-action { align-items: stretch; }
+    .product-action .pro-button-top { flex: 1 1 220px; }
+    .pro-button-top a { display: block; text-align: center; padding: 12px 18px !important; }
 }
 </style>
 @endpush
@@ -153,14 +203,14 @@ body {
                      <i class="fa fa-star"></i>
                      <i class="fa fa-star"></i>
                      <div class="review">
-                        <p>4 reviews (s) | ass your review</p>
+                        <p>Producto destacado · Escríbenos para conocer disponibilidad</p>
                      </div>
                   </div>
                   <div class="pro-price">
                      <p><span>${{ number_format($producto->precio_venta) }}</span></p>
                   </div>
                   <div class="stock mt10">
-                     <p><i class="fa fa-bars"></i>Only 15 left 3 | Availalbe: In Stock</p>
+                     <p><i class="fa fa-check-circle"></i> Disponible · Confirma existencias por WhatsApp</p>
                   </div>
                   <div class="product-desc">
                     {!!  $producto->descripcion !!}
@@ -168,7 +218,7 @@ body {
                   <div class="product-action mt30">
                      <form action="#">
                         <div class="cart-plus-minus">
-                           <input type="text" value="1" id="cantidad"></div>
+                           <input type="number" value="1" min="1" step="1" id="cantidad" aria-label="Cantidad"></div>
                      </form>
                      <div class="pro-button-top">
                         <a href="javascript:void(0);" onclick="addToCart('{{$producto->nombre}}', {{$producto->precio_venta}})">Agregar al carrito</a>

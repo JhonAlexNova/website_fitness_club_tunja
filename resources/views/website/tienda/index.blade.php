@@ -9,7 +9,8 @@ body {
 
 /* HERO */
 .shop-bg.page-head {
-    padding: 150px 0 80px;
+    padding: 64px 0 42px;
+    margin: 0;
 }
 .shop-bg .section-title h3 {
     color: #fff;
@@ -26,6 +27,19 @@ body {
 /* ÁREA PRINCIPAL */
 .product-area.shopping-area {
     background: transparent;
+    padding: 64px 0 96px !important;
+}
+
+.product-area.shopping-area > .container {
+    max-width: 1180px;
+}
+
+.product-area.shopping-area .row > [class*="col-"] {
+    min-width: 0;
+}
+
+.product-area.shopping-area > .container > .row + .row {
+    align-items: flex-start;
 }
 
 /* TÍTULO SECCIÓN */
@@ -46,6 +60,13 @@ body {
     margin-bottom: 15px !important;
     backdrop-filter: blur(15px);
     border-left: 4px solid #00f0ff !important;
+}
+
+@media (min-width: 992px) {
+    .product-area.shopping-area .accordion {
+        position: sticky;
+        top: 104px;
+    }
 }
 .accordion .card:nth-child(even) {
     border-left-color: #8a2be2 !important;
@@ -76,15 +97,22 @@ body {
     box-shadow: 0 10px 30px rgba(0,0,0,0.4);
     transition: 0.3s;
     margin-bottom: 25px;
+    min-width: 0;
 }
 .product-box:nth-child(even) { border-left-color: #8a2be2; }
 .product-box:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
 
 .cart-box .cart-img img {
     width: 100%;
-    height: 220px;
+    aspect-ratio: 4 / 3;
+    height: auto;
     object-fit: cover;
     display: block;
+}
+
+.cart-box .cart-img {
+    overflow: hidden;
+    background: #111124;
 }
 
 .cart-dtl {
@@ -139,7 +167,7 @@ body {
     background: rgba(20,20,40,0.8) !important;
     padding: 0 0 15px 0 !important;
     box-shadow: 0 10px 30px rgba(0,0,0,0.4) !important;
-    min-height: 420px !important;
+    min-height: 0 !important;
     display: flex !important;
     flex-direction: column !important;
 }
@@ -166,7 +194,15 @@ a.btnComprarProducto {
 }
 
 @media (max-width: 768px) {
-    .shop-bg .section-title h3 { font-size: 1.8rem; }
+    .shop-bg.page-head { padding: 42px 0 30px; }
+    .product-area.shopping-area { padding: 42px 0 70px !important; }
+    .product-area.shopping-area .section-title h3 { font-size: 1.55rem; line-height: 1.25; }
+    .product-area.shopping-area .section-title p { font-size: .92rem; }
+    .product-area.shopping-area > .container > .row + .row > .col-md-3 { margin-bottom: 28px; }
+    .product-box { border-radius: 14px !important; }
+    .cart-dtl { padding: 14px 14px 16px !important; }
+    .cart-dtl .titulo h4 { font-size: .92rem; line-height: 1.3; overflow-wrap: anywhere; }
+    .btnComprarProducto { padding: 10px 8px; font-size: .78rem; }
 }
 </style>
 @endpush

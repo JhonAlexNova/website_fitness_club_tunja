@@ -2,8 +2,6 @@
 @push("page_styles")
 <link rel="stylesheet" href="{{url('template/website/assets/css/carrito.css')}}">
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
 body {
     font-family: 'Montserrat', 'Poppins', sans-serif;
     background: radial-gradient(circle at top, #0f0f1f, #050505);
@@ -12,14 +10,15 @@ body {
 }
 
 .main-content {
-    padding-top: 100px;
+    padding: 32px 0 96px;
+    overflow: hidden;
 }
 
 /* TÍTULOS */
 .title-section { text-align: center; margin-bottom: 50px; }
 
 .main-title {
-    font-size: 2.8rem;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
     font-weight: 800;
     letter-spacing: 3px;
     text-transform: uppercase;
@@ -31,7 +30,7 @@ body {
 }
 
 .subtitle {
-    font-size: 2rem;
+    font-size: clamp(1.25rem, 3vw, 2rem);
     font-weight: 900;
     text-transform: uppercase;
     text-align: center;
@@ -42,7 +41,7 @@ body {
 /* GRID DE CARDS */
 .cards-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
     gap: 25px;
     margin-top: 30px;
 }
@@ -58,6 +57,7 @@ body {
     padding: 18px 22px;
     box-shadow: 0 10px 20px rgba(0,0,0,0.4);
     border-left: 4px solid #00f0ff;
+    min-width: 0;
     opacity: 0;
     transform: translateY(40px);
     animation: cardFadeIn 0.8s ease forwards;
@@ -137,6 +137,11 @@ body {
     padding: 5px 0;
     font-size: 0.9rem;
     gap: 10px;
+}
+
+.feature .text {
+    min-width: 0;
+    overflow-wrap: anywhere;
 }
 
 .check, .cross {
@@ -236,6 +241,14 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 
+@media (prefers-reduced-motion: reduce) {
+    .membership-card {
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+}
+
 @media (max-width: 768px) {
     .main-title { font-size: 1.8rem; }
     .subtitle { font-size: 1.4rem; }
@@ -324,7 +337,7 @@ body {
                                 </li>
                                 <li class="feature included">
                                     <span class="check">✓</span>
-                                    <span class="text">App Fitness Club 24/7</span>
+                                    <span class="text">Seguimiento de tu progreso</span>
                                 </li>
                                 <li class="feature included">
                                     <span class="check">✓</span>
@@ -352,7 +365,7 @@ body {
                                 </li>
                                 <li class="feature included">
                                     <span class="check">✓</span>
-                                    <span class="text">App Fitness Club 24/7</span>
+                                    <span class="text">Seguimiento de tu progreso</span>
                                 </li>
                                 <li class="feature included">
                                     <span class="check">✓</span>

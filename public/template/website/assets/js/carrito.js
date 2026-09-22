@@ -1,65 +1,100 @@
-// Array para almacenar los productos en el carrito
+const CART_STORAGE_KEY = 'fitness_club_tunja_cart';
+
 let cart = [];
 
-// Función para agregar productos al carrito
+try {
+  cart = JSON.parse(localStorage.getItem(CART_STORAGE_KEY) || '[]');
+  if (!Array.isArray(cart)) cart = [];
+} catch (error) {
+  cart = [];
+}
+
+function saveCart() {
+  try {
+    localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
+  } catch (error) {
+    // El carrito sigue funcionando durante la sesión si el navegador bloquea storage.
+  }
+}
+
 function addToCart(name, price) {
-  // Buscar si el producto ya está en el carrito
-  const productIndex = cart.findIndex(item => item.name === name);
-  const quantity = parseInt($("#cantidad").val());
-    
-    if (productIndex !== -1) {
-        cart[productIndex].quantity = quantity;
-    }else {
-        cart.push({ name, price, quantity: quantity });
-    }
-  
- // updateCart();
-}
-
-// Función para actualizar el carrito y el total
-function updateCart() {
- // const cartItemsContainer = document.getElementById("cart-items");
-  //const totalPriceElement = document.getElementById("total-price");
-  let totalPrice = 0;
-
-  // Limpiar el contenido del carrito antes de actualizar
-  cartItemsContainer.innerHTML = "";
-
-  // Recorrer los productos del carrito y mostrarlos
-  cart.forEach(item => {
-    // Crear un div para el producto
-    const itemDiv = document.createElement("div");
-    itemDiv.innerText = `${item.name} - $${item.price} x ${item.quantity}`;
-    
-    // Crear botón para eliminar el producto
-    const removeButton = document.createElement("button");
-    removeButton.innerText = "Eliminar";
-    removeButton.onclick = () => removeFromCart(item.name);
-    
-    // Agregar el botón al div del producto
-    itemDiv.appendChild(removeButton);
-    cartItemsContainer.appendChild(itemDiv);
-
-    // Sumar el precio total
-    totalPrice += item.price * item.quantity;
-  });
-
-  // Actualizar el precio total en el HTML
-  totalPriceElement.innerText = totalPrice;
-}
-
-// Función para eliminar un producto del carrito
-function removeFromCart(name) {
+  const quantityInput = document.getElementById('cantidad');
+  const quantity = Math.max(1, parseInt(quantityInput ? quantityInput.value : 1, 10) || 1);
+  const numericPrice = Number(price) || 0;
   const productIndex = cart.findIndex(item => item.name === name);
 
   if (productIndex !== -1) {
-    // Reducir la cantidad o eliminar el producto si es la última unidad
-    if (cart[productIndex].quantity > 1) {
-      cart[productIndex].quantity -= 1;
-    } else {
-      cart.splice(productIndex, 1);
-    }
+    cart[productIndex].quantity += quantity;
+  } else {
+    cart.push({ name, price: numericPrice, quantity });
   }
 
+  saveCart();
   updateCart();
 }
+
+function formatPrice(value) {
+  return '$' + Number(value || 0).toLocaleString('es-CO');
+}
+
+function updateCart() {
+  const cartItemsContainer = document.getElementById('cart-items');
+  const totalPriceElement = document.getElementById('total-price');
+  const emptyState = document.getElementById('cart-empty');
+  const cartContent = document.getElementById('cart-content');
+
+  if (!cartItemsContainer || !totalPriceElement) return;
+
+  cartItemsContainer.innerHTML = '';
+  let totalPrice = 0;
+
+  cart.forEach((item, index) => {
+    const row = document.createElement('tr');
+    const itemTotal = Number(item.price || 0) * Number(item.quantity || 0);
+    totalPrice += itemTotal;
+
+    const nameCell = document.createElement('td');
+    nameCell.textContent = item.name;
+    const priceCell = document.createElement('td');
+    priceCell.textContent = formatPrice(item.price);
+    const quantityCell = document.createElement('td');
+    const quantityInput = document.createElement('input');
+    quantityInput.type = 'number';
+    quantityInput.min = '1';
+    quantityInput.value = item.quantity;
+    quantityInput.setAttribute('aria-label', 'Cantidad de ' + item.name);
+    quantityInput.addEventListener('change', () => {
+      cart[index].quantity = Math.max(1, parseInt(quantityInput.value, 10) || 1);
+      saveCart();
+      updateCart();
+    });
+    quantityCell.appendChild(quantityInput);
+    const totalCell = document.createElement('td');
+    totalCell.textContent = formatPrice(itemTotal);
+    const actionCell = document.createElement('td');
+    const removeButton = document.createElement('button');
+    removeButton.type = 'button';
+    removeButton.className = 'cart-remove';
+    removeButton.innerHTML = '<i class="fa fa-trash" aria-hidden="true"></i><span class="sr-only">Eliminar</span>';
+    removeButton.addEventListener('click', () => removeFromCart(item.name));
+    actionCell.appendChild(removeButton);
+
+    row.append(nameCell, priceCell, quantityCell, totalCell, actionCell);
+    cartItemsContainer.appendChild(row);
+  });
+
+  totalPriceElement.textContent = formatPrice(totalPrice);
+
+  if (emptyState && cartContent) {
+    emptyState.hidden = cart.length > 0;
+    cartContent.hidden = cart.length === 0;
+  }
+}
+
+function removeFromCart(name) {
+  cart = cart.filter(item => item.name !== name);
+  saveCart();
+  updateCart();
+}
+
+document.addEventListener('DOMContentLoaded', updateCart);

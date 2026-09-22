@@ -17,7 +17,7 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
          <ul class="navbar-nav ml-auto">
 
-            <li class="nav-item active">
+            <li class="nav-item {{ request()->routeIs('website.home.*') ? 'active' : '' }}">
                <a class="nav-link" href="{{ url('/') }}">
                   Inicio
                </a>
@@ -25,21 +25,21 @@
 
 
             <!-- TIENDA -->
-            <li class="nav-item">
+            <li class="nav-item {{ request()->routeIs('tienda.*') || request()->routeIs('website.productos.*') ? 'active' : '' }}">
                <a class="nav-link" href="{{ url('tienda') }}">
                   Tienda
                </a>
             </li>
 
             <!-- MEMBRESIAS -->
-            <li class="nav-item">
+            <li class="nav-item {{ request()->routeIs('website.membresias.*') ? 'active' : '' }}">
                <a class="nav-link" href="{{ route('website.membresias.index') }}">
                   Membresías
                </a>
             </li>
 
             <!-- CAFETERÍA -->
-            <li class="nav-item">
+            <li class="nav-item {{ request()->routeIs('website.cafeteria.*') ? 'active' : '' }}">
                <a class="nav-link" href="{{ route('website.cafeteria.index') }}">
                   Cafetería
                </a>
