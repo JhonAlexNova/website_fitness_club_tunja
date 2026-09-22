@@ -11,10 +11,12 @@ body {
 .shop-bg.page-head {
     padding: 64px 0 42px;
     margin: 0;
+    min-height: 210px;
 }
 .shop-bg .section-title h3 {
     color: #fff;
-    font-size: 2.5rem;
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
+    line-height: 1.15;
     font-weight: 900;
     text-transform: uppercase;
     background: linear-gradient(90deg, #8a2be2, #00f0ff);
@@ -22,6 +24,7 @@ body {
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
+.mobile-break { display: none; }
 .breadcrumb li, .breadcrumb li a { color: #aaa !important; }
 
 /* ÁREA PRINCIPAL */
@@ -42,6 +45,10 @@ body {
     align-items: flex-start;
 }
 
+.product-area.shopping-area .products-grid {
+    min-width: 0;
+}
+
 /* TÍTULO SECCIÓN */
 .section-title h3 {
     color: #fff !important;
@@ -53,13 +60,47 @@ body {
 .section-title p { color: #aaa !important; }
 
 /* SIDEBAR FILTROS */
+.shop-filters {
+    position: relative;
+}
+
+.shop-filters-title {
+    margin: 0 0 16px;
+    padding: 0 4px 12px;
+    color: #fff;
+    font-size: .95rem;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(0, 240, 255, .28);
+}
+
+.shop-filters-title span {
+    color: #00f0ff;
+}
+
+.shop-filters-title small {
+    display: block;
+    margin-top: 5px;
+    color: #777b94;
+    font-size: .7rem;
+    font-weight: 400;
+    letter-spacing: 0;
+    text-transform: none;
+}
+
 .accordion .card {
-    background: rgba(20,20,40,0.8) !important;
-    border: none !important;
-    border-radius: 15px !important;
-    margin-bottom: 15px !important;
-    backdrop-filter: blur(15px);
-    border-left: 4px solid #00f0ff !important;
+    background: linear-gradient(145deg, rgba(27, 27, 52, .96), rgba(14, 14, 31, .96)) !important;
+    border: 1px solid rgba(255,255,255,.08) !important;
+    border-radius: 12px !important;
+    margin-bottom: 10px !important;
+    box-shadow: 0 8px 22px rgba(0,0,0,.2);
+    transition: border-color .25s ease, transform .25s ease, box-shadow .25s ease;
+}
+.accordion .card:hover {
+    border-color: rgba(0, 240, 255, .45) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(0,0,0,.3);
 }
 
 @media (min-width: 992px) {
@@ -69,38 +110,51 @@ body {
     }
 }
 .accordion .card:nth-child(even) {
-    border-left-color: #8a2be2 !important;
+    border-left-color: rgba(255,255,255,.08) !important;
 }
 .accordion .card-header {
     background: transparent !important;
     border: none !important;
+    padding: 0 !important;
 }
 .btn-link {
     color: #fff !important;
     font-weight: 700 !important;
     font-size: 0.95rem;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: .7px;
+    display: flex !important;
+    align-items: center;
+    width: 100%;
+    padding: 15px 14px !important;
+    text-align: left;
 }
+.btn-link i { color: #00f0ff; width: 22px; margin-right: 4px; }
 .btn-link:hover { color: #00f0ff !important; text-decoration: none !important; }
-.card-body { color: #aaa !important; background: transparent !important; }
+.card-body { color: #9ea2b8 !important; background: transparent !important; padding: 0 18px 16px !important; }
 .form-check-label { color: #aaa !important; }
+.form-check-label i { display: none; }
+.form-check { margin: 8px 0; padding-left: 0 !important; display: flex; align-items: center; gap: 9px; }
+.form-check-input { position: static !important; margin: 0 !important; flex: 0 0 13px; }
+.form-check-label { padding-left: 4px; font-size: .86rem; }
 .form-check-input { accent-color: #8a2be2; }
+.form-control-range { width: 100%; accent-color: #00d9ff; }
+.color-box { flex: 0 0 25px; }
 
 /* CARDS DE PRODUCTOS */
 .product-box {
     background: rgba(20,20,40,0.8) !important;
     border-radius: 20px !important;
     overflow: hidden;
-    border-left: 4px solid #00f0ff;
+    border: 1px solid rgba(255,255,255,.07);
     backdrop-filter: blur(15px);
     box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-    transition: 0.3s;
+    transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
     margin-bottom: 25px;
     min-width: 0;
 }
-.product-box:nth-child(even) { border-left-color: #8a2be2; }
-.product-box:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+.product-box:nth-child(even) { border-color: rgba(255,255,255,.07); }
+.product-box:hover { transform: translateY(-8px); border-color: rgba(0, 240, 255, .55); box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
 
 .cart-box .cart-img img {
     width: 100%;
@@ -166,6 +220,7 @@ body {
 .product-area .product-box {
     background: rgba(20,20,40,0.8) !important;
     padding: 0 0 15px 0 !important;
+    border: 1px solid rgba(255,255,255,.07) !important;
     box-shadow: 0 10px 30px rgba(0,0,0,0.4) !important;
     min-height: 0 !important;
     display: flex !important;
@@ -194,11 +249,19 @@ a.btnComprarProducto {
 }
 
 @media (max-width: 768px) {
-    .shop-bg.page-head { padding: 42px 0 30px; }
-    .product-area.shopping-area { padding: 42px 0 70px !important; }
-    .product-area.shopping-area .section-title h3 { font-size: 1.55rem; line-height: 1.25; }
-    .product-area.shopping-area .section-title p { font-size: .92rem; }
+    .mobile-break { display: inline; }
+    .shop-bg.page-head { width: 100vw; padding: 38px 15px 30px; min-height: 190px; }
+    .product-area.shopping-area { width: 100%; max-width: 100%; padding: 42px 0 70px !important; overflow: hidden; }
+    .product-area.shopping-area > .container { width: 100%; max-width: 100%; padding-left: 15px; padding-right: 15px; }
+    .product-area.shopping-area > .container > .row { width: 100%; margin-left: 0; margin-right: 0; }
+    .product-area.shopping-area > .container > .row > .shop-filters,
+    .product-area.shopping-area > .container > .row > .col-md-9 { flex: 0 0 100%; max-width: 100%; width: 100%; padding-left: 0; padding-right: 0; }
+    .product-area.shopping-area .products-grid { width: 100%; margin-left: 0; margin-right: 0; }
+    .shop-bg .section-title h3,
+    .product-area.shopping-area .section-title h3 { display: block !important; width: calc(100vw - 30px) !important; max-width: calc(100vw - 30px) !important; margin-left: auto !important; margin-right: auto !important; font-size: 1.45rem !important; line-height: 1.2; white-space: normal !important; overflow-wrap: anywhere !important; word-break: break-word !important; }
+    .product-area.shopping-area .section-title p { display: block !important; width: calc(100vw - 30px) !important; max-width: calc(100vw - 30px) !important; margin-left: auto !important; margin-right: auto !important; font-size: .75rem; line-height: 1.45; white-space: normal !important; overflow-wrap: anywhere !important; }
     .product-area.shopping-area > .container > .row + .row > .col-md-3 { margin-bottom: 28px; }
+    .product-area.shopping-area .products-grid > [class*="col-"] { flex: 0 0 100%; max-width: 100%; }
     .product-box { border-radius: 14px !important; }
     .cart-dtl { padding: 14px 14px 16px !important; }
     .cart-dtl .titulo h4 { font-size: .92rem; line-height: 1.3; overflow-wrap: anywhere; }
@@ -207,13 +270,15 @@ a.btnComprarProducto {
 </style>
 @endpush
 @section("title","Tienda Fitness Club Tunja")
+@section("seo_description", "Compra ropa y equipamiento fitness en Fitness Club Tunja. Encuentra productos para complementar tu entrenamiento en Boyacá.")
+@section("seo_canonical", url('tienda'))
 @section("content")
 <div class="shop-bg page-head parallax overlay">
    <div class="container">
       <div class="row">
          <div class="col-md-12">
             <div class="section-title text-center">
-               <h3>Tienda Fitness Club</h3>
+               <h3>Tienda Fitness<span class="mobile-break"><br></span> Club</h3>
             </div>
          </div>
          <div class="col-md-12">
@@ -233,13 +298,14 @@ a.btnComprarProducto {
          <div class="col-md-12">
             <div class="section-title text-center">
                <div class="title-bar full-width mb20" style="width:60px;height:3px;background:#1a3cff;margin:0 auto 20px;border-radius:3px;"></div>
-               <h3>Productos y Equipamiento Fitness</h3>
-               <p>Encuentra todo lo que necesitas para potenciar tu entrenamiento</p>
+               <h3>Productos y<span class="mobile-break"><br></span> Equipamiento<span class="mobile-break"><br></span> Fitness</h3>
+               <p>Encuentra todo lo que necesitas<span class="mobile-break"><br></span> para potenciar tu entrenamiento</p>
             </div>
          </div>
       </div>
       <div class="row">
-         <div class="col-md-3">
+         <div class="col-md-3 shop-filters">
+            <div class="shop-filters-title"><span>ENTRENA</span> TU ESTILO<small>Encuentra el equipo ideal para tu rutina</small></div>
             <!--  -->
 
    <div class="accordion" id="filterAccordion">
@@ -248,7 +314,7 @@ a.btnComprarProducto {
          <div class="card-header " id="headingCategories">
             <h2 class="mb-0">
                <button class="btn btn-link  text-decoration-none" type="button" data-toggle="collapse" data-target="#collapseCategories" aria-expanded="true" aria-controls="collapseCategories">
-                  <i class="fas fa-tags"></i> Categorías
+                  <i class="fa fa-tags"></i> Categorías
                </button>
             </h2>
          </div>
@@ -275,7 +341,7 @@ a.btnComprarProducto {
          <div class="card-header " id="headingPrice">
             <h2 class="mb-0">
                <button class="btn btn-link  text-decoration-none" type="button" data-toggle="collapse" data-target="#collapsePrice" aria-expanded="false" aria-controls="collapsePrice">
-                  <i class="fas fa-dollar-sign"></i> Precio
+                  <i class="fa fa-usd"></i> Precio
                </button>
             </h2>
          </div>
@@ -292,7 +358,7 @@ a.btnComprarProducto {
          <div class="card-header " id="headingColor">
             <h2 class="mb-0">
                <button class="btn btn-link  text-decoration-none" type="button" data-toggle="collapse" data-target="#collapseColor" aria-expanded="false" aria-controls="collapseColor">
-                  <i class="fas fa-palette"></i> Color
+                  <i class="fa fa-eyedropper"></i> Color
                </button>
             </h2>
          </div>
@@ -310,7 +376,7 @@ a.btnComprarProducto {
          <div class="card-header " id="headingSize">
             <h2 class="mb-0">
                <button class="btn btn-link  text-decoration-none" type="button" data-toggle="collapse" data-target="#collapseSize" aria-expanded="false" aria-controls="collapseSize">
-                  <i class="fas fa-ruler-combined"></i> Tallas
+                  <i class="fa fa-arrows-v"></i> Tallas
                </button>
             </h2>
          </div>
@@ -341,7 +407,7 @@ a.btnComprarProducto {
             <!--  -->
          </div>
          <div class="col-md-9">
-            <div class="row">
+            <div class="row products-grid">
                @forelse($productos as $producto)
 
                <div class="col-lg-4 col-md-6 col-sm-6 col-6 mb-4">

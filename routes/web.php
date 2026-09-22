@@ -28,7 +28,10 @@ Route::group(["middleware"=>["config"]],function(){
 /* RUTAS WEB SITE */
 Route::get('/', [App\Http\Controllers\WebSite\HomeController::class, 'index'])->name('website.home.index');
 Route::resource('tienda', App\Http\Controllers\WebSite\TiendaController::class);
-    Route::get('cafeteria', [App\Http\Controllers\WebSite\CoffeeShopController::class, 'index'])->name('website.cafeteria.index');
+Route::get('cafeteria', [App\Http\Controllers\WebSite\CoffeeShopController::class, 'index'])->name('website.cafeteria.index');
+Route::get('membresias/carrito', [App\Http\Controllers\WebSite\MembresiaController::class, 'carrito'])->name('website.membresias.carrito');
+Route::post('pago/iniciar', [App\Http\Controllers\WebSite\PagoController::class, 'iniciar'])->name('website.pagos.iniciar');
+Route::get('pago/respuesta', [App\Http\Controllers\WebSite\PagoController::class, 'respuesta'])->name('website.pagos.respuesta');
 
 
 Route::group(["as" => "website."], function () {

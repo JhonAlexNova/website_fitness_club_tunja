@@ -1,4 +1,11 @@
 @extends("website.layouts.app")
+@php
+   $seoProductName = optional($producto)->nombre ?: 'Producto fitness';
+@endphp
+@section("title", $seoProductName . " | Fitness Club Tunja")
+@section("seo_description", "Conoce " . $seoProductName . " en la tienda de Fitness Club Tunja. Consulta precio, descripción y disponibilidad.")
+@section("seo_canonical", url('productos/' . optional($producto)->url))
+@section("seo_type", "product")
 @push("page_styles")
 <link rel="stylesheet" href="{{url('libs/OwlCarousel2-2.3.4/dist/assets/owl.carousel.min.css')}}">
 <link rel="stylesheet" href="{{url('libs/OwlCarousel2-2.3.4/dist/assets/owl.theme.default.min.css')}}">
@@ -143,7 +150,6 @@ body {
 }
 </style>
 @endpush
-@section("title","Tienda Fitness Club Tunja")
 @section("content")
    
    <!--<div class="shop-bg page-head parallax overlay">
@@ -166,11 +172,11 @@ body {
                <div class="single-pro-tab-content">
                   <div class="tab-content">
                      <div id="level0" class="tab-pane fade active show">
-                           <a href="#"><img src="{{ !is_null($producto->portada) ? url('storage', $producto->portada->url) : url('img/imagen-placeholder.png') }}" alt="thumb img"></a>
+                           <a href="#"><img src="{{ !is_null($producto->portada) ? url('storage', $producto->portada->url) : url('img/imagen-placeholder.png') }}" alt="{{ $producto->nombre }}"></a>
                      </div>
                      @foreach($producto->galeria as $index => $imagen)
                      <div id="level{{ $index + 1 }}" class="tab-pane fade">
-                           <a href="#"><img src="{{ url('storage', $imagen->url) }}" alt="thumb img"></a>
+                           <a href="#"><img src="{{ url('storage', $imagen->url) }}" alt="{{ $producto->nombre }} - imagen {{ $index + 1 }}"></a>
                      </div>
                      @endforeach
                   </div>
@@ -178,13 +184,13 @@ body {
                   <ul id="single-product-tab" class="nav single-product-tab owl-carousel">
                      <li class="nav-item">
                            <a href="#" data-target="#level0" data-toggle="tab" class="nav-link small text-uppercase active">
-                              <img src="{{ !is_null($producto->portada) ? url('storage', $producto->portada->url) : url('img/imagen-placeholder.png') }}" alt="product img">
+                              <img src="{{ !is_null($producto->portada) ? url('storage', $producto->portada->url) : url('img/imagen-placeholder.png') }}" alt="{{ $producto->nombre }} - vista previa">
                            </a>
                      </li>
                      @foreach($producto->galeria as $index => $imagen)
                      <li class="nav-item">
                            <a href="#" data-target="#level{{ $index + 1 }}" data-toggle="tab" class="nav-link small text-uppercase">
-                              <img src="{{ url('storage', $imagen->url) }}" alt="product img">
+                              <img src="{{ url('storage', $imagen->url) }}" alt="{{ $producto->nombre }} - imagen {{ $index + 1 }}">
                            </a>
                      </li>
                      @endforeach
@@ -221,7 +227,10 @@ body {
                            <input type="number" value="1" min="1" step="1" id="cantidad" aria-label="Cantidad"></div>
                      </form>
                      <div class="pro-button-top">
-                        <a href="javascript:void(0);" onclick="addToCart('{{$producto->nombre}}', {{$producto->precio_venta}})">Agregar al carrito</a>
+                        <a href="{{ route('website.carrito.index') }}" id="add-to-cart-button"
+                           data-product-id="{{ $producto->id }}"
+                           data-product-name="{{ $producto->nombre }}"
+                           data-product-price="{{ $producto->precio_venta }}">Agregar al carrito</a>
                      </div>
                   </div>
                   <div class="category mt30">
@@ -450,7 +459,7 @@ body {
 
 @push("page_scripts")
    <script src="{{url('libs/OwlCarousel2-2.3.4/dist/owl.carousel.js')}}"></script>
-   <script src="{{url('template/website/assets/js/carrito.js')}}"></script>
+   <script src="{{url('template/website/assets/js/carrito.js')}}?v=2"></script>
    <script>
       var owl = $('.single-product-tab');
       owl.owlCarousel({

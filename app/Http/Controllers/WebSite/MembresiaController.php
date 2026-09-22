@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\WebSite;
 
 use App\Http\Controllers\Controller;
+use App\Models\Membresia;
 use Illuminate\Http\Request;
 
 class MembresiaController extends Controller
@@ -14,8 +15,13 @@ class MembresiaController extends Controller
      */
     public function index()
     {
-        $backpack = [];
+        $backpack = ['membresias' => Membresia::query()->orderBy('costo')->get()];
         return view("website.membresias.index",$backpack);
+    }
+
+    public function carrito()
+    {
+        return view('website.membresias.carrito');
     }
 
     /**

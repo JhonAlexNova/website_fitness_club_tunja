@@ -3,7 +3,59 @@
    <head>
       <meta charset="UTF-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <title>@yield('title',"Fitness Club Tunja")</title>
+      @php
+         $seoTitle = trim($__env->yieldContent('title')) ?: 'Fitness Club Tunja';
+         $seoDescription = trim($__env->yieldContent('seo_description')) ?: 'Fitness Club Tunja: gimnasio, entrenamiento y membresías en Tunja, Boyacá.';
+         $seoCanonical = trim($__env->yieldContent('seo_canonical')) ?: url()->current();
+         $seoImage = trim($__env->yieldContent('seo_image')) ?: url('img/logo10.png');
+         $seoType = trim($__env->yieldContent('seo_type')) ?: 'website';
+         $seoRobots = trim($__env->yieldContent('seo_robots')) ?: 'index,follow';
+         $seoSchema = [
+            '@context' => 'https://schema.org',
+            '@graph' => [
+               [
+                  '@type' => 'ExerciseGym',
+                  '@id' => url('/') . '#gym',
+                  'name' => 'Fitness Club Tunja',
+                  'url' => url('/'),
+                  'logo' => url('img/logo10.png'),
+                  'image' => $seoImage,
+                  'telephone' => '+57 321 497 8403',
+                  'email' => 'fitnessclubtunja@gmail.com',
+                  'address' => [
+                     '@type' => 'PostalAddress',
+                     'addressLocality' => 'Tunja',
+                     'addressRegion' => 'Boyacá',
+                     'addressCountry' => 'CO'
+                  ]
+               ],
+               [
+                  '@type' => 'WebSite',
+                  '@id' => url('/') . '#website',
+                  'url' => url('/'),
+                  'name' => 'Fitness Club Tunja',
+                  'inLanguage' => 'es-CO'
+               ]
+            ]
+         ];
+      @endphp
+      <title>{{ $seoTitle }}</title>
+      <meta name="description" content="{{ $seoDescription }}">
+      <meta name="robots" content="{{ $seoRobots }}">
+      <link rel="canonical" href="{{ $seoCanonical }}">
+      <meta property="og:locale" content="es_CO">
+      <meta property="og:type" content="{{ $seoType }}">
+      <meta property="og:title" content="{{ $seoTitle }}">
+      <meta property="og:description" content="{{ $seoDescription }}">
+      <meta property="og:url" content="{{ $seoCanonical }}">
+      <meta property="og:site_name" content="Fitness Club Tunja">
+      <meta property="og:image" content="{{ $seoImage }}">
+      <meta name="twitter:card" content="summary_large_image">
+      <meta name="twitter:title" content="{{ $seoTitle }}">
+      <meta name="twitter:description" content="{{ $seoDescription }}">
+      <meta name="twitter:image" content="{{ $seoImage }}">
+      <meta name="theme-color" content="#050505">
+      <script type="application/ld+json">{!! json_encode($seoSchema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}</script>
       <!-- Google tag (gtag.js) -->
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-FFWX0NG1BE"></script>
       <script>
@@ -13,7 +65,6 @@
          gtag('config', 'G-FFWX0NG1BE');
       </script>
       <meta name="author" content="Fitness Club Tunja">
-      <meta name="description" content="Fitness Club Tunja - Tu gimnasio en Tunja, Boyacá">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <link rel="shortcut icon" href="{{url('template/website/assets/favicon/favicon.ico')}}">
       <link rel="apple-touch-icon" href="{{url('template/website/assets/favicon/apple-icon-57x57.png')}}">
@@ -34,6 +85,20 @@
       <script src="{{url('template/website/assets/js/vendor/modernizr-2.8.3.min.js')}}"></script>
 
       <style>
+         /* El contenido público debe adaptarse al viewport sin crear scroll horizontal. */
+         html,
+         body {
+            width: 100%;
+            max-width: 100%;
+            overflow-x: hidden;
+         }
+
+         *,
+         *::before,
+         *::after {
+            box-sizing: border-box;
+         }
+
          html {
             scroll-behavior: smooth;
             scroll-padding-top: 96px;
@@ -51,6 +116,56 @@
 
          .main-container img {
             max-width: 100%;
+            height: auto;
+         }
+
+         .main-container iframe,
+         .main-container video,
+         .main-container svg,
+         .main-container canvas {
+            max-width: 100%;
+         }
+
+         .main-container .row,
+         .main-container [class*="col-"] {
+            min-width: 0;
+         }
+
+         .main-container a,
+         .main-container p,
+         .main-container li,
+         .main-container h1,
+         .main-container h2,
+         .main-container h3,
+         .main-container h4,
+         .main-container h5,
+         .main-container h6 {
+            overflow-wrap: anywhere;
+         }
+
+         .main-container table {
+            max-width: 100%;
+         }
+
+         .main-container pre {
+            max-width: 100%;
+            overflow-x: auto;
+         }
+
+         .main-container,
+         .main-container > * {
+            min-width: 0;
+            max-width: 100%;
+         }
+
+         .main-container .section-title,
+         .main-container .section-title h1,
+         .main-container .section-title h2,
+         .main-container .section-title h3,
+         .main-container .section-title p {
+            max-width: 100%;
+            overflow-wrap: anywhere;
+            white-space: normal;
          }
 
          .header {
@@ -79,6 +194,24 @@
          li.nav-item.btnLogin a:focus {
             background: #3152ff;
             color: #fff !important;
+         }
+
+         .nav-cart-link { position: relative; white-space: nowrap; }
+         .nav-cart-link i { color: #00e5ff; margin-right: 4px; }
+         .cart-count {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 19px;
+            height: 19px;
+            margin-left: 4px;
+            padding: 0 5px;
+            border-radius: 10px;
+            background: #ff3e70;
+            color: #fff;
+            font-size: 11px;
+            font-weight: 800;
+            line-height: 19px;
          }
 
          /* ── FOOTER MEJORADO ── */
@@ -297,6 +430,25 @@
 
          .footer-gallery-section {
             background: #111;
+            width: 100%;
+            max-width: 100%;
+            overflow: hidden;
+         }
+
+         .footer-gallery-section > .container {
+            width: 100%;
+            max-width: 1320px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 15px;
+            padding-right: 15px;
+            overflow: hidden;
+         }
+
+         .footer-gallery {
+            width: 100%;
+            max-width: 100%;
+            overflow: hidden;
          }
 
          .footer-gallery .item a,
@@ -317,20 +469,100 @@
          }
 
          @media (max-width: 991px) {
+            html,
+            body,
+            .main-container {
+               width: 100% !important;
+               max-width: 100vw !important;
+               overflow-x: hidden !important;
+            }
+
             html {
                scroll-padding-top: 0;
             }
 
             body {
-               padding-top: 58px;
+               padding-top: 64px;
+            }
+
+            .header.fixed-top {
+               position: fixed !important;
+               top: 0;
+               left: 0;
+               right: 0;
             }
 
             .header .navbar,
             .header .navbar > .container {
-               min-height: 0;
+               height: 64px;
+               min-height: 64px;
             }
 
-            .navbar-brand img { max-width: 70px !important; }
+            .header .navbar-header {
+               display: flex;
+               align-items: center;
+               justify-content: space-between;
+               width: 100%;
+               height: 64px;
+               padding: 8px 16px !important;
+            }
+
+            .header .navbar .navbar-brand {
+               width: auto !important;
+               padding: 0;
+            }
+
+            .navbar-brand img {
+               width: auto !important;
+               max-width: 88px !important;
+               max-height: 48px;
+            }
+
+            .header .navbar .navbar-header .navbar-toggler {
+               float: none;
+               margin: 0;
+            }
+
+            .header .navbar-collapse {
+               max-height: calc(100vh - 64px);
+               overflow-y: auto;
+            }
+
+            .header .navbar .navbar-nav .nav-item .nav-link {
+               line-height: 44px !important;
+            }
+
+            .main-container .section-title h3 {
+               font-size: clamp(1.2rem, 6vw, 1.8rem) !important;
+               line-height: 1.2 !important;
+            }
+
+            .main-container .container,
+            .main-container .section-title,
+            .main-container .section-title h1,
+            .main-container .section-title h2,
+            .main-container .section-title h3,
+            .main-container .section-title p {
+               width: 100%;
+               max-width: 100% !important;
+               min-width: 0;
+               box-sizing: border-box;
+            }
+
+            .main-container .section-title h1,
+            .main-container .section-title h2,
+            .main-container .section-title h3,
+            .main-container .section-title p {
+               display: block !important;
+               width: calc(100vw - 30px) !important;
+               max-width: calc(100vw - 30px) !important;
+               padding-left: 8px;
+               padding-right: 8px;
+               white-space: normal !important;
+               overflow-wrap: anywhere !important;
+               word-break: normal !important;
+            }
+
             li.nav-item.btnLogin a {
                margin: 8px 0 !important;
                display: inline-block;
@@ -348,6 +580,23 @@
             }
             .footer-area-custom .social-links {
                justify-content: center;
+            }
+
+            .footer-area-custom .container {
+               width: 100%;
+               max-width: 100%;
+               padding-left: 20px;
+               padding-right: 20px;
+            }
+
+            .footer-area-custom .footer-desc,
+            .footer-area-custom .footer-contact-item span {
+               overflow-wrap: normal;
+               white-space: normal !important;
+               word-break: normal !important;
+               max-width: 320px;
+               margin-left: auto;
+               margin-right: auto;
             }
 
             .footer-gallery .item img {
@@ -374,7 +623,7 @@
 
             <!-- ══ GALERÍA INSTAGRAM ══ -->
             <div class="footer-gallery-section">
-               <div class="container-fluid px-0">
+               <div class="container">
                   <div class="footer-gallery owl-carousel">
                      <div class="item active">
                         <a href="{{url('template/website/assets/images/instagram/big1.jpg')}}">

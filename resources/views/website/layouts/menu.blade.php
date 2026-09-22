@@ -1,8 +1,8 @@
-<nav class="navbar navbar-expand-lg navbar-dark">
+<nav class="navbar navbar-expand-lg navbar-dark" aria-label="Navegación principal">
    <div class="container">
       <div class="navbar-header">
          <a class="navbar-brand" href="{{ url('/') }}">
-            <img src="{{ url('img/logo10.png') }}" style="max-width:100px" alt="BEFIT logo">
+            <img src="{{ url('img/logo10.png') }}" style="max-width:100px" alt="Logo Fitness Club Tunja">
          </a>
 
          <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -52,24 +52,17 @@
                </a>
             </li>
 
+            <li class="nav-item nav-cart-item">
+               <a class="nav-link nav-cart-link" href="{{ route('website.carrito.index') }}" aria-label="Ver carrito de compras">
+                  <i class="fa fa-shopping-cart"></i> Carrito
+                  <span id="website-cart-count" class="cart-count" hidden>0</span>
+               </a>
+            </li>
+
             <li class="nav-item btnLogin">
-               @guest
-                  <a class="nav-link" href="{{ route('login') }}">
-                     Acceder
-                  </a>
-               @else
-
-                  @if(Auth::user()->rol()=='SUPER_ADMIN')
-                     <a class="nav-link" href="{{ url('admon/home') }}">
-                        Mi Cuenta
-                     </a>
-                  @else
-                     <a class="nav-link" href="{{ url('app') }}">
-                        Mi Cuenta
-                     </a>
-                  @endif
-
-               @endguest
+               <a class="nav-link" href="https://dashboard.fitnessclubcolombia.com/">
+                  Acceder
+               </a>
             </li>
 
             
@@ -78,3 +71,18 @@
       </div>
    </div>
 </nav>
+<script>
+(function () {
+   function updateCartBadge() {
+      var badge = document.getElementById('website-cart-count');
+      if (!badge) return;
+      var items = [];
+      try { items = JSON.parse(localStorage.getItem('fitness_club_tunja_cart') || '[]'); } catch (e) { items = []; }
+      var count = items.reduce(function (sum, item) { return sum + Math.max(1, Number(item.quantity || 1)); }, 0);
+      badge.textContent = count;
+      badge.hidden = count === 0;
+   }
+   document.addEventListener('DOMContentLoaded', updateCartBadge);
+   window.addEventListener('storage', updateCartBadge);
+})();
+</script>

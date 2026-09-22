@@ -1,20 +1,23 @@
 @extends("website.layouts.app")
+@section("seo_description", "Conoce la cafetería de Fitness Club Tunja: opciones para recargar energía antes o después de tu entrenamiento.")
+@section("seo_canonical", url('cafeteria'))
 @section("title", "Cafetería")
 @section("content")
 <style>
     #cafeteria-section {
         background: radial-gradient(circle at top, #0f0f1f, #050505);
-        min-height: calc(100vh - 80px);
         padding: 56px 0 96px;
     }
 
     #cafeteria-section .title-section {
         text-align: center;
         margin-bottom: 50px;
+        width: 100%;
+        min-width: 0;
     }
 
     #cafeteria-section .main-title {
-        font-size: 2.6rem;
+        font-size: clamp(1.8rem, 6vw, 2.6rem);
         font-weight: 900;
         text-transform: uppercase;
         background: linear-gradient(90deg, #8a2be2, #00f0ff);
@@ -22,11 +25,22 @@
         -webkit-text-fill-color: transparent;
         background-clip: text;
         margin-bottom: 10px;
+        width: 100%;
+        overflow-wrap: anywhere !important;
+        word-break: normal !important;
+        white-space: normal !important;
     }
 
     #cafeteria-section .subtitle {
         color: #aaa;
         font-size: 1rem;
+        line-height: 1.5;
+        max-width: 620px;
+        margin: 0 auto;
+        overflow-wrap: anywhere !important;
+        word-break: normal !important;
+        white-space: normal !important;
+        white-space: normal;
     }
 
     #cafeteria-section .category-block {
@@ -135,8 +149,11 @@
     #cafeteria-section .empty-state {
         text-align: center;
         color: #aaa;
-        padding: 60px 0;
+        padding: 42px 20px;
         font-size: 1.1rem;
+        max-width: 680px;
+        margin: 0 auto;
+        overflow-wrap: anywhere;
     }
 
     #cafeteria-section .empty-category {
@@ -147,8 +164,13 @@
     }
 
     @media (max-width: 768px) {
-        #cafeteria-section { padding: 36px 0 70px; }
+        #cafeteria-section { width: 100vw; padding: 36px 0 70px; }
+        #cafeteria-section .title-section,
+        #cafeteria-section .main-title,
+        #cafeteria-section .subtitle { width: calc(100vw - 30px); max-width: calc(100vw - 30px); margin-left: auto; margin-right: auto; }
         #cafeteria-section .main-title { font-size: 1.8rem; }
+        #cafeteria-section .subtitle { font-size: .78rem !important; line-height: 1.45; width: 260px !important; }
+        #cafeteria-section .empty-state { width: min(100%, 300px) !important; font-size: .95rem; }
         #cafeteria-section .products-grid { grid-template-columns: 1fr; }
         #cafeteria-section .category-block { margin-bottom: 40px; }
     }

@@ -1,7 +1,11 @@
 @extends("website.layouts.app")
+@section("title", "Fitness Club Tunja | Gimnasio y entrenamiento en Boyacá")
+@section("seo_description", "Entrena en Fitness Club Tunja: gimnasio, entrenamiento profesional, planes personalizados y membresías en Tunja, Boyacá.")
+@section("seo_canonical", url('/'))
 @section("content")
 <style>
-   #rev_slider_1_wrapper h1{
+   #rev_slider_1_wrapper h1,
+   #rev_slider_1_wrapper h2{
        color:#fff !important
    }
 
@@ -18,6 +22,67 @@
    /* ===== TEMA OSCURO GENERAL ===== */
    body {
        background: radial-gradient(circle at top, #0f0f1f, #050505) !important;
+   }
+
+   .home-mobile-hero {
+       display: flex;
+       width: 100%;
+       min-height: 520px;
+       align-items: center;
+       justify-content: center;
+       position: relative;
+       padding: 90px 24px 70px;
+       text-align: center;
+       background: linear-gradient(rgba(5,5,15,.60), rgba(5,5,15,.88)), url('{{url('template/website/assets/images/slider-show/s-7.jpg')}}') center / cover;
+   }
+
+   .home-mobile-hero .hero-content {
+       width: 100%;
+       max-width: 780px;
+       position: relative;
+       z-index: 1;
+   }
+
+   .home-mobile-hero .eyebrow {
+       color: #00f0ff;
+       font-size: .9rem;
+       font-weight: 800;
+       letter-spacing: 3px;
+       text-transform: uppercase;
+       margin-bottom: 14px;
+   }
+
+   .home-mobile-hero h1 {
+       color: #fff;
+       font-size: clamp(2.4rem, 5vw, 4.5rem);
+       line-height: 1.05;
+       margin-bottom: 18px;
+       white-space: normal;
+   }
+
+   .home-mobile-hero p {
+       color: #e7e7f4;
+       font-size: 1.1rem;
+       line-height: 1.6;
+       max-width: 650px;
+       margin: 0 auto 28px;
+   }
+
+   .home-mobile-hero .hero-cta {
+       display: inline-flex;
+       align-items: center;
+       min-height: 48px;
+       padding: 0 28px;
+       border-radius: 24px;
+       background: linear-gradient(90deg, #8a2be2, #00f0ff);
+       color: #fff;
+       font-weight: 800;
+       text-transform: uppercase;
+       letter-spacing: .8px;
+   }
+
+   .slider-area1 {
+       display: none !important;
    }
 
    /* ===== FEATURES (Culturismo/Fitness/Levantamiento) ===== */
@@ -46,6 +111,7 @@
        backdrop-filter: blur(15px);
        box-shadow: 0 10px 30px rgba(0,0,0,0.4);
        transition: 0.3s;
+       min-width: 0;
    }
    .features-area .features-body .features-box:nth-child(even) {
        border-left-color: #8a2be2;
@@ -79,9 +145,10 @@
    }
    .features-area .features-body .features-box .features-elements p {
        color: #aaa !important;
-       max-width: 280px;
+       max-width: 300px;
        margin: 0 auto;
-       font-size: 0.9rem;
+       font-size: 0.8rem;
+       overflow-wrap: anywhere;
    }
    .features-area .features-body .features-box .features-box-img {
        flex: 1;
@@ -165,6 +232,14 @@
        display: flex;
        gap: 15px;
        flex-wrap: wrap;
+       width: 100%;
+       max-width: 1320px;
+       margin-left: auto;
+       margin-right: auto;
+       padding-left: 15px;
+       padding-right: 15px;
+       box-sizing: border-box;
+       overflow: hidden;
    }
    .portfolio-area .port-box {
        flex: 1 1 calc(25% - 12px);
@@ -299,6 +374,79 @@
       ===================  RESPONSIVE MOBILE  ==================
       ========================================================= */
    @media (max-width: 768px) {
+       .slider-area1 {
+           display: none !important;
+       }
+
+       .home-mobile-hero {
+           width: 100vw;
+           margin-left: calc(50% - 50vw);
+           min-height: 420px;
+           display: flex;
+           align-items: center;
+           justify-content: center;
+           position: relative;
+           padding: 54px 22px 42px;
+           text-align: center;
+           background: linear-gradient(rgba(5,5,15,.68), rgba(5,5,15,.86)), url('{{url('template/website/assets/images/slider-show/s-7.jpg')}}') center / cover;
+       }
+
+       .home-mobile-hero .hero-content {
+           position: relative;
+           z-index: 1;
+           max-width: calc(100vw - 30px);
+           width: 100%;
+           min-width: 0;
+       }
+
+       .home-mobile-hero .eyebrow {
+           color: #00f0ff;
+           font-size: .78rem;
+           font-weight: 800;
+           letter-spacing: 2px;
+           text-transform: uppercase;
+           margin-bottom: 12px;
+       }
+
+       .home-mobile-hero h1 {
+           color: #fff;
+           font-size: clamp(1.55rem, 6vw, 1.75rem);
+           line-height: 1.05;
+           margin-bottom: 16px;
+           width: 300px;
+           max-width: 100%;
+           margin-left: auto;
+           margin-right: auto;
+           white-space: normal !important;
+           overflow-wrap: anywhere;
+           word-break: normal;
+       }
+
+       .home-mobile-hero p {
+           color: #e7e7f4;
+           font-size: .78rem;
+           line-height: 1.6;
+           margin-bottom: 24px;
+           max-width: 310px;
+           width: 100%;
+           white-space: normal !important;
+           overflow-wrap: normal;
+           word-break: normal;
+       }
+
+       .home-mobile-hero .hero-cta {
+           display: inline-flex;
+           align-items: center;
+           min-height: 44px;
+           padding: 0 22px;
+           border-radius: 24px;
+           background: linear-gradient(90deg, #8a2be2, #00f0ff);
+           color: #fff;
+           font-weight: 800;
+           text-transform: uppercase;
+           letter-spacing: .7px;
+       }
+
        /* Textos del slider: el style.css original fuerza 65px/28px con !important
           en TODOS los tamaños de pantalla, bloqueando el responsive del plugin.
           Los reducimos aquí para que quepan en móvil sin encimarse. */
@@ -307,7 +455,8 @@
            font-size: 22px !important;
            line-height: 26px !important;
        }
-       #rev_slider_1_wrapper .tp-caption.slide-text-two h1 {
+       #rev_slider_1_wrapper .tp-caption.slide-text-two h1,
+       #rev_slider_1_wrapper .tp-caption.slide-text-two h2 {
            font-size: 13px !important;
            line-height: 18px !important;
        }
@@ -392,6 +541,8 @@
        .features-area .features-body .features-box {
            flex: 0 0 100%;
            max-width: 100%;
+           width: 100%;
+           min-width: 0;
            min-height: 380px;
        }
 
@@ -469,28 +620,36 @@
        .schedule-area .schdl-tab-area li a { font-size: 11px; padding: 8px 4px !important; }
    }
 </style>
+<section class="home-mobile-hero" aria-label="Fitness Club Tunja">
+   <div class="hero-content">
+      <div class="eyebrow">Fitness Club Tunja</div>
+      <h1>Entrena con pasión</h1>
+      <p>Transforma tu cuerpo y mente con entrenamiento profesional y planes para todos los niveles.</p>
+      <a class="hero-cta" href="#contacto">Conócenos</a>
+   </div>
+</section>
 <div class="slider-area1">
    <!--  -->
    <div id="rev_slider_1_wrapper" class="rev_slider_wrapper fullscreen-container" data-alias="photography1" style="background-color:transparent;padding:0px;">
       <div id="rev_slider_1" class="rev_slider fullscreenbanner" style="display:none;" data-version="5.0.7">
          <ul>
             <li data-index="rs-1" data-transition="slideoververtical">
-               <img src="{{url('template/website/assets/images/slider-show/s-7.jpg')}}" alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina="">
+               <img src="{{url('template/website/assets/images/slider-show/s-7.jpg')}}" alt="Entrenamiento de fuerza en Fitness Club Tunja" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina="">
                <div class="tp-caption slide-text-one tp-resizeme" id="slide-1-layer-1" data-x="['left','center','center','center']" data-hoffset="['65','50','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['-100','-145','-60','-100']" data-fontsize="['inherit','20','20','17']" data-lineheight="['60','30','30','26']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_in="x:[-100%];opacity:0;s:2000;e:Power4.easeInOut;" data-start="500" data-responsive_offset="on" style="z-index: 5; white-space: nowrap; font-family: 'Roboto Condensed', sans-serif">
                   <h1>Entrena <span>con pasión</span></h1>
                </div>
                <div class="tp-caption slide-text-two tp-resizeme" id="slide-1-layer-2" data-x="['left','left','center','center']" data-hoffset="['65','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['0','-80','30','0']" data-fontsize="['60','60','60','30']" data-lineheight="['60','60','60','40']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_in="x:[-100%];opacity:0;s:2300;e:Power4.easeInOut;" data-start="750" data-responsive_offset="on" style="z-index: 6; white-space: nowrap; font-family: 'Roboto Condensed', sans-serif">
-                  <h1>Transforma tu cuerpo y mente en Fitness Club</h1>
+                  <h2>Transforma tu cuerpo y mente en Fitness Club</h2>
                </div>
                <div class="tp-caption rev-btn white-btn" id="slide-1-layer-4" data-x="['left','left','center','center']" data-hoffset="['65','0','0','0']" data-y="['middle','middle','bottom','bottom']" data-voffset="['100','160','320','200']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-start="1250" data-responsive_offset="on" data-responsive="off" style="z-index: 8; white-space: nowrap; font-size: 18px; line-height: 15px; color: rgba(255, 255, 255, 1.00);font-family:'Roboto Condensed', sans-serif;text-transform: uppercase;">Únete ahora</div>
             </li>
             <li data-index="rs-2" data-transition="slideoververtical">
-               <img src="{{url('template/website/assets/images/slider-show/s-2.jpg')}}" alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina="">
+               <img src="{{url('template/website/assets/images/slider-show/s-2.jpg')}}" alt="Entrenamiento fitness en Fitness Club Tunja" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina="">
                <div class="tp-caption slide-text-one tp-resizeme" id="slide-2-layer-1" data-x="['right','center','center','center']" data-hoffset="['65','50','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['-100','-145','-60','-100']" data-fontsize="['inherit','20','20','17']" data-lineheight="['60','30','30','26']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-start="500" data-responsive_offset="on" style="z-index: 5; white-space: nowrap; font-family: 'Roboto Condensed', sans-serif">
-                  <h1>Resultados <span>garantizados</span></h1>
+                  <h2>Resultados <span>garantizados</span></h2>
                </div>
                <div class="tp-caption slide-text-two tp-resizeme" id="slide-2-layer-2" data-x="['right','left','center','center']" data-hoffset="['65','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['0','-80','30','0']" data-fontsize="['60','60','60','30']" data-lineheight="['60','60','60','40']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-start="750" data-responsive_offset="on" style="z-index: 6; white-space: nowrap; font-family: 'Roboto Condensed', sans-serif">
-                  <h1>Planes de entrenamiento para todos los niveles</h1>
+                  <h2>Planes de entrenamiento para todos los niveles</h2>
                </div>
                <div class="tp-caption rev-btn white-btn" id="slide-2-layer-4" data-x="['right','left','center','center']" data-hoffset="['65','0','0','0']" data-y="['middle','middle','bottom','bottom']" data-voffset="['100','160','320','200']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-start="1250" data-responsive_offset="on" data-responsive="off" style="z-index: 8; white-space: nowrap; font-size: 18px; line-height: 15px; color: rgba(255, 255, 255, 1.00);font-family:'Roboto Condensed', sans-serif;text-transform: uppercase;">Conócenos</div>
             </li>
@@ -582,6 +741,7 @@
          </div>
       </div>
    </div>
+   <div class="container">
    <div class="port-carousel port-zoom">
       <div class="port-box primary-overlay">
          <div class="port-img">
@@ -639,6 +799,7 @@
             <p>Consigue resultados con un plan de entrenamiento adaptado a tus objetivos personales.</p>
          </div>
       </div>-->
+   </div>
    </div>
 </div>
 

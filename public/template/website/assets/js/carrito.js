@@ -17,16 +17,18 @@ function saveCart() {
   }
 }
 
-function addToCart(name, price) {
+function addToCart(id, name, price) {
+  // Compatibilidad con enlaces antiguos que todavía envían (nombre, precio).
+  if (typeof id !== 'number') { price = name; name = id; id = null; }
   const quantityInput = document.getElementById('cantidad');
   const quantity = Math.max(1, parseInt(quantityInput ? quantityInput.value : 1, 10) || 1);
   const numericPrice = Number(price) || 0;
-  const productIndex = cart.findIndex(item => item.name === name);
+  const productIndex = cart.findIndex(item => item.id === id || item.name === name);
 
   if (productIndex !== -1) {
     cart[productIndex].quantity += quantity;
   } else {
-    cart.push({ name, price: numericPrice, quantity });
+    cart.push({ id, name, price: numericPrice, quantity });
   }
 
   saveCart();
@@ -91,6 +93,17 @@ function updateCart() {
   }
 }
 
+function openCheckout() {
+  const validItems = cart.filter(item => item.id);
+  if (!validItems.length) {
+    alert('Actualiza el carrito agregando nuevamente los productos desde la tienda.');
+    return;
+  }
+  const form = document.getElementById('checkout-form');
+  if (form) form.querySelector('[name="items"]').value = JSON.stringify(validItems.map(item => ({id: item.id, quantity: item.quantity})));
+  if (form) form.submit();
+}
+
 function removeFromCart(name) {
   cart = cart.filter(item => item.name !== name);
   saveCart();
@@ -98,3 +111,22 @@ function removeFromCart(name) {
 }
 
 document.addEventListener('DOMContentLoaded', updateCart);
+
+document.addEventListener('DOMContentLoaded', function () {
+  const button = document.getElementById('add-to-cart-button');
+  if (!button) return;
+
+  button.addEventListener('click', function (event) {
+    event.preventDefault();
+    addToCart(
+      Number(button.dataset.productId),
+      button.dataset.productName,
+      Number(button.dataset.productPrice)
+    );
+    button.textContent = 'Producto agregado · Ver carrito';
+    button.href = button.href || '/carrito';
+    button.classList.add('added-to-cart');
+    window.dispatchEvent(new Event('storage'));
+    window.setTimeout(function () { window.location.href = button.href; }, 350);
+  });
+});

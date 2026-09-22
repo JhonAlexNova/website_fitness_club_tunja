@@ -1,71 +1,19 @@
-@extends("website.layouts.app")
-
-@push("page_styles")
+@extends('website.layouts.app')
+@section('title','Carrito | Fitness Club Tunja')
+@section('seo_robots','noindex,follow')
+@push('page_styles')
 <style>
-   body { background: radial-gradient(circle at top, #0f0f1f, #050505) !important; color: #fff; }
-   .cart-page { padding: 56px 0 96px; min-height: calc(100vh - 80px); }
-   .cart-page .container, .cart-page .row > [class*="col-"] { min-width: 0; }
-   .cart-page .section-title h1 {
-      color: #fff; font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 900; text-transform: uppercase;
-      background: linear-gradient(90deg, #8a2be2, #00f0ff); -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent; background-clip: text;
-   }
-   .cart-breadcrumb { display: flex; justify-content: center; gap: 10px; list-style: none; padding: 0; margin: 15px 0 0; color: #aaa; }
-   .cart-breadcrumb a { color: #00f0ff; }
-   .cart-card { margin-top: 52px; padding: clamp(24px, 4vw, 44px); background: rgba(20,20,40,.82); border-left: 4px solid #00f0ff; border-radius: 20px; box-shadow: 0 15px 40px rgba(0,0,0,.35); }
-   .cart-empty { text-align: center; color: #aaa; }
-   .cart-empty i { color: #00f0ff; font-size: 3rem; margin-bottom: 18px; }
-   .cart-empty h2 { color: #fff; font-size: clamp(1.25rem, 3vw, 1.7rem); }
-   .cart-empty p { margin-bottom: 24px; }
-   .cart-cta { display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 0 24px; border-radius: 24px; color: #fff !important; background: linear-gradient(90deg, #8a2be2, #00f0ff); font-weight: 700; text-transform: uppercase; letter-spacing: .7px; }
-   .cart-table-wrap { overflow-x: auto; }
-   .cart-table { width: 100%; min-width: 620px; border-collapse: collapse; }
-   .cart-table th, .cart-table td { padding: 15px 12px; border-bottom: 1px solid rgba(255,255,255,.1); }
-   .cart-table th { color: #00f0ff; text-align: left; text-transform: uppercase; font-size: .78rem; }
-   .cart-table td { color: #fff; }
-   .cart-table input { width: 70px; padding: 8px; border-radius: 7px; border: 1px solid rgba(138,43,226,.5); background: #0b0b18; color: #fff; text-align: center; }
-   .cart-remove { color: #ff6b81; border: 0; background: transparent; cursor: pointer; }
-   .cart-summary { display: flex; justify-content: flex-end; margin-top: 24px; }
-   .cart-summary strong { color: #00f0ff; font-size: 1.4rem; }
-   @media (max-width: 767px) { .cart-page { padding: 38px 0 70px; } .cart-card { margin-top: 34px; padding: 24px 16px; } }
+body{background:radial-gradient(circle at top,#101026,#050509)!important;color:#fff}.shop-cart-page{padding:72px 0 110px;min-height:72vh}.cart-header{text-align:center;margin-bottom:38px}.cart-header h1{font-size:clamp(2rem,5vw,3rem);font-weight:900;text-transform:uppercase;background:linear-gradient(90deg,#8a2be2,#00f0ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}.cart-header p{color:#aaa}.cart-layout{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:24px;align-items:start}.cart-panel{background:#151527;border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:26px;box-shadow:0 15px 35px rgba(0,0,0,.28)}.cart-panel h2{font-size:1.15rem;text-transform:uppercase;margin:0 0 20px}.cart-table-wrap{overflow-x:auto}.cart-table{width:100%;border-collapse:collapse}.cart-table th{color:#00e5ff;font-size:.76rem;text-transform:uppercase;text-align:left;padding:12px;border-bottom:1px solid rgba(255,255,255,.12)}.cart-table td{padding:16px 12px;color:#ddd;border-bottom:1px solid rgba(255,255,255,.08)}.cart-table input{width:65px;padding:8px;background:#0b0b16;color:#fff;border:1px solid #444;border-radius:6px;text-align:center}.cart-remove{border:0;background:none;color:#ff718b;cursor:pointer}.cart-empty{text-align:center;color:#999;padding:35px}.cart-empty a{display:inline-block;margin-top:18px}.cart-summary{display:flex;justify-content:space-between;margin-top:22px;font-size:1.1rem}.cart-summary strong{color:#00e5ff;font-size:1.45rem}.buyer-form{display:grid;gap:12px}.buyer-form label{color:#aaa;font-size:.85rem}.buyer-form input{display:block;width:100%;margin-top:6px;padding:12px;border-radius:8px;border:1px solid rgba(255,255,255,.15);background:#0b0b16;color:#fff}.pay-button,.continue-link{display:inline-flex;justify-content:center;align-items:center;width:100%;padding:14px;border:0;border-radius:25px;background:linear-gradient(90deg,#8a2be2,#00dff5);color:#fff!important;font-weight:800;text-transform:uppercase;text-decoration:none;cursor:pointer}.continue-link{margin-top:12px;background:transparent;border:1px solid rgba(0,229,255,.4)}@media(max-width:850px){.cart-layout{grid-template-columns:1fr}.cart-panel{padding:18px}}
 </style>
 @endpush
-
-@section("title", "Carrito | Fitness Club Tunja")
-
-@section("content")
-<main class="cart-page">
-   <div class="container">
-      <div class="section-title text-center">
-         <h1>Carrito de compras</h1>
-         <ol class="cart-breadcrumb">
-            <li><a href="{{ url('/') }}">Inicio</a></li>
-            <li aria-hidden="true">›</li>
-            <li>Carrito</li>
-         </ol>
-      </div>
-      <section class="cart-card" aria-live="polite">
-         <div id="cart-empty" class="cart-empty">
-            <i class="fa fa-shopping-bag" aria-hidden="true"></i>
-            <h2>Tu carrito está vacío</h2>
-            <p>Explora nuestros productos y agrega lo que necesitas para tu entrenamiento.</p>
-            <a class="cart-cta" href="{{ url('tienda') }}">Ir a la tienda</a>
-         </div>
-         <div id="cart-content" hidden>
-            <div class="cart-table-wrap">
-               <table class="cart-table">
-                  <thead><tr><th>Producto</th><th>Precio</th><th>Cantidad</th><th>Total</th><th><span class="sr-only">Acciones</span></th></tr></thead>
-                  <tbody id="cart-items"></tbody>
-               </table>
-            </div>
-            <div class="cart-summary"><span>Total: <strong id="total-price">$0</strong></span></div>
-            <div class="text-right mt-4"><a class="cart-cta" href="{{ url('tienda') }}">Seguir comprando</a></div>
-         </div>
-      </section>
-   </div>
-</main>
+@section('content')
+<main class="shop-cart-page"><div class="container">
+<header class="cart-header"><h1>Tu carrito</h1><p>Revisa tus productos y completa tus datos para continuar al pago seguro.</p></header>
+<div class="cart-layout">
+<section class="cart-panel"><h2>Productos seleccionados</h2><div id="cart-empty" class="cart-empty" hidden>Tu carrito está vacío.<br><a class="continue-link" href="{{ url('tienda') }}">Ir a la tienda</a></div><div id="cart-content"><div class="cart-table-wrap"><table class="cart-table"><thead><tr><th>Producto</th><th>Precio</th><th>Cantidad</th><th>Total</th><th></th></tr></thead><tbody id="cart-items"></tbody></table></div><div class="cart-summary"><span>Total del pedido</span><strong id="total-price">$0</strong></div></div></section>
+<aside class="cart-panel"><h2>Datos del comprador</h2><form id="checkout-form" class="buyer-form" method="POST" action="{{ route('website.pagos.iniciar') }}">@csrf<input type="hidden" name="tipo" value="tienda"><input type="hidden" name="items" id="checkout-items"><label>Nombre completo<input required name="nombre" value="{{ auth()->user()->name ?? '' }}" placeholder="Tu nombre"></label><label>Correo electrónico<input required type="email" name="email" value="{{ auth()->user()->email ?? '' }}" placeholder="correo@ejemplo.com"></label><label>Teléfono<input required name="telefono" value="{{ auth()->user()->celular ?? '' }}" placeholder="300 000 0000"></label>@guest<label>Contraseña<input required type="password" name="password" minlength="8" placeholder="Mínimo 8 caracteres"></label><label>Repite la contraseña<input required type="password" name="password_confirmation" minlength="8"></label>@endguest<button class="pay-button" type="submit">Continuar a Wompi</button><a class="continue-link" href="{{ url('tienda') }}">Seguir comprando</a></form></aside>
+</div></div></main>
 @endsection
-
-@push("page_scripts")
-<script src="{{ url('template/website/assets/js/carrito.js') }}"></script>
+@push('page_scripts')
+<script src="{{ url('template/website/assets/js/carrito.js') }}?v=4"></script><script>document.addEventListener('DOMContentLoaded',function(){var cart=[];try{cart=JSON.parse(localStorage.getItem('fitness_club_tunja_cart')||'[]')}catch(e){}var empty=document.getElementById('cart-empty'),content=document.getElementById('cart-content'),form=document.getElementById('checkout-form'),items=document.getElementById('checkout-items');if(!cart.length){empty.hidden=false;content.hidden=true;form.hidden=true}else{items.value=JSON.stringify(cart.filter(function(i){return i.id}).map(function(i){return{id:i.id,quantity:i.quantity}}))}})</script>
 @endpush
