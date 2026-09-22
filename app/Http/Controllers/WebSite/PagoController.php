@@ -16,6 +16,13 @@ class PagoController extends Controller
 {
     public function iniciar(Request $request)
     {
+        // El carrito viaja en un campo oculto como JSON desde la vista.
+        // Lo convertimos a array antes de ejecutar la validación de Laravel.
+        if (is_string($request->input('items'))) {
+            $decodedItems = json_decode($request->input('items'), true);
+            $request->merge(['items' => is_array($decodedItems) ? $decodedItems : []]);
+        }
+
         $data = $request->validate([
             'tipo' => 'required|in:tienda,membresia',
             'items' => 'required_if:tipo,tienda|array|min:1',
