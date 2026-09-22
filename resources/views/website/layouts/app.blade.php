@@ -57,12 +57,12 @@
       <meta name="theme-color" content="#050505">
       <script type="application/ld+json">{!! json_encode($seoSchema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}</script>
       <!-- Google tag (gtag.js) -->
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-FFWX0NG1BE"></script>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-QW906MJJ5E"></script>
       <script>
          window.dataLayer = window.dataLayer || [];
          function gtag(){dataLayer.push(arguments);}
          gtag('js', new Date());
-         gtag('config', 'G-FFWX0NG1BE');
+         gtag('config', 'G-QW906MJJ5E');
       </script>
       <meta name="author" content="Fitness Club Tunja">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">

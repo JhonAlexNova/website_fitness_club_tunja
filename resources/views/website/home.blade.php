@@ -718,7 +718,7 @@
             No dejes pasar la oportunidad de transformar tu estilo de vida.
          </p>
          <div class="bttn">
-            <button type="submit" class="btn active btn-primary">Regístrate</button>
+            <a href="{{ route('register') }}" class="btn active btn-primary">Regístrate</a>
          </div>
       </div>
    </div>
